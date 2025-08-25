@@ -1,0 +1,36 @@
+.case{
+    display: flex;
+  justify-content: center; /* ортого чыгарат */
+  background-color: #E2E2E2;
+  padding: 20px 0; /* үстү-астынан бир аз боштук */
+  width: 100%;
+  box-sizing: border-box;
+  border-bottom: 1px solid #e5e5e5;
+}
+.case-all{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 1040px;            /* блоктун туурасы */
+  padding: 12px 20px;
+  background: #E2E2E2;
+  border-radius: 12px;
+  box-sizing: border-box;
+  gap: 10px;
+}
+.case-all .case-one{
+    width: 320px;
+    height: 430px;
+    background-color: #fff;
+    border-radius: 30px;
+}
+.case-all .case-one img{
+    width: 180px;
+    height: 320px;
+   margin-left: 72px;
+   margin-top: 25px;
+}
+.case-all .case-one h3{
+    text-align: center;
+    
+}
