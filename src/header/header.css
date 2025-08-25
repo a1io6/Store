@@ -1,0 +1,80 @@
+.header {
+  display: flex;
+  justify-content: center; /* ортого чыгарат */
+  background-color: #E2E2E2;
+  padding: 20px 0; /* үстү-астынан бир аз боштук */
+  width: 100%;
+  box-sizing: border-box;
+  border-bottom: 1px solid #e5e5e5;
+}
+
+.header-all {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 1000px;            /* блоктун туурасы */
+  padding: 12px 20px;
+  background: #E2E2E2;
+  border-radius: 12px;
+  box-sizing: border-box;
+}
+/* Лого + телефон модели чогуу */
+.header-left {
+  display: flex;
+  align-items: center;
+  gap: 70px;   /* ← аралыгын чоңойттук */
+}
+
+.header-logo h1 {
+  font-size: 22px;
+  font-weight: 700;
+  color: #000;
+  margin: 0;
+  cursor: pointer;
+}
+
+/* Телефон модели */
+.header-iphone {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.header-img {
+  font-size: 22px;
+  color: #333;
+}
+
+.header-iphone select {
+  border: none;
+  background: transparent;
+  font-size: 14px;
+  font-weight: 500;
+  color: #333;
+  outline: none;
+  cursor: pointer;
+  padding: 4px 8px;
+  border-radius: 6px;
+}
+
+.header-iphone select:hover {
+  background: #ececec;
+}
+
+/* Иконкалар оң жакта */
+.haeder-icons {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.haeder-icons svg {
+  font-size: 22px;
+  color: #444;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+.haeder-icons svg:hover {
+  color: #ff6b00;
+}
