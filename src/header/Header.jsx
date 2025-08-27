@@ -25,6 +25,9 @@ function Header() {
           <option>iphone</option>
           <option>samsung</option>
           <option>nokia</option>
+          <option>xiaomi</option>
+          <option>redmi</option>
+          <option>sony</option>
         </select>
       </div>
     </div>

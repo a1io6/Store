@@ -10,7 +10,7 @@ function Case() {
     axios.get('https://689ead013fed484cf877ace7.mockapi.io/fruit')
       .then(response => {
         // Capture items 43–48 (i.e., last 6 cases)
-        setCasesData(response.data.slice(43, 46));
+        setCasesData(response.data.slice(43, 46 ));
         setLoading(false);
       })
       .catch(error => {
@@ -24,6 +24,9 @@ function Case() {
   }
 
   return (
+    <div className='case-logo'>
+      <h3>Чехлы</h3>
+    
     <div className='case'>
       <div className="case-all">
         {casesData.map(item => (
@@ -35,6 +38,7 @@ function Case() {
           </div>
         ))}
       </div>
+    </div>
     </div>
   );
 }

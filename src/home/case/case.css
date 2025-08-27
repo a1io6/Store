@@ -1,4 +1,12 @@
+.case-logo{
+  padding: 0;
+  margin: 0;
+  background-color: #E2E2E2;
+
+}
 .case {
+  max-width: 1600px;
+  margin: auto;
   display: flex;
   justify-content: center; /* ортого чыгаруу */
   background-color: #E2E2E2;

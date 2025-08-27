@@ -8,7 +8,8 @@
   padding: 20px 0; /* үстү-астынан бир аз боштук */
   width: 100%;
   box-sizing: border-box;
-  /* border-bottom: 1px solid #e5e5e5; */
+   font-family: Montserrat;
+ 
 }
 .banner-all{
     display: flex;
@@ -25,7 +26,7 @@
  color: white;
  font-size: 30px;
  font-weight: 600;
- font-family: Montserrat;
+
 }
 .banner-all .banner-img img{
     width: 300px;
