@@ -4,12 +4,12 @@ import Banner from './banner/Banner'
 import Home from './home/Home'
 import './App.css'
 
+import { RouterProvider } from 'react-router-dom'
+import myRouter from './Router'
 function App() {
   return (
     <div>
-      <Header/>
-      <Banner/>
-      <Home/>
+      <RouterProvider router={myRouter}/>
     </div>
   )
 }
