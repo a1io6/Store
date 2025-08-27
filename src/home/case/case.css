@@ -1,36 +1,56 @@
-.case{
-    display: flex;
-  justify-content: center; /* ортого чыгарат */
+.case-logo{
+  padding: 0;
+  margin: 0;
   background-color: #E2E2E2;
-  padding: 20px 0; /* үстү-астынан бир аз боштук */
+
+}
+.case {
+  max-width: 1600px;
+  margin: auto;
+  display: flex;
+  justify-content: center; /* ортого чыгаруу */
+  background-color: #E2E2E2;
+  padding: 20px 0;
   width: 100%;
   box-sizing: border-box;
   border-bottom: 1px solid #e5e5e5;
 }
-.case-all{
+
+.case-all {
   display: flex;
-  align-items: center;
   justify-content: space-between;
-  width: 1040px;            /* блоктун туурасы */
-  padding: 12px 20px;
+  flex-wrap: wrap; /* экранга ылайык жаңы катарга өтсүн */
+  width: 1140px;
+  padding: 0px 20px;
   background: #E2E2E2;
   border-radius: 12px;
   box-sizing: border-box;
   gap: 10px;
 }
-.case-all .case-one{
-    width: 320px;
-    height: 430px;
-    background-color: #fff;
-    border-radius: 30px;
+
+.case-one {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 320px;
+  height: 380px;
+  background-color: #fff;
+  border-radius: 30px;
+  box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+  padding: 20px 10px;
+  box-sizing: border-box;
 }
-.case-all .case-one img{
-    width: 180px;
-    height: 320px;
-   margin-left: 72px;
-   margin-top: 25px;
+
+.case-one img {
+  width: 170px; 
+  height: 280px;
+  object-fit: contain; /* сүрөттөрдү катмарлап масштабтайт */
 }
-.case-all .case-one h3{
-    text-align: center;
-    
+
+.case-one h3 {
+  text-align: center;
+  margin-top: 15px;
+  font-size: 18px;
+  font-weight: 600;
+  color: #1C1C27;
 }
