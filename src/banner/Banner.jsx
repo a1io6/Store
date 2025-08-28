@@ -9,14 +9,11 @@ function Banner() {
             <h2>Аксессуары для <br />Iphone 13 Pro Max</h2>
             </div>
             <div className='banner-img'><img src={banner} /></div>
+           
         </div>
       
     </div>
   )
 }
 
-<<<<<<< HEAD
-export default Banner
-=======
 export default Banner    
->>>>>>> 3d07b5146ef41392bf47ccf021169f323a467f15

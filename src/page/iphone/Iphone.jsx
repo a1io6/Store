@@ -1,21 +1,19 @@
-// src/page/airpods/AirPots.jsx
 import React, { useState, useEffect, useContext } from 'react';
 import axios from 'axios';
 import { CiHeart } from "react-icons/ci";
 import { IoCartOutline } from "react-icons/io5";
-import './airpots.css';
-import { CartContext } from '../../context/CartContext'; // CartContext туура жол
+import './iphone.css';
+import { CartContext } from '../../context/CartContext';
 
-function AirPots() {
+function Iphone() {
   const [productsData, setProductsData] = useState([]);
   const [loading, setLoading] = useState(true);
-  const { addToCart } = useContext(CartContext); // Cartка кошуу функциясы
+  const { addToCart } = useContext(CartContext);
 
   useEffect(() => {
     axios.get('https://689ead013fed484cf877ace7.mockapi.io/fruit')
       .then(response => {
-        // AirPods үчүн 3 продукт алабыз (мисалы id 46-48)
-        setProductsData(response.data.slice(46, 49));
+        setProductsData(response.data.slice(0, 6));
         setLoading(false);
       })
       .catch(error => {
@@ -27,12 +25,12 @@ function AirPots() {
   if (loading) return <p>Loading...</p>;
 
   return (
-    <div className='airpods'>
-      <div className="airpods-all">
+    <div className='iphone'>
+      <div className="iphone-all">
         {productsData.map(product => (
-          <div className="airpods-blok1" key={product.id}>
-            <div className='air-blok'>
-              <div className='air-icons'>
+          <div className="iphone-blok1" key={product.id}>
+            <div className='blok1'>
+              <div className='blok1-icons'>
                 <CiHeart className="heart-icon"/>
                 <IoCartOutline 
                   className="cart-icon" 
@@ -40,14 +38,14 @@ function AirPots() {
                 />
               </div>
               <img src={product.img} alt={product.name} />
-              <div className="air-info">
+              <div className="product-info">
                 <h2>{product.name}</h2>
-                <div className="air-price">
+                <div className="price-container">
                   <h3>{product.price} $</h3>
                   {product.oldPrice && <h4>{product.oldPrice}</h4>}
                 </div>
               </div>
-              <div className='air-reiting'>
+              <div className='reiting'>
                 <p>⭐ {product.rating}</p>
               </div>
             </div>
@@ -58,4 +56,4 @@ function AirPots() {
   );
 }
 
-export default AirPots;
+export default Iphone;

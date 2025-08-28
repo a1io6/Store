@@ -1,17 +1,15 @@
-import React from 'react'
-import Header from './header/Header'
-import Banner from './banner/Banner'
-import Home from './home/Home'
-import './App.css'
+import React from "react";
+import { RouterProvider } from "react-router-dom";
+import { CartProvider } from "./context/CartContext";
+import myRouter from "./router";
+import "./App.css"
 
-import { RouterProvider } from 'react-router-dom'
-import myRouter from './Router'
 function App() {
   return (
-    <div>
-      <RouterProvider router={myRouter}/>
-    </div>
-  )
+    <CartProvider>
+      <RouterProvider router={myRouter} />
+    </CartProvider>
+  );
 }
 
-export default App
+export default App;

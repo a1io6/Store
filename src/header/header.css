@@ -32,6 +32,11 @@
   margin: 0;
   cursor: pointer;
 }
+.header-logo a {
+  text-decoration: none; 
+  color: inherit;         
+}
+
 
 /* Телефон модели */
 .header-iphone {
@@ -77,4 +82,40 @@
 
 .haeder-icons svg:hover {
   color: #ff6b00;
+}
+.haeder-icons {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  position: relative;
+}
+
+.haeder-icons svg {
+  font-size: 24px;
+  color: #444;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+.haeder-icons svg:hover {
+  color: #ff6b00;
+}
+
+/* Иконка үстүндөгү сан */
+.cart-count {
+  position: absolute;
+  top: -9px;        /* иконка үстүнө чыгарат */
+ left: 57px;
+
+  background-color: #FFA542;
+  color: white;
+  font-size: 12px;
+  font-weight: bold;
+  padding: 2px 6px;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 18px;
+  height: 18px;
 }
