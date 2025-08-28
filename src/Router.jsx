@@ -12,7 +12,13 @@ import AirPots from "./home/airpots/Airpots";
 import Headphones from "./home/headphones/Headphones";
 import { createBrowserRouter } from "react-router-dom";
 import Auther from "./auth/Auther";
-
+import Finall from "./auth/Finall";
+import Condition from "./condition/Condition";
+import Register from "./register/Register";
+import LogIn from "./register/LogIn";
+import AdminLayout from "./admin/AdminLayout";
+import AdminHeader from "./admin/admin-header/AdminHaeder";
+import MainPages from "./admin/main/MainPages";
 
 const myRouter = createBrowserRouter([
     {
@@ -29,6 +35,8 @@ const myRouter = createBrowserRouter([
             { path: "xiaomi", element: <Xioami /> },
             { path: "airpods", element: <AirPots /> },
             { path: "headphones", element: <Headphones /> },
+            { path:"finall", element:<Finall/> }  ,
+            { path:"condition", element:<Condition/> }  ,
             // {
             //     path: "cartlist",
             //     element: <CartList />
@@ -36,7 +44,25 @@ const myRouter = createBrowserRouter([
             {
                 path: "auther",
                 element: <Auther />
+            },       {
+                path:"register",
+                element:<Register/>
             },
+            {
+                path:"login",
+                element:<LogIn/>
+            },
+        ]
+    },
+    {
+        path:"/",
+        element:<AdminLayout/>,
+        children:[
+            {
+                path:"/admin",
+                element:<MainPages/>
+
+            }
         ]
     }
 ]);
