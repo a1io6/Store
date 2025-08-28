@@ -24,6 +24,8 @@ function Samsung() {
       });
   }, []);
 
+  
+
   if (loading) return <p>Loading...</p>;
 
   return (
@@ -43,7 +45,7 @@ function Samsung() {
               <div className="product-info">
                 <h2>{product.name}</h2>
                 <div className="price-container">
-                  <h3>{product.price} $</h3>
+                  <h3>{product.price}$</h3>
                   {product.oldPrice && <h4>{product.oldPrice}</h4>}
                 </div>
               </div>
