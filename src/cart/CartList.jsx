@@ -1,56 +1,47 @@
-import React, { useState } from "react";
+import React, { useContext } from "react";
 import { Link } from "react-router-dom";
+import { CartContext } from "../context/CartContext";
 import "./CartList.css";
 
 function CartList() {
-  const [count, setCount] = useState(0);
-  const [delivery, setDelivery] = useState(499); 
+  const { cartItems, updateCount } = useContext(CartContext);
+  const deliveryBase = 499;
 
-  const price = 0; 
-  const subtotal = price * count;
-  const total = subtotal + delivery;
+  const totalCount = cartItems.reduce((sum, item) => sum + (item.count || 1), 0);
+  const subtotal = cartItems.reduce((sum, item) => sum + (item.price * (item.count || 1)), 0);
+  const totalDelivery = deliveryBase * totalCount;
+  const total = subtotal + totalDelivery;
 
-  const inc = () => {
-    setCount(count + 1);
-    setDelivery((prev) => Math.round(prev * 1.05)); 
-  };
-
-  const dec = () => {
-    if (count > 1) {
-      setCount(count - 1);
-      setDelivery((prev) => Math.round(prev / 1.05)); 
-    }
-  };
+  if (cartItems.length === 0) return <p>Корзина пустая</p>;
 
   return (
     <div className="list">
       <div className="grid">
         <div className="col-left">
           <h3 className="section-title">Корзина</h3>
-
-          <div className="card card-cart">
-            <div className="cart-row">
-              <img className="item-img" src="" alt="Apple BYZ S852I" />
-
-              <div className="item-main">
-                <div className="item-head">
-                  <div>
-                    <p className="item-title"></p>
-                    <p className="item-sub">{price.toLocaleString("ru-RU")} $</p>
+          {cartItems.map(item => (
+            <div className="card card-cart" key={item.id}>
+              <div className="cart-row">
+                <img className="item-img" src={item.img} alt={item.name} />
+                <div className="item-main">
+                  <div className="item-head">
+                    <div>
+                      <p className="item-title">{item.name}</p>
+                      <p className="item-sub">{item.price} $</p>
+                    </div>
+                    <div className="item-right-price">
+                      {(item.price * (item.count || 1))} $
+                    </div>
                   </div>
-                  <div className="item-right-price">
-                    {subtotal.toLocaleString("ru-RU")} $
+                  <div className="qty">
+                    <button type="button" onClick={() => updateCount(item.id, -1)}>−</button>
+                    <span>{item.count || 1}</span>
+                    <button type="button" onClick={() => updateCount(item.id, 1)}>+</button>
                   </div>
-                </div>
-
-                <div className="qty">
-                  <button type="button" onClick={dec}>−</button>
-                  <span>{count}</span>
-                  <button type="button" onClick={inc}>+</button>
                 </div>
               </div>
             </div>
-          </div>
+          ))}
 
           <h3 className="section-title">Доставка</h3>
           <div className="card card-delivery">
@@ -59,14 +50,12 @@ function CartList() {
             </div>
             <div className="delivery-row">
               <div className="delivery-left">
-                <svg width="20" height="20" viewBox="0 0 24 24" aria-hidden="true">
-                  <path d="M3 7h11v7h2.5l2.5-3h2v6h-1a2 2 0 1 1-4 0H9a2 2 0 1 1-4 0H3V7z" fill="#7B7B7B"/>
-                </svg>
                 <span>Доставка курьером</span>
               </div>
               <div className="delivery-price">
-                {delivery.toLocaleString("ru-RU")} $
+                {/* {delivery.toLocaleString("ru-RU")} $ */}
               </div>
+              <div className="delivery-price">{totalDelivery} $</div>
             </div>
           </div>
         </div>
@@ -75,19 +64,19 @@ function CartList() {
           <div className="card summary">
             <div className="summary-head">
               <span>ИТОГО</span>
-              <strong>{total.toLocaleString("ru-RU")} $</strong>
+              <strong>{total} $</strong>
             </div>
             <div className="summary-row">
               <span>Товаров</span>
-              <span>{count}</span>
+              <span>{totalCount}</span>
             </div>
             <div className="summary-row">
               <span>Сумма</span>
-              <span>{subtotal.toLocaleString("ru-RU")} $</span>
+              <span>{subtotal} $</span>
             </div>
             <div className="summary-row">
               <span>Доставка</span>
-              <span>{delivery.toLocaleString("ru-RU")} $</span>
+              <span>{totalDelivery} $</span>
             </div>
             <Link to="/auther" className="checkout-btn">
               Перейти к оформлению

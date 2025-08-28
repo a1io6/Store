@@ -5,11 +5,11 @@ import Airpods from './airpots/Airpots'
 
 function Home() {
   return (
-    <div>
+    <>
       <Case/>
       <Headphones/>
       <Airpods/>
-    </div>
+    </>
   )
 }
 

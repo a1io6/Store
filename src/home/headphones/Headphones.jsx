@@ -1,16 +1,20 @@
-import React, { useState, useEffect } from 'react';
+// src/page/headphones/Headphones.jsx
+import React, { useState, useEffect, useContext } from 'react';
 import axios from 'axios';
 import { CiHeart } from "react-icons/ci";
 import { IoCartOutline } from "react-icons/io5";
 import './headphones.css';
+import { CartContext } from '../../context/CartContext'; // CartContext туура жол
 
 function Headphones() {
   const [productsData, setProductsData] = useState([]);
   const [loading, setLoading] = useState(true);
+  const { addToCart } = useContext(CartContext); // Cartка кошуу функциясы
 
   useEffect(() => {
     axios.get('https://689ead013fed484cf877ace7.mockapi.io/fruit')
       .then(response => {
+        // Headphones моделдерин алабыз (мисалы id 37-42)
         setProductsData(response.data.slice(37, 43));
         setLoading(false);
       })
@@ -30,7 +34,10 @@ function Headphones() {
             <div className='blok1'>
               <div className='blok1-icons'>
                 <CiHeart className="heart-icon"/>
-                <IoCartOutline className="cart-icon"/>
+                <IoCartOutline 
+                  className="cart-icon" 
+                  onClick={() => addToCart(product)} 
+                />
               </div>
               <img src={product.img} alt={product.name} />
               <div className="product-info">

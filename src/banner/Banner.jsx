@@ -9,6 +9,7 @@ function Banner() {
             <h2>Аксессуары для <br />Iphone 13 Pro Max</h2>
             </div>
             <div className='banner-img'><img src={banner} /></div>
+           
         </div>
       
     </div>

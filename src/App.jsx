@@ -1,12 +1,15 @@
-import './App.css'
-import { RouterProvider } from 'react-router-dom'
-import myRouter from './Router'
+import React from "react";
+import { RouterProvider } from "react-router-dom";
+import { CartProvider } from "./context/CartContext";
+import myRouter from "./router";
+import "./App.css"
+
 function App() {
   return (
-    <>
-      <RouterProvider router={myRouter}/>
-    </>
-  )
+    <CartProvider>
+      <RouterProvider router={myRouter} />
+    </CartProvider>
+  );
 }
 
-export default App
+export default App;
