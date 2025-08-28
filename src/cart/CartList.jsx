@@ -45,9 +45,15 @@ function CartList() {
 
           <h3 className="section-title">Доставка</h3>
           <div className="card card-delivery">
+            <div className="map">
+              <img src="" alt="Карта доставки" />
+            </div>
             <div className="delivery-row">
               <div className="delivery-left">
                 <span>Доставка курьером</span>
+              </div>
+              <div className="delivery-price">
+                {/* {delivery.toLocaleString("ru-RU")} $ */}
               </div>
               <div className="delivery-price">{totalDelivery} $</div>
             </div>
@@ -72,7 +78,7 @@ function CartList() {
               <span>Доставка</span>
               <span>{totalDelivery} $</span>
             </div>
-            <Link to="/checkout" className="checkout-btn">
+            <Link to="/auther" className="checkout-btn">
               Перейти к оформлению
             </Link>
           </div>

@@ -1,0 +1,106 @@
+.footer{
+  width: 100%;
+  margin: auto;
+  height: 120px;
+  background-color: #E2E2E2;
+  
+}
+
+
+.footer-all {
+    
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    padding:12px 10px;
+    width: 1100px;
+    margin: 0 auto; /* <-- ортого жайгаштыруу, left/right жок */
+    background: #FFFFFF;
+    border-radius: 30px 30px 0px 0px;
+
+}
+
+
+
+.footer-logo h1 {
+  font-size: 18px;
+  font-weight: 700;
+  color: #000;
+  margin-top: 10px;
+}
+
+.footer-sslk ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.footer-sslk ul li {
+  margin-bottom: 8px;
+  margin-top: 10px;
+}
+
+.footer-sslk ul li a {
+  text-decoration: none;
+  color: #000;
+  font-size: 14px;
+  transition: 0.3s;
+   
+
+}
+
+.footer-sslk ul li a:hover {
+  color: #FFA542;
+}
+
+.footer-sslk1 {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 10px;
+    margin-top: 10px;
+
+}
+.footer-sslk1 ul{
+    align-items: center;
+}
+.footer-sslk1 li {
+  list-style: none;
+}
+
+.footer-sslk1 li a {
+  text-decoration: none;
+  font-size: 14px;
+  color: #000;
+  margin-right: 8px;
+  transition: 0.3s;
+}
+
+.footer-sslk1 li a:hover {
+  color: #FFA542;
+}
+
+.footer-sslk1 ul {
+  display: flex;
+  gap: 10px;
+  padding: 0;
+  margin: 0;
+}
+
+.footer-icons {
+  display: flex;
+  gap: 15px;
+  font-size: 20px;
+    margin-top: 10px;
+
+}
+
+.footer-icons div {
+  cursor: pointer;
+  transition: transform 0.2s, color 0.3s;
+}
+
+.footer-icons div:hover {
+  transform: scale(1.2);
+  color: #FFA542;
+}
