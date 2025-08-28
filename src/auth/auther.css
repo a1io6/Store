@@ -1,4 +1,4 @@
-.auther {
+/* .auther {
   display: flex;
   gap: 30px;
   padding: 20px;
@@ -52,7 +52,6 @@ box-shadow: 0px 0px 20px 0px rgba(0, 0, 0, 0.1);
 }
 .box1 {
   flex: 0.8;
-  /* background: ; */
   padding: 20px;
   border-radius: 8px;
   width: 445px;            
@@ -74,7 +73,6 @@ box-shadow: 0px 0px 20px 0px rgba(0, 0, 0, 0.1);
   border-radius: 6px;
 }
 
-/* Отдельный див с заказом */
 .order-info {
   background: #FFFFFF;
   border: 1px solid #eee;
@@ -87,7 +85,7 @@ border-radius: 30px;
     
      }
 
-/* Кнопка */
+
 .finish-btn {
   margin-top: auto;       
   width: 100%;
@@ -103,4 +101,125 @@ border-radius: 30px;
 .finish-btn:hover { background: #333; }
 .promo input{
     background-color:  #D6D6D6;
+} */
+ .auther {
+  display: flex;
+  gap: 30px;
+  padding: 20px;
+  font-family: Arial, sans-serif;
+  width: 933.83px;
+  margin: 0 auto;
+  margin-bottom: 50px;
+}
+
+.box {
+  flex: 1;
+  background: #fff;
+  padding: 20px;
+  border-radius: 30px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+  width: 445px;
+}
+
+.box h2 { margin-bottom: 15px; font-size: 20px; }
+
+.dostavka h3 { margin: 15px 0 10px; font-size: 16px; }
+
+.dostavka input {
+  display: block;
+  width: 100%;
+  margin-bottom: 10px;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  background-color: #D6D6D6;
+}
+
+.address-row {
+  display: flex;
+  flex-wrap: wrap;  
+  justify-content: space-between;
+}
+.address-row input {
+  width: 174px;
+  height: 45px;
+}
+
+.input1 {
+  background-color: #D6D6D6;
+}
+
+.box1 {
+  flex: 0.8;
+  padding: 20px;
+  border-radius: 30px;
+  width: 445px;            
+  display: flex;
+  flex-direction: column;
+  background: #fff;
+  
+}
+
+.box1 h2 { margin-bottom: 15px; font-size: 20px; }
+.box1 h3 { margin: 15px 0 8px; font-size: 16px; }
+
+.box1 select, .box1 input {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 12px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+}
+
+/* Список заказов */
+.order-list {
+  max-height: 180px;
+  overflow-y: auto;
+  margin-bottom: 15px;
+  padding-right: 5px;
+}
+
+.order-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  /* background: #FFFFFF; */
+  background:  #D6D6D6;
+  border: 1px solid #eee;
+  border-radius: 12px;
+  padding: 10px 15px;
+  margin-bottom: 8px;
+  font-size: 14px;
+}
+
+.order-summary {
+  margin-bottom: 15px;
+}
+.order-summary .order-row {
+  border: none;
+  background: transparent;
+  font-size: 15px;
+}
+.order-summary .total {
+  font-size: 16px;
+  font-weight: bold;
+}
+
+/* Кнопка */
+.finish-btn {
+  margin-top: auto;       
+  width: 100%;
+  padding: 12px;
+  background: #000;
+  color: #fff;
+  font-size: 16px;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+.finish-btn:hover { background: #333; }
+
+.promo input {
+  background-color:  #D6D6D6;
 }
