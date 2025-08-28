@@ -15,8 +15,4 @@ function Banner() {
   )
 }
 
-<<<<<<< HEAD
-export default Banner
-=======
 export default Banner    
->>>>>>> 3d07b5146ef41392bf47ccf021169f323a467f15
