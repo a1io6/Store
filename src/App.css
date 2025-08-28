@@ -4,3 +4,6 @@
     box-sizing: border-box;
     font-family: Montserrat;
 }
+body, html{
+  background-color: #E2E2E2;
+}

@@ -1,24 +1,24 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import "./CartList.css";
-import nnnn from "../assets/nnnn.png";
+
 function CartList() {
   const [count, setCount] = useState(0);
-  const [delivery, setDelivery] = useState(499); // начальная доставка
+  const [delivery, setDelivery] = useState(499); 
 
-  const price = 2927; 
+  const price = 0; 
   const subtotal = price * count;
   const total = subtotal + delivery;
 
   const inc = () => {
     setCount(count + 1);
-    setDelivery((prev) => Math.round(prev * 1.05)); // +5%
+    setDelivery((prev) => Math.round(prev * 1.05)); 
   };
 
   const dec = () => {
     if (count > 1) {
       setCount(count - 1);
-      setDelivery((prev) => Math.round(prev / 1.05)); // возврат на -5% 
+      setDelivery((prev) => Math.round(prev / 1.05)); 
     }
   };
 
@@ -30,12 +30,12 @@ function CartList() {
 
           <div className="card card-cart">
             <div className="cart-row">
-              <img className="item-img" src={nnnn} alt="Apple BYZ S852I" />
+              <img className="item-img" src="" alt="Apple BYZ S852I" />
 
               <div className="item-main">
                 <div className="item-head">
                   <div>
-                    <p className="item-title">Apple BYZ S852I</p>
+                    <p className="item-title"></p>
                     <p className="item-sub">{price.toLocaleString("ru-RU")} $</p>
                   </div>
                   <div className="item-right-price">
@@ -55,7 +55,7 @@ function CartList() {
           <h3 className="section-title">Доставка</h3>
           <div className="card card-delivery">
             <div className="map">
-              <img src={nnnn} alt="Карта доставки" />
+              <img src="" alt="Карта доставки" />
             </div>
             <div className="delivery-row">
               <div className="delivery-left">
@@ -63,7 +63,6 @@ function CartList() {
                   <path d="M3 7h11v7h2.5l2.5-3h2v6h-1a2 2 0 1 1-4 0H9a2 2 0 1 1-4 0H3V7z" fill="#7B7B7B"/>
                 </svg>
                 <span>Доставка курьером</span>
-                {/* <span className="chev">▾</span> */}
               </div>
               <div className="delivery-price">
                 {delivery.toLocaleString("ru-RU")} $
@@ -90,7 +89,7 @@ function CartList() {
               <span>Доставка</span>
               <span>{delivery.toLocaleString("ru-RU")} $</span>
             </div>
-            <Link to="/checkout" className="checkout-btn">
+            <Link to="/auther" className="checkout-btn">
               Перейти к оформлению
             </Link>
           </div>

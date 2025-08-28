@@ -2,6 +2,7 @@ import { createBrowserRouter } from "react-router-dom";
 import Home from "./home/Home";
 import Layout from "./layout/Layout";
 import CartList from "./cart/CartList";
+import Auther from "./auth/Auther";
 const myRouter = createBrowserRouter([
     {
         path: "/",
@@ -13,6 +14,10 @@ const myRouter = createBrowserRouter([
             },{
                 path:"cartlist",
                 element:<CartList/>
+            },
+            {
+                path:"auther",
+                element:<Auther/>
             },
         
         ]
