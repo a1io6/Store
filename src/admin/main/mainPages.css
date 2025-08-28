@@ -1,0 +1,54 @@
+.dashboard{
+    max-width: 1600px;
+    width: 800px;
+    margin-left: 265px;
+}
+.dashboard h1 {
+  font-size: 24px;
+  margin-top: 20px;
+  margin-bottom: 30px;
+  color: #333;
+}
+
+.cards {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 15px;
+  margin-bottom: 30px;
+}
+
+.card {
+  background: #fff;
+  padding: 20px;
+  border-radius: 12px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+  font-size: 14px;
+}
+
+.card span {
+  display: block;
+  font-size: 24px;
+  font-weight: bold;
+  margin-top: 10px;
+}
+
+.activity {
+  background: #fff;
+  padding: 20px;
+  border-radius: 12px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+}
+
+.activity h2 {
+  margin-bottom: 15px;
+}
+
+.activity ul {
+  list-style: none;
+  padding: 0;
+}
+
+.activity li {
+  padding: 10px 0;
+  border-bottom: 1px solid #eee;
+}
