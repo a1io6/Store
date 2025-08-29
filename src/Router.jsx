@@ -19,6 +19,8 @@ import LogIn from "./register/LogIn";
 import AdminLayout from "./admin/AdminLayout";
 import AdminHeader from "./admin/admin-header/AdminHaeder";
 import MainPages from "./admin/main/MainPages";
+import Products from "./admin/products/Products";
+import Phone from "./page/phone/Phone";
 
 const myRouter = createBrowserRouter([
     {
@@ -52,6 +54,10 @@ const myRouter = createBrowserRouter([
                 path:"login",
                 element:<LogIn/>
             },
+            {
+                path:"/phone/:name",
+                element:<Phone/>
+            }
         ]
     },
     {
@@ -61,7 +67,10 @@ const myRouter = createBrowserRouter([
             {
                 path:"/admin",
                 element:<MainPages/>
-
+            },
+            {
+                path:"/products",
+                element:<Products/>
             }
         ]
     }

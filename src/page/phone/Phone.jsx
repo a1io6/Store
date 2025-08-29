@@ -1,20 +1,20 @@
-// src/page/headphones/Headphones.jsx
 import React, { useState, useEffect, useContext } from 'react';
 import axios from 'axios';
 import { CiHeart } from "react-icons/ci";
 import { IoCartOutline } from "react-icons/io5";
-import './headphones.css';
-import { CartContext } from '../../context/CartContext'; // CartContext туура жол
+import './Phone.css';
+import { CartContext } from '../../context/CartContext';
+import { useParams } from 'react-router-dom';
 
-function Headphones() {
+function Phone() {
+    const {name} = useParams()
   const [productsData, setProductsData] = useState([]);
   const [loading, setLoading] = useState(true);
-  const { addToCart } = useContext(CartContext); // Cartка кошуу функциясы
+  const { addToCart } = useContext(CartContext);
 
   useEffect(() => {
-    axios.get('https://689ead013fed484cf877ace7.mockapi.io/fruit?category=headphones')
+    axios.get(`https://689ead013fed484cf877ace7.mockapi.io/fruit?category=${name}`)
       .then(response => {
-        // Headphones моделдерин алабыз (мисалы id 37-42)
         setProductsData(response.data);
         setLoading(false);
       })
@@ -22,15 +22,15 @@ function Headphones() {
         console.error(error);
         setLoading(false);
       });
-  }, []);
+  }, [name]);
 
   if (loading) return <p>Loading...</p>;
 
   return (
-    <div className='headphones'>
-      <div className="headphones-all">
+    <div className='iphone'>
+      <div className="iphone-all">
         {productsData.map(product => (
-          <div className="headphones-blok1" key={product.id}>
+          <div className="iphone-blok1" key={product.id}>
             <div className='blok1'>
               <div className='blok1-icons'>
                 <CiHeart className="heart-icon"/>
@@ -58,4 +58,4 @@ function Headphones() {
   );
 }
 
-export default Headphones;
+export default Phone;

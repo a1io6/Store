@@ -7,10 +7,10 @@ function Case() {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    axios.get('https://689ead013fed484cf877ace7.mockapi.io/fruit')
+    axios.get('https://689ead013fed484cf877ace7.mockapi.io/fruit?category=case')
       .then(response => {
         // Capture items 43–48 (i.e., last 6 cases)
-        setCasesData(response.data.slice(43, 46 ));
+        setCasesData(response.data.slice(0, 3 ));
         setLoading(false);
       })
       .catch(error => {
