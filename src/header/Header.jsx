@@ -57,6 +57,7 @@ import { CiHeart } from "react-icons/ci";
 import { IoCartOutline } from "react-icons/io5";
 import { CartContext } from '../context/CartContext';
 import './header.css';
+import { BiUser } from 'react-icons/bi';
 
 function Header() {
   const navigate = useNavigate();
@@ -65,7 +66,7 @@ function Header() {
   const handleChange = (e) => {
     const model = e.target.value;
     if (model !== "Выбрать модель телефона") {
-      navigate(`/${model.toLowerCase()}`);
+      navigate(`/phone/${model}`);
     }
   };
 
@@ -80,7 +81,7 @@ function Header() {
             <div className="header-img"><MdPhoneIphone /></div>
             <select onChange={handleChange}>
               <option>Выбрать модель телефона</option>
-              <option>iphone</option>
+              <option>apple</option>
               <option>samsung</option>
               <option>nokia</option>
               <option>xiaomi</option>
@@ -98,6 +99,9 @@ function Header() {
             <IoCartOutline size={24} style={{ cursor: "pointer" }} />
           </Link>
           {cartItems.length > 0 && <span className="cart-count">{cartItems.length}</span>}
+          <BiUser onClick={()=>{
+            navigate("/login")
+          }}/>
         </div>
       </div>
     </div>

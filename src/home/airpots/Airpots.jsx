@@ -12,10 +12,10 @@ function AirPots() {
   const { addToCart } = useContext(CartContext); // Cartка кошуу функциясы
 
   useEffect(() => {
-    axios.get('https://689ead013fed484cf877ace7.mockapi.io/fruit')
+    axios.get('https://689ead013fed484cf877ace7.mockapi.io/fruit?category=airpods')
       .then(response => {
         // AirPods үчүн 3 продукт алабыз (мисалы id 46-48)
-        setProductsData(response.data.slice(46, 49));
+        setProductsData(response.data);
         setLoading(false);
       })
       .catch(error => {

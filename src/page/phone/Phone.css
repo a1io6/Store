@@ -1,0 +1,131 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Work+Sans:ital,wght@0,100..900;1,100..900&display=swap');
+
+.iphone {
+  display: flex;
+  justify-content: center;
+  background-color: #E2E2E2;
+  padding: 20px 0;
+  width: 100%;
+  box-sizing: border-box;
+  font-family: Montserrat;
+}
+
+.iphone-all {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 40px 70px;
+  width: 1140px;
+  padding: 0px 20px;
+  background: #E2E2E2;
+  border-radius: 12px;
+  box-sizing: border-box;
+}
+
+.iphone-blok1 {
+  width: 100%;
+}
+
+.blok1 {
+  width: 320px;
+  height: 380px;
+  background-color: #fff;
+  border-radius: 30px;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 0px;
+  box-sizing: border-box;
+}
+
+/* Heart жана Cart иконкалары */
+.blok1-icons {
+  position: absolute;
+  top: 15px;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  padding: 0 15px;
+  box-sizing: border-box;
+}
+
+.heart-icon, .cart-icon {
+  font-size: 24px;
+  cursor: pointer;
+}
+
+.blok1 img {
+  width: 200px;
+  height: 220px;
+  object-fit: contain;
+  margin-top: 25px;
+}
+
+.product-info {
+  display: flex;
+  width: 100%;
+  margin-top: 20px;
+  padding: 0 15px;
+  justify-content: space-between;
+}
+
+.product-info h2 {
+  margin-left: 20px;
+  font-size: 17px;
+  font-weight: 600;
+  color: #1C1C27;
+  margin-bottom: 15px;
+}
+
+.price-container {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+}
+
+.price-container h3 {
+  margin-right: 20px;
+  font-size: 17px;
+  font-weight: 600;
+  color: #FFA542;
+}
+
+.price-container h4 {
+  position: absolute;
+  top: 40px;
+  margin-right: 25px;
+  font-size: 14px;
+  font-weight: 600;
+  color: #FFCE7F;
+  text-decoration: line-through;
+  margin-top: -5px;
+}
+
+.reiting {
+  position: absolute;
+  bottom: 20px;
+  left: 15px;
+  color: black;
+  padding: 5px 10px;
+  border-radius: 8px;
+  font-size: 15px;
+}
+
+.reiting p {
+  margin: 0;
+}
+
+/* Адаптивность */
+@media (max-width: 1100px) {
+  .iphone-all {
+    grid-template-columns: repeat(2, 1fr);
+    width: 100%;
+  }
+}
+
+@media (max-width: 768px) {
+  .iphone-all {
+    grid-template-columns: 1fr;
+  }
+}
