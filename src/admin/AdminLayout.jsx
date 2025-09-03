@@ -6,13 +6,15 @@ function AdminLayout() {
   const admin = JSON.parse(localStorage.getItem("user")) || ["user"]
   const navigate = useNavigate()
   useEffect(()=>{
+
     if(admin.role !== "admin"){
-      navigate("/")
       toast.warn("you do not have access to this data")
+      navigate("/")
     }else{
-      // navigate("/admin")
     }
   },[admin])
+  console.log(admin);
+  
   
   return (
     <div>
