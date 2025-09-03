@@ -10,24 +10,22 @@ function LogIn() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const dispatch = useDispatch();
-  const { loading, error, user } = useSelector((state) => state.auth);
-  // const user = JSON.parse(localStorage.getItem("user"));
+  const { loading, error } = useSelector((state) => state.auth);
+  const user = JSON.parse(localStorage.getItem("user"));
   const hendleSubmit = (e) => {
     e.preventDefault();
     dispatch(loginUser({ email, password }));
+    if (user.role === "admin") {
+      navigate("/admin");
+    }
+  };
+  useEffect(() => {
     if (user) {
       if (user.role === "admin") {
         navigate("/admin");
       }
     }
-  }
-  // useEffect(() => {
-  //   if (user) {
-  //     if (user.role === "admin") {
-  //       navigate("/admin");
-  //     }
-  //   }
-  // }, []);
+  }, [user, navigate]);
   return (
     <main>
       <section className="one-section">
@@ -45,7 +43,7 @@ function LogIn() {
                 onChange={(e) => setEmail(e.target.value)}
               />
               <input
-                type="password"
+                type=""
                 placeholder="Password"
                 onChange={(e) => setPassword(e.target.value)}
               />
