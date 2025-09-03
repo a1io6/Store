@@ -5,6 +5,7 @@ import { IoCartOutline } from "react-icons/io5";
 import './Phone.css';
 import { CartContext } from '../../context/CartContext';
 import { useParams } from 'react-router-dom';
+import Loading from '../../shared/Loading';
 
 function Phone() {
     const {name} = useParams()
@@ -24,7 +25,19 @@ function Phone() {
       });
   }, [name]);
 
-  if (loading) return <p>Loading...</p>;
+   if (loading)
+    return (
+      <div
+        style={{
+          margin: "100px auto",
+          display: "flex",
+          justifyContent: "center",
+          alignItems: "center",
+        }}
+      >
+        <Loading />;
+      </div>
+    );
 
   return (
     <div className='iphone'>

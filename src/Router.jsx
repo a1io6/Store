@@ -17,60 +17,92 @@ import Condition from "./condition/Condition";
 import Register from "./register/Register";
 import LogIn from "./register/LogIn";
 import AdminLayout from "./admin/AdminLayout";
-import AdminHeader from "./admin/admin-header/AdminHaeder";
 import MainPages from "./admin/main/MainPages";
 import Products from "./admin/products/Products";
 import Phone from "./page/phone/Phone";
+import Shopping from "./admin/shop/Shopping";
+import Favorite from "./favorite/Favorite";
 
 const myRouter = createBrowserRouter([
     {
         path: "/",
         element: <Layout />,
         children: [
-            { path: "/", element: <Home /> },
-            { path: "cartlist", element: <CartList /> },
-            { path: "iphone", element: <Iphone /> },
-            { path: "nokia", element: <Nokia /> },
-            { path: "redmi", element: <Redmi /> },
-            { path: "samsung", element: <Samsung /> },
-            { path: "sony", element: <Sony /> },
-            { path: "xiaomi", element: <Xioami /> },
-            { path: "airpods", element: <AirPots /> },
-            { path: "headphones", element: <Headphones /> },
-            { path:"finall", element:<Finall/> }  ,
-            { path:"condition", element:<Condition/> }  ,
-            // {
-            //     path: "cartlist",
-            //     element: <CartList />
-            // },
+            { path: "/",
+              element: <Home /> 
+            },
+            { path: "cartlist", 
+              element: <CartList /> 
+            },
+            { path: "/favorite", 
+            element: <Favorite /> 
+            }, 
+            { path: "iphone", 
+              element: <Iphone /> 
+            },
+            { path: "nokia", 
+              element: <Nokia /> 
+            },
+            { path: "redmi",
+              element: <Redmi /> 
+            },
+            { path: "samsung", 
+              element: <Samsung /> 
+            },
+            { path: "sony",
+              element: <Sony /> 
+            },
+            { path: "xiaomi", 
+              element: <Xioami /> 
+            },
+            { path: "airpods",
+              element: <AirPots /> 
+            },
+            { path: "headphones", 
+              element: <Headphones />
+            },
+            {
+                path: "finall",
+                element: <Finall />
+            },
             {
                 path: "auther",
                 element: <Auther />
-            },       {
-                path:"register",
-                element:<Register/>
             },
             {
-                path:"login",
-                element:<LogIn/>
+                path: "register",
+                element: <Register />
             },
             {
-                path:"/phone/:name",
-                element:<Phone/>
+                path: "login",
+                element: <LogIn />
+            },
+            {
+                path: "/phone/:name",
+                element: <Phone />
+            },
+            {
+                path: "condition",
+                element: <Condition />
             }
+
         ]
     },
     {
-        path:"/",
-        element:<AdminLayout/>,
-        children:[
+        path: "/",
+        element: <AdminLayout />,
+        children: [
             {
-                path:"/admin",
-                element:<MainPages/>
+                path: "/admin",
+                element: <MainPages />
             },
             {
-                path:"/products",
-                element:<Products/>
+                path: "/products",
+                element: <Products />
+            },
+            {
+                path: "/shopping",
+                element: <Shopping />
             }
         ]
     }

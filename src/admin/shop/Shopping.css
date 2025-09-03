@@ -1,0 +1,41 @@
+.shopping-admin {
+  max-width: 900px;
+  margin: 50px auto;
+  background: #fff;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0,0,0,0.1);
+  font-family: Arial, sans-serif;
+}
+
+.shopping-admin h1 {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.shopping-admin p {
+  font-size: 18px;
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+.orders-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.orders-table th,
+.orders-table td {
+  padding: 10px 15px;
+  border: 1px solid #ddd;
+  text-align: left;
+  vertical-align: top;
+}
+
+.orders-table th {
+  background-color: #f5f5f5;
+}
+
+.orders-table tr:nth-child(even) {
+  background-color: #fafafa;
+}

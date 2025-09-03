@@ -17,12 +17,12 @@ function Footer() {
     <div className="footer-sslk">
       <ul>
         <li><a href="">Избранное</a></li>
-        <li><a href="">Корзина</a></li>
+        <li><a href="cartlist">Корзина</a></li>
         <li><Link to="catalog">Контакты</Link></li>
       </ul>
     </div>
     <div className="footer-sslk1">
-      <li><Link to="/condition">Условия сервиса</Link></li>
+      <li><Link to="condition">Условия сервиса</Link></li>
       <ul>
         <CiGlobe />
         <li><a href="">Каз</a></li>

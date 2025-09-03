@@ -1,7 +1,8 @@
 import { Link } from "react-router-dom";
 import Airpods from "../assets/airpods.jpg";
+import register from "../assets/register.png"
 import "./LogIn.css";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { loginUser } from "../store/auth/Login";
 import { useNavigate } from "react-router-dom";
@@ -30,7 +31,7 @@ function LogIn() {
     <main>
       <section className="one-section">
         <div className="cont">
-          <img src={Airpods} alt="preview" />
+          <img src={register} alt="preview" />
 
           <div className="sign">
             <h2>Log in to Exclusive</h2>
