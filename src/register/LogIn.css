@@ -1,13 +1,15 @@
 /* ================= Register Styles ================= */
 .one-section {
   width: 100%;
-  max-width: 1440px;
+  max-width: 1140px;
+  height: 470px;
   margin: 0 auto;
 }
 
 .one-section .cont {
+
   width: 100%;
-  min-height: 781px;
+  min-height: 400px;
   display: flex;
   align-items: center;
   gap: 50px;
@@ -15,9 +17,10 @@
 }
 
 .one-section .cont img {
-  width: 819px;
-  height: 606px;
+  width: 619px;
+  height: 406px;
   object-fit: cover;
+  border-radius:32px ;
 }
 
 .one-section .cont .sign {

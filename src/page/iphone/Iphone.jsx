@@ -11,9 +11,9 @@ function Iphone() {
   const { addToCart } = useContext(CartContext);
 
   useEffect(() => {
-    axios.get('https://689ead013fed484cf877ace7.mockapi.io/fruit')
+    axios.get(`https://689ead013fed484cf877ace7.mockapi.io/fruit`)
       .then(response => {
-        setProductsData(response.data.slice(0, 6));
+        setProductsData(response.data);
         setLoading(false);
       })
       .catch(error => {

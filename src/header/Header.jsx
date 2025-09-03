@@ -1,71 +1,22 @@
-// import React from 'react';
-// import { Link, useNavigate } from 'react-router-dom';
-// import { MdPhoneIphone } from "react-icons/md";
-// import { CiHeart } from "react-icons/ci";
-// import { IoCartOutline } from "react-icons/io5";
-// import './header.css';
-
-// function Header() {
-//   const navigate = useNavigate();
-
-//   const handleChange = (e) => {
-//     const model = e.target.value;
-//     if (model !== "Выбрать модель телефона") {
-//       navigate(`/${model.toLowerCase()}`);
-//     }
-//   };
-
-//   return (
-//     <div className="header">
-//       <div className="header-all">
-//         <div className="header-left">
-//           <div className="header-logo">
-//             <Link to="/"><h1>QPICK</h1></Link>
-//           </div>
-//           <div className="header-iphone">
-//             <div className="header-img"><MdPhoneIphone /></div>
-//             <div className="select">
-//               <select onChange={handleChange}>
-//                 <option>Выбрать модель телефона</option>
-//                 <option>iphone</option>
-//                 <option>samsung</option>
-//                 <option>nokia</option>
-//                 <option>xiaomi</option>
-//                 <option>redmi</option>
-//                 <option>sony</option>
-//               </select>
-//             </div>
-//           </div>
-//         </div>
-
-//         <div className="haeder-icons">
-//           <CiHeart />
-//           <Link to="/cartlist">
-//             <IoCartOutline size={24} style={{ cursor: "pointer" }} />
-//           </Link>
-//         </div>
-//       </div>
-//     </div>
-//   );
-// }
-
-// export default Header;
 import React, { useContext } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { MdPhoneIphone } from "react-icons/md";
 import { CiHeart } from "react-icons/ci";
 import { IoCartOutline } from "react-icons/io5";
 import { CartContext } from '../context/CartContext';
+import { FavoriteContext } from '../context/FavoriteContext'; // 👈 коштук
 import './header.css';
+import { BiUser } from 'react-icons/bi';
 
 function Header() {
   const navigate = useNavigate();
   const { cartItems } = useContext(CartContext);
+  const { favorites } = useContext(FavoriteContext);
 
   const handleChange = (e) => {
     const model = e.target.value;
     if (model !== "Выбрать модель телефона") {
-      navigate(`/${model.toLowerCase()}`);
+      navigate(`/phone/${model}`);
     }
   };
 
@@ -80,7 +31,7 @@ function Header() {
             <div className="header-img"><MdPhoneIphone /></div>
             <select onChange={handleChange}>
               <option>Выбрать модель телефона</option>
-              <option>iphone</option>
+              <option>apple</option>
               <option>samsung</option>
               <option>nokia</option>
               <option>xiaomi</option>
@@ -93,11 +44,24 @@ function Header() {
         </div>
 
         <div className="haeder-icons">
-          <CiHeart />
-          <Link to="/cartlist">
-            <IoCartOutline size={24} style={{ cursor: "pointer" }} />
+          {/* ❤️ Избранное */}
+          <Link to="/favorite" className="icon-wrapper">
+            <CiHeart size={24} style={{ cursor: "pointer" }} />
+            {favorites.length > 0 && <span className="cart-count">{favorites.length}</span>}
           </Link>
-          {cartItems.length > 0 && <span className="cart-count">{cartItems.length}</span>}
+
+          {/* 🛒 Корзина */}
+          <Link to="/cartlist" className="icon-wrapper">
+            <IoCartOutline size={24} style={{ cursor: "pointer" }} />
+            {cartItems.length > 0 && <span className="cart-count">{cartItems.length}</span>}
+          </Link>
+
+          {/* 👤 Пользователь */}
+          <BiUser 
+            size={24}
+            style={{ cursor: "pointer" }}
+            onClick={() => navigate("/login")}
+          />
         </div>
       </div>
     </div>
