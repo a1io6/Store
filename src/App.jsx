@@ -1,7 +1,7 @@
 import React from "react";
 import { RouterProvider } from "react-router-dom";
 import { CartProvider } from "./context/CartContext";
-import { FavoriteProvider } from "./context/FavoriteContext"; // 👈 коштук
+import { FavoriteProvider } from "./context/FavoriteContext"; 
 import myRouter from "./Router.jsx";
 import "./App.css";
 import { ToastContainer } from "react-toastify";

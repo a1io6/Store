@@ -5,11 +5,12 @@ import { CiHeart } from "react-icons/ci";
 import { IoCartOutline } from "react-icons/io5";
 import './samsung.css'; // Samsung үчүн өзүнчө css
 import { CartContext } from '../../context/CartContext'; // туура жол
-
+// import { FavoriteContext } from '../../context/FavoriteContext';
 function Samsung() {
   const [productsData, setProductsData] = useState([]);
   const [loading, setLoading] = useState(true);
   const { addToCart } = useContext(CartContext); // Cartка кошуу функциясы
+  const { addToFavorite} = useContext (FavoriteContext)
 
   useEffect(() => {
     axios.get('https://689ead013fed484cf877ace7.mockapi.io/fruit')
