@@ -22,6 +22,7 @@ import Products from "./admin/products/Products";
 import Phone from "./page/phone/Phone";
 import Shopping from "./admin/shop/Shopping";
 import Favorite from "./favorite/Favorite";
+import Case from "./home/case/Case";
 
 const myRouter = createBrowserRouter([
     {
@@ -60,6 +61,10 @@ const myRouter = createBrowserRouter([
             },
             { path: "headphones", 
               element: <Headphones />
+            },
+            {
+              path: "case",
+              element: <Case/>
             },
             {
                 path: "finall",

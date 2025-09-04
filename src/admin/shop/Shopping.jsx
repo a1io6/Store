@@ -1,38 +1,14 @@
-import React, { useState, useEffect } from 'react';
-import axios from 'axios';
+import React, { useContext } from "react";
+import { OrdersContext } from "../../context/OrdersContext";
 import './Shopping.css';
-import Loading from '../../shared/Loading';
 
-function ShoppingAdmin() {
-  const [orders, setOrders] = useState([]);
+function Shopping() {
+  const { orders } = useContext(OrdersContext);
 
-  useEffect(() => {
-    // Получаем заказы с MockAPI
-    axios.get('https://689ead013fed484cf877ace7.mockapi.io/fruit')
-      .then(response => {
-        // Предполагаем, что API возвращает объекты с полями:
-        // id, buyer, product, quantity, contact, address: { city, street, house, entrance, apartment }
-        setOrders(response.data);
-      })
-      .catch(error => {
-        console.error('Ошибка при загрузке заказов:', error);
-      });
-  }, []);
-
-  const totalSold = orders.reduce((sum, order) => sum + (order.quantity || 0), 0);
-    // if (Loading)
-    // return (
-    //   <div
-    //     style={{
-    //       margin: "100px auto",
-    //       display: "flex",
-    //       justifyContent: "center",
-    //       alignItems: "center",
-    //     }}
-    //   >
-    //     <Loading />;
-    //   </div>
-    // );
+  const totalSold = orders.reduce(
+    (sum, order) => sum + (order.cartItems?.reduce((s, i) => s + (i.count || 1), 0) || 0),
+    0
+  );
 
   return (
     <div className="shopping-admin">
@@ -42,22 +18,32 @@ function ShoppingAdmin() {
       <table className="orders-table">
         <thead>
           <tr>
-            <th>ID</th>
-            <th>Buyer</th>
-            <th>Product</th>
-            <th>Quantity</th>
+            <th>Order №</th>
             <th>Contact</th>
+            <th>Promo</th>
+            <th>Products</th>
+            <th>Subtotal</th>
+            <th>Delivery</th>
+            <th>Total</th>
             <th>Address</th>
           </tr>
         </thead>
         <tbody>
           {orders.map(order => (
-            <tr key={order.id}>
-              <td>{order.id}</td>
-              <td>{order.buyer}</td>
-              <td>{order.product}</td>
-              <td>{order.quantity}</td>
-              <td>{order.contact}</td>
+            <tr key={order.orderNumber}>
+              <td>{order.orderNumber}</td>
+              <td>{order.phone}</td>
+              <td>{order.promo}</td>
+              <td>
+                {order.cartItems.map(item => (
+                  <div key={item.id}>
+                    {item.count || 1}x {item.name} ({item.price}$)
+                  </div>
+                ))}
+              </td>
+              <td>{order.subtotal} $</td>
+              <td>{order.totalDelivery} $</td>
+              <td>{order.total} $</td>
               <td>
                 {order.address?.city}, {order.address?.street}, дом {order.address?.house}, подъезд {order.address?.entrance}, кв. {order.address?.apartment}
               </td>
@@ -69,4 +55,4 @@ function ShoppingAdmin() {
   );
 }
 
-export default ShoppingAdmin;
+export default Shopping;

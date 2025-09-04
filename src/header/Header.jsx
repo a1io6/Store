@@ -37,8 +37,9 @@ function Header() {
               <option>xiaomi</option>
               <option>redmi</option>
               <option>sony</option>
-              <option>airpods</option>
+              <option>case</option>
               <option>headphones</option>
+              <option>airpods</option>
             </select>
           </div>
         </div>
