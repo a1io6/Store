@@ -1,14 +1,21 @@
 import React, { useState, useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { CartContext } from '../context/CartContext';
+import { OrdersContext } from '../context/OrdersContext';
 import './Auther.css';
 
 function Auther() {
   const navigate = useNavigate();
   const { cartItems } = useContext(CartContext);
+  const { addOrder } = useContext(OrdersContext);
 
   const [promo, setPromo] = useState("");
   const [phone, setPhone] = useState("");
+  const [city, setCity] = useState("");
+  const [street, setStreet] = useState("");
+  const [house, setHouse] = useState("");
+  const [entrance, setEntrance] = useState("");
+  const [apartment, setApartment] = useState("");
 
   const deliveryBase = 499;
 
@@ -19,9 +26,21 @@ function Auther() {
 
   function finishOrder() {
     const orderNumber = Math.floor(100000 + Math.random() * 900000);
-    navigate("/finall", {
-      state: { orderNumber, phone, promo, cartItems, subtotal, totalDelivery, total }
-    });
+
+    const order = {
+      orderNumber,
+      phone,
+      promo,
+      cartItems,
+      subtotal,
+      totalDelivery,
+      total,
+      address: { city, street, house, entrance, apartment },
+    };
+
+    addOrder(order); // OrdersContextке кошуу
+
+    navigate("/finall", { state: order });
   }
 
   if (cartItems.length === 0) {
@@ -43,12 +62,12 @@ function Auther() {
 
         <div className="dostavka">
           <h3>Адрес доставки</h3>
-          <input type="text" placeholder="Город" />
-          <input type="text" placeholder="Улица / Район" />
+          <input type="text" placeholder="Город" value={city} onChange={e => setCity(e.target.value)} />
+          <input type="text" placeholder="Улица / Район" value={street} onChange={e => setStreet(e.target.value)} />
           <div className="address-row">
-            <input type="text" placeholder="Дом" />
-            <input type="text" placeholder="Подъезд" />
-            <input className="dom" type="text" placeholder="Квартира" />
+            <input type="text" placeholder="Дом" value={house} onChange={e => setHouse(e.target.value)} />
+            <input type="text" placeholder="Подъезд" value={entrance} onChange={e => setEntrance(e.target.value)} />
+            <input className="dom" type="text" placeholder="Квартира" value={apartment} onChange={e => setApartment(e.target.value)} />
           </div>
         </div>
       </div>
@@ -58,7 +77,7 @@ function Auther() {
         <div className="order-list">
           {cartItems.map(item => (
             <div key={item.id} className="order-row">
-              <span className="aaa">{item.count || 1}x {item.name}</span>
+              <span>{item.count || 1}x {item.name}</span>
               <span>{item.price * (item.count || 1)} $</span>
             </div>
           ))}

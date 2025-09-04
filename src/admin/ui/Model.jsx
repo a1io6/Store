@@ -52,11 +52,17 @@ function Modal({ isOpen, onClose, onSubmit }) {
           <input name="discount" placeholder="Скидка (10%)" value={formData.discount} onChange={handleChange} />
           <input name="oldPrice" placeholder="Старая цена" value={formData.oldPrice} onChange={handleChange} />
           <input name="description" placeholder="Описание" value={formData.description} onChange={handleChange} />
-          <select name="" id="">
+          <select name="category" value={formData.category} onChange={handleChange}required>
             <option value="iphone">iphone</option>
-            <option value=""></option>
-            <option value=""></option>
-            <option value=""></option>
+            <option value="samsung">samsung</option>
+            <option value="nokia">nokia</option>
+            <option value="sony">sony</option>
+            <option value="redmi">redmi</option>
+            <option value="xiaomi">xiaomi</option>
+            <option value="airpods">airpods</option>
+            <option value="headphones">headphones</option>
+            <option value="case">case</option>
+            
           </select>
           <input name="rating" type="number" step="0.1" placeholder="Рейтинг" value={formData.rating} onChange={handleChange} />
 
