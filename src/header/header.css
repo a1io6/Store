@@ -102,7 +102,24 @@
 }
 
 /* Иконка үстүндөгү сан */
-.cart-count {
+.cart-count1 {
+  position: absolute;
+  top: -9px;        /* иконка үстүнө чыгарат */
+ left: 12px;
+
+  background-color: #a90d0d;
+  color: white;
+  font-size: 12px;
+  font-weight: bold;
+  padding: 2px 6px;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 18px;
+  height: 18px;
+}
+.cart-count2 {
   position: absolute;
   top: -9px;        /* иконка үстүнө чыгарат */
  left: 57px;
