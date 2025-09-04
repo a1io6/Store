@@ -21,7 +21,7 @@ import MainPages from "./admin/main/MainPages";
 import Products from "./admin/products/Products";
 import Phone from "./page/phone/Phone";
 import Shopping from "./admin/shop/Shopping";
-import Favorite from "./favorite/Favorite";
+import Favorite from "./page/favorite/Favorite";
 
 const myRouter = createBrowserRouter([
     {

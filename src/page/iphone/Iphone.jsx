@@ -4,12 +4,12 @@ import { CiHeart } from "react-icons/ci";
 import { IoCartOutline } from "react-icons/io5";
 import './iphone.css';
 import { CartContext } from '../../context/CartContext';
-
+// import { FavoriteContext } from '../../context/FavoriteContext';
 function Iphone() {
   const [productsData, setProductsData] = useState([]);
   const [loading, setLoading] = useState(true);
   const { addToCart } = useContext(CartContext);
-
+const {addToFavorite} =useContext (FavoriteContext)
   useEffect(() => {
     axios.get(`https://689ead013fed484cf877ace7.mockapi.io/fruit`)
       .then(response => {
@@ -23,7 +23,8 @@ function Iphone() {
   }, []);
 
   if (loading) return <p>Loading...</p>;
-
+  console.log(productsData);
+  
   return (
     <div className='iphone'>
       <div className="iphone-all">
@@ -31,7 +32,7 @@ function Iphone() {
           <div className="iphone-blok1" key={product.id}>
             <div className='blok1'>
               <div className='blok1-icons'>
-                <CiHeart className="heart-icon"/>
+                <CiHeart className="heart-icon" onClick={()=> addToCart(product)}/>
                 <IoCartOutline 
                   className="cart-icon" 
                   onClick={() => addToCart(product)} 
@@ -46,7 +47,7 @@ function Iphone() {
                 </div>
               </div>
               <div className='reiting'>
-                <p>⭐ {product.rating}</p>
+                {/* <p>⭐ {product.rating}</p> */}
               </div>
             </div>
           </div>

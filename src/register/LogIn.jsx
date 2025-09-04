@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 import Airpods from "../assets/airpods.jpg";
 import register from "../assets/register.png"
 import "./LogIn.css";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { loginUser } from "../store/auth/Login";
 import { useNavigate } from "react-router-dom";
