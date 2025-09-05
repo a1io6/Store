@@ -34,3 +34,16 @@
     height: 250px;
     margin-bottom: 8px;
 }
+
+@media (max-width: 1100px) {
+  .favContainer {
+    grid-template-columns: repeat(2, 1fr);
+    width: 100%;
+  }
+}
+
+@media (max-width: 768px) {
+  .favContainer {
+    grid-template-columns: 1fr;
+  }
+}

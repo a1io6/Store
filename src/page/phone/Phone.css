@@ -49,9 +49,24 @@
   box-sizing: border-box;
 }
 
+/* Иконкалар туруктуу өлчөмдө, hover болгондо чоңойбойт */
 .heart-icon, .cart-icon {
-  font-size: 24px;
+  font-size: 26px;  /* туруктуу өлчөм */
   cursor: pointer;
+  color: black;     /* туруктуу кара */
+  transition: none; /* түстүн өзгөрүшү жок */
+}
+
+/* Hover болгондо эч кандай эффект жок */
+.heart-icon:hover,
+.cart-icon:hover {
+  color: black;
+}
+
+
+/* Active (кошулган) жүрөк же корзина */
+.heart-icon.active, .cart-icon.active {
+  color: black; /* каалаган түстө */
 }
 
 .blok1 img {

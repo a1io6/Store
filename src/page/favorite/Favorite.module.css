@@ -1,0 +1,144 @@
+.favContainer {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 40px 70px;
+  width: 1100px;
+  margin: 20px auto;
+  font-family: Montserrat, sans-serif;
+}
+
+.favItem {
+  width: 100%;
+}
+
+.favBox {
+  width: 320px;
+  height: 380px;
+  background-color: #fff;
+  border-radius: 30px;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.favIcons {
+  position: absolute;
+  top: 15px;
+  width: 100%;
+  display: flex;
+  justify-content: flex-end;
+  padding: 0 15px;
+  box-sizing: border-box;
+  gap: 10px; /* иконкалардын аралыгы */
+}
+
+/* 🛒 корзина иконка */
+.cartIcon {
+  font-size: 24px;
+  cursor: pointer;
+  color: black;
+  transition: 0.2s;
+}
+
+.cartIcon:hover {
+  transform: scale(1.2);
+  color: #007bff;
+}
+
+/* 🤍 жүрөк (ак контур) */
+.favoriteIcon {
+  cursor: pointer;
+  font-size: 26px;
+  color: #ccc; /* баштапкы боз-ак */
+  transition: 0.3s;
+}
+
+.favoriteIcon:hover {
+  color: black;
+  transform: scale(1.2);
+}
+
+/* 🖤 активдүү жүрөк (кара толгон) */
+.favoriteIconActive {
+  cursor: pointer;
+  font-size: 26px;
+  color: black;
+  transition: 0.3s;
+}
+
+.favoriteIconActive:hover {
+  color: #333;
+  transform: scale(1.2);
+}
+
+.favBox img {
+  width: 200px;
+  height: 220px;
+  object-fit: contain;
+  margin-top: 25px;
+}
+
+.favInfo {
+  display: flex;
+  width: 100%;
+  margin-top: 20px;
+  padding: 0 15px;
+  justify-content: space-between;
+}
+
+.favInfo h2 {
+  font-size: 17px;
+  font-weight: 600;
+  color: #1C1C27;
+  margin-bottom: 15px;
+}
+
+.favPrice {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+}
+
+.favPrice h3 {
+  font-size: 17px;
+  font-weight: 600;
+  color: #FFA542;
+}
+
+.favPrice h4 {
+  font-size: 14px;
+  font-weight: 600;
+  color: #FFCE7F;
+  text-decoration: line-through;
+}
+
+.favRating {
+  position: absolute;
+  bottom: 20px;
+  left: 15px;
+  color: black;
+  padding: 5px 10px;
+  border-radius: 8px;
+  font-size: 15px;
+}
+
+.favRating p {
+  margin: 0;
+}
+
+/* 📱 адаптив */
+@media (max-width: 1100px) {
+  .favContainer {
+    grid-template-columns: repeat(2, 1fr);
+    width: 100%;
+  }
+}
+
+@media (max-width: 768px) {
+  .favContainer {
+    grid-template-columns: 1fr;
+  }
+}
