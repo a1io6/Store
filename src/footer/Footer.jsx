@@ -16,8 +16,8 @@ function Footer() {
     </div>
     <div className="footer-sslk">
       <ul>
-        <li><a href="">Избранное</a></li>
-        <li><a href="cartlist">Корзина</a></li>
+        <li><Link to="favorite">Избранное</Link></li>
+        <li><Link to="cartlist">Корзина</Link></li>
         <li><Link to="catalog">Контакты</Link></li>
       </ul>
     </div>

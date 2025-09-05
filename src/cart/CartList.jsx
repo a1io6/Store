@@ -4,7 +4,7 @@ import { CartContext } from "../context/CartContext";
 import "./CartList.css";
 
 function CartList() {
-  const { cartItems, updateCount } = useContext(CartContext);
+  const { cartItems, updateCount, removeFromCart } = useContext(CartContext);
   const deliveryBase = 499;
 
   const totalCount = cartItems.reduce((sum, item) => sum + (item.count || 1), 0);
@@ -37,6 +37,7 @@ function CartList() {
                     <button type="button" onClick={() => updateCount(item.id, -1)}>−</button>
                     <span>{item.count || 1}</span>
                     <button type="button" onClick={() => updateCount(item.id, 1)}>+</button>
+                    <button type="button" onClick={() => removeFromCart(item.id)}>х</button>
                   </div>
                 </div>
               </div>
@@ -46,14 +47,18 @@ function CartList() {
           <h3 className="section-title">Доставка</h3>
           <div className="card card-delivery">
             <div className="map">
-              <img src="" alt="Карта доставки" />
+              <iframe
+                src="https://yandex.com/map-widget/v1/?ll=74.585671%2C42.880350&z=16&l=map&pt=74.585671,42.880350,pm2rdm"
+                width="625px"
+                height="200px"
+                frameBorder="0"
+                allowFullScreen
+                title="Yandex Map"
+              ></iframe>
             </div>
             <div className="delivery-row">
               <div className="delivery-left">
                 <span>Доставка курьером</span>
-              </div>
-              <div className="delivery-price">
-                {/* {delivery.toLocaleString("ru-RU")} $ */}
               </div>
               <div className="delivery-price">{totalDelivery} $</div>
             </div>
