@@ -6,15 +6,15 @@ import { IoCartOutline, IoCart } from "react-icons/io5";
 import './Phone.css';
 import { CartContext } from '../../context/CartContext';
 import { FavoriteContext } from "../../context/FavoriteContext";
-import { useParams } from 'react-router-dom';
+import { useParams, Link } from 'react-router-dom';
 import Loading from '../../shared/Loading';
 
 function Phone() {
-    const { name } = useParams();
+  const { name } = useParams();
   const [productsData, setProductsData] = useState([]);
   const [loading, setLoading] = useState(true);
 
-  const { cartItems, addToCart, removeFromCart, updateCount } = useContext(CartContext);
+  const { cartItems, addToCart, removeFromCart } = useContext(CartContext);
   const { favoriteItems, addToFavorite, removeFromFavorite } = useContext(FavoriteContext);
 
   useEffect(() => {
@@ -32,15 +32,15 @@ function Phone() {
 
   if (loading) return <Loading />;
 
-  const toggleFavorite = (product) => {
+  const handleFavorite = (product) => {
     const isFav = favoriteItems.some(item => item.id === product.id);
     if (isFav) removeFromFavorite(product.id);
     else addToFavorite(product);
   };
 
-  const toggleCart = (product) => {
-    const cartItem = cartItems.find(item => item.id === product.id);
-    if (cartItem) removeFromCart(product.id);
+  const handleCart = (product) => {
+    const isInCart = cartItems.some(item => item.id === product.id);
+    if (isInCart) removeFromCart(product.id);
     else addToCart(product);
   };
 
@@ -57,36 +57,36 @@ function Phone() {
               key={product.id}
               style={{ display: product.activated ? "block" : "none" }}
             >
-              <div className='blok1'>
+              <Link to={`/listphone/${product.id}`} className='blok1'>
                 <div className='blok1-icons'>
-                  {/* Favorite Icon */}
                   {isInFavorite ? (
                     <FaHeart
                       className="heart-icon active"
-                      onClick={() => handleFavorite(product)}
+                      onClick={(e) => { e.preventDefault(); handleFavorite(product); }}
                     />
                   ) : (
                     <CiHeart
                       className="heart-icon"
-                      onClick={() => handleFavorite(product)}
+                      onClick={(e) => { e.preventDefault(); handleFavorite(product); }}
                     />
                   )}
 
-                  {/* Cart Icon */}
                   {isInCart ? (
                     <IoCart
                       className="cart-icon active"
-                      onClick={() => handleCart(product)}
+                      onClick={(e) => { e.preventDefault(); handleCart(product); }}
                     />
                   ) : (
                     <IoCartOutline
                       className="cart-icon"
-                      onClick={() => handleCart(product)}
+                      onClick={(e) => { e.preventDefault(); handleCart(product); }}
                     />
                   )}
                 </div>
 
-                <img src={product.img} alt={product.name} />
+                <div>
+                  <img src={product.img} alt={product.name} />
+                </div>
 
                 <div className="product-info">
                   <h2>{product.name}</h2>
@@ -99,7 +99,7 @@ function Phone() {
                 <div className='reiting'>
                   <p>⭐ {product.rating}</p>
                 </div>
-              </div>
+              </Link>
             </div>
           );
         })}

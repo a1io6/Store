@@ -1,0 +1,154 @@
+.phone-list {
+  display: flex;
+  justify-content: center;
+  padding: 40px 20px;
+  background-color: #f0f2f5;
+}
+
+.phone-card-horizontal {
+  display: flex;
+  width: 900px;
+  background-color: #fff;
+  border-radius: 20px;
+  box-shadow: 0 8px 24px rgba(0,0,0,0.15);
+  overflow: hidden;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.phone-card-horizontal:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 12px 32px rgba(0,0,0,0.2);
+}
+
+/* Фото слева */
+.phone-img {
+  flex: 0 0 350px; /* фиксированная ширина для фото */
+  height: auto;
+  background-color: #f9f9f9;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.phone-img img {
+  width: 100%;
+  height: auto;
+  object-fit: cover;
+}
+
+/* Текст справа */
+.phone-info {
+  flex: 1;
+  padding: 20px 30px;
+  display: flex;
+  flex-direction: column;
+}
+
+.phone-info h3 {
+  font-size: 28px;
+  margin-bottom: 10px;
+}
+
+.price {
+  font-size: 22px;
+  font-weight: 700;
+  color:  #FFA542;
+  margin-bottom: 20px;
+}
+
+/* Specs Grid */
+.specs-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px 20px;
+}
+
+.specs-grid p {
+  font-size: 14px;
+  color: #555;
+  margin: 3px 0;
+}
+
+@media (max-width: 1000px) {
+  .phone-card-horizontal {
+    flex-direction: column;
+    width: 90%;
+  }
+  .phone-img {
+    width: 100%;
+  }
+  .specs-grid {
+    grid-template-columns: 1fr;
+  }
+  .phone-buttons {
+  display: flex;
+  gap: 15px;
+  margin-top: 20px;
+}
+
+
+}
+
+.go-back {
+  flex: 1;
+  padding: 10px 0;
+  background-color: #757575;
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: 600;
+  transition: background 0.2s;
+}
+
+.go-back:hover {
+  background-color: #616161;
+}
+
+/* Обновим контейнер кнопок чтобы все 3 кнопки красиво выглядели */
+.phone-buttons {
+  display: flex;
+  gap: 15px;
+  margin-top: 20px;
+}
+.phone-buttons {
+  display: flex;
+  gap: 15px;
+  margin-top: 20px;
+}
+
+.buy-now {
+  flex: 1;
+  padding: 10px 0;
+  background-color: #e53935;
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: 600;
+  transition: background 0.2s;
+}
+
+.buy-now:hover {
+  background-color: #d32f2f;
+}
+
+.add-cart {
+  flex: 1;
+  padding: 10px 0;
+  background-color:  #FFA542; 
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: 600;
+  transition: background 0.2s;
+}
+
+/* .add-cart:hover {
+  background-color: #1565c0;
+} */
+.add-cart.added {
+  background-color: #4caf50; /* зелёный цвет при добавлении */
+  color: #fff;
+}
