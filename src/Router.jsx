@@ -84,14 +84,14 @@ const myRouter = createBrowserRouter([
                 element: <LogIn />
             },
             {
-                path: "/phone/:name",
+                path: "phone/:name",
                 element: <Phone />
             },
             {
                 path: "condition",
                 element: <Condition />
             },{
-                path: "listphone",
+                path: "listphone/:id",
                 element: <ListPhone />
             },
             {
