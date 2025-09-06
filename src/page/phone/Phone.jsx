@@ -30,7 +30,19 @@ function Phone() {
       });
   }, [name]);
 
-  if (loading) return <Loading />;
+  if (loading)
+    return (
+      <div
+        style={{
+          margin: "100px auto",
+          display: "flex",
+          justifyContent: "center",
+          alignItems: "center",
+        }}
+      >
+        <Loading />
+      </div>
+    );
 
   const handleFavorite = (product) => {
     const isFav = favoriteItems.some(item => item.id === product.id);
