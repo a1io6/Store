@@ -6,15 +6,17 @@ import { IoCartOutline, IoCart } from "react-icons/io5";
 import './headphones.css';
 import { CartContext } from '../../context/CartContext';
 import { FavoriteContext } from "../../context/FavoriteContext";
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import Loading from '../../shared/Loading';
 
 function Headphones() {
   const [productsData, setProductsData] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [showModal, setShowModal] = useState(false); // модалка учун
 
   const { cartItems, addToCart, removeFromCart } = useContext(CartContext);
   const { favoriteItems, addToFavorite, removeFromFavorite } = useContext(FavoriteContext);
+  const navigate = useNavigate();
 
   useEffect(() => {
     setLoading(true);
@@ -30,7 +32,7 @@ function Headphones() {
   }, []);
 
   if (loading)
-     return (
+    return (
       <div
         style={{
           margin: "100px auto",
@@ -44,91 +46,125 @@ function Headphones() {
     );
 
   const handleFavorite = (product) => {
+    const user = JSON.parse(localStorage.getItem("user"));
+    if (!user) {
+      setShowModal(true);
+      return;
+    }
     const isFav = favoriteItems.some(item => item.id === product.id);
     if (isFav) removeFromFavorite(product.id);
     else addToFavorite(product);
   };
 
   const handleCart = (product) => {
+    const user = JSON.parse(localStorage.getItem("user"));
+    if (!user) {
+      setShowModal(true);
+      return;
+    }
     const isInCart = cartItems.some(item => item.id === product.id);
     if (isInCart) removeFromCart(product.id);
     else addToCart(product);
   };
 
+  const handleRegisterRedirect = () => {
+    setShowModal(false);
+    navigate("/register");
+  };
+
   return (
     <div>
-
-    
       <h3 
-      style={{
-        cursor: "pointer",
-        width: "1100px",
-        color: "#838383",
-        margin: "0 auto"
-      }}
-    >
-      Наушники
-    </h3>
-    <div className='headphones'>
-      <div className="headphones-all">
-        {productsData.map(product => {
-          const isInFavorite = favoriteItems.some(item => item.id === product.id);
-          const isInCart = cartItems.some(item => item.id === product.id);
+        style={{
+          cursor: "pointer",
+          width: "1100px",
+          color: "#838383",
+          margin: "0 auto"
+        }}
+      >
+        Наушники
+      </h3>
 
-          return (
-            <div
-              className="headphones-blok1"
-              key={product.id}
-              style={{ display: product.activated ? "block" : "none" }}
-            >
-              <Link to={`/listphone/${product.id}`} className='blok1'>
-                <div className='blok1-icons'>
-                  {isInFavorite ? (
-                    <FaHeart
-                      className="heart-icon active"
-                      onClick={(e) => { e.preventDefault(); handleFavorite(product); }}
-                    />
-                  ) : (
-                    <CiHeart
-                      className="heart-icon"
-                      onClick={(e) => { e.preventDefault(); handleFavorite(product); }}
-                    />
-                  )}
+      <div className='headphones'>
+        <div className="headphones-all">
+          {productsData.map(product => {
+            const isInFavorite = favoriteItems.some(item => item.id === product.id);
+            const isInCart = cartItems.some(item => item.id === product.id);
 
-                  {isInCart ? (
-                    <IoCart
-                      className="cart-icon active"
-                      onClick={(e) => { e.preventDefault(); handleCart(product); }}
-                    />
-                  ) : (
-                    <IoCartOutline
-                      className="cart-icon"
-                      onClick={(e) => { e.preventDefault(); handleCart(product); }}
-                    />
-                  )}
-                </div>
+            return (
+              <div
+                className="headphones-blok1"
+                key={product.id}
+                style={{ display: product.activated ? "block" : "none" }}
+              >
+                <Link to={`/listphone/${product.id}`} className='blok1'>
+                  <div className='blok1-icons'>
+                    {isInFavorite ? (
+                      <FaHeart
+                        className="heart-icon active"
+                        onClick={(e) => { e.preventDefault(); handleFavorite(product); }}
+                      />
+                    ) : (
+                      <CiHeart
+                        className="heart-icon"
+                        onClick={(e) => { e.preventDefault(); handleFavorite(product); }}
+                      />
+                    )}
 
-                <div>
-                  <img src={product.img} alt={product.name} />
-                </div>
-
-                <div className="product-info">
-                  <h2>{product.name}</h2>
-                  <div className="price-container">
-                    <h3>{product.price} $</h3>
-                    {product.oldPrice && <h4>{product.oldPrice}</h4>}
+                    {isInCart ? (
+                      <IoCart
+                        className="cart-icon active"
+                        onClick={(e) => { e.preventDefault(); handleCart(product); }}
+                      />
+                    ) : (
+                      <IoCartOutline
+                        className="cart-icon"
+                        onClick={(e) => { e.preventDefault(); handleCart(product); }}
+                      />
+                    )}
                   </div>
-                </div>
 
-                <div className='reiting'>
-                  <p>⭐ {product.rating}</p>
-                </div>
-              </Link>
-            </div>
-          );
-        })}
+                  <div>
+                    <img src={product.img} alt={product.name} />
+                  </div>
+
+                  <div className="product-info">
+                    <h2>{product.name}</h2>
+                    <div className="price-container">
+                      <h3>{product.price} $</h3>
+                      {product.oldPrice && <h4>{product.oldPrice}</h4>}
+                    </div>
+                  </div>
+
+                  <div className='reiting'>
+                    <p>⭐ {product.rating}</p>
+                  </div>
+                </Link>
+              </div>
+            );
+          })}
+        </div>
       </div>
-    </div>
+
+      {/* Модалка */}
+      {showModal && (
+        <div className="headphones-modal-backdrop">
+          <div className="headphones-modal">
+            <h2 className="headphones-modal-title">Внимание!</h2>
+            <p className="headphones-modal-text">
+              Вы не можете добавить товар в корзину или избранное, потому что не зарегистрированы.
+            </p>
+            <div className="headphones-modal-buttons">
+              <button className="headphones-register-btn" onClick={handleRegisterRedirect}>
+                Регистрация
+              </button>
+              <button className="headphones-close-btn" onClick={() => setShowModal(false)}>
+                Закрыть
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   );
 }

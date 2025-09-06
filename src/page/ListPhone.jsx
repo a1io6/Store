@@ -84,6 +84,7 @@ import { useParams, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import './ListPhone.css';
 import { CartContext } from '../context/CartContext';
+import { toast } from 'react-toastify';
 
 function ListPhone() {
   const [phone, setPhone] = useState(null);
@@ -106,24 +107,28 @@ function ListPhone() {
       });
   }, [id]);
 
-  if (loading) return <p>Loading...</p>;
-  if (!phone) return <p>Phone not found</p>;
-
+  const user = localStorage.getItem("user")
   const handleAddToCart = () => {
-    addToCart(phone);
-    setAdded(true); // меняем состояние после добавления
-        // setTimeout(() => setAdded(false), 1500); // через 1.5 сек возвращаем цвет
+    if (user) {
+      addToCart(phone);
+      setAdded(true); // меняем состояние после добавления
+    }else{
+      toast.warn("вы не зарегестрированны")
+      navigate("/register")
+    }
   };
 
   const handleBuyNow = () => {
     addToCart(phone);
     navigate("/auther");
   };
-
+  
   const handleGoBack = () => {
     navigate(-1);
   };
-
+  
+  if (loading) return <p>Loading...</p>;
+  if (!phone) return <p>Phone not found</p>;
   return (
     <div className="phone-list">
       <div className="phone-card-horizontal">

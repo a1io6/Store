@@ -10,7 +10,8 @@ import { IoCartOutline } from "react-icons/io5";
 function Case() {
   const [productsData, setProductsData] = useState([]);
   const [loading, setLoading] = useState(true);
-  const [showAll, setShowAll] = useState(false); // ✅ showAll state
+  const [showAll, setShowAll] = useState(false);
+  const [showModal, setShowModal] = useState(false); // модалка
 
   const { cartItems, addToCart, removeFromCart } = useContext(CartContext);
   const { favoriteItems, addToFavorite, removeFromFavorite } = useContext(FavoriteContext);
@@ -28,42 +29,44 @@ function Case() {
       });
   }, []);
 
-   if (loading)
+  if (loading)
     return (
-      <div
-        style={{
-          margin: "100px auto",
-          display: "flex",
-          justifyContent: "center",
-          alignItems: "center",
-        }}
-      >
+      <div style={{ margin: "100px auto", display: "flex", justifyContent: "center", alignItems: "center" }}>
         <Loading />
       </div>
     );
 
   const toggleFavorite = (product) => {
+    const user = JSON.parse(localStorage.getItem("user"));
+    if (!user) {
+      setShowModal(true);
+      return;
+    }
     const isFav = favoriteItems.some(item => item.id === product.id);
     if (isFav) removeFromFavorite(product.id);
     else addToFavorite(product);
   };
 
   const toggleCart = (product) => {
+    const user = JSON.parse(localStorage.getItem("user"));
+    if (!user) {
+      setShowModal(true);
+      return;
+    }
     const isInCart = cartItems.some(item => item.id === product.id);
     if (isInCart) removeFromCart(product.id);
     else addToCart(product);
   };
 
+  const handleRegisterRedirect = () => {
+    setShowModal(false);
+    window.location.href = "/register"; // navigate жок болсо window.location
+  };
+
   return (
     <div className='case-logo'>
       <h3 
-        style={{ 
-          cursor: "pointer",
-          width: "1100px",
-          color: "#838383",
-          marginTop:"40px",
-          margin: "0 auto"
-         }} 
+        style={{ cursor: "pointer", width: "1100px", color: "#838383", marginTop:"40px", margin: "0 auto" }} 
         onClick={() => setShowAll(!showAll)}
       >
         Чехлы {showAll ? "▲" : "▼"}
@@ -76,11 +79,7 @@ function Case() {
             const isInCart = cartItems.some(item => item.id === product.id);
 
             return (
-              <div 
-                className="case-blok1" 
-                key={product.id} 
-                style={{ display: product.activated ? "block" : "none" }}
-              >
+              <div className="case-blok1" key={product.id} style={{ display: product.activated ? "block" : "none" }}>
                 <div className='case-item'>
                   <div className='case-icons'>
                     <CiHeart 
@@ -111,6 +110,26 @@ function Case() {
           })}
         </div>
       </div>
+
+      {/* Модалка */}
+      {showModal && (
+        <div className="case-modal-backdrop">
+          <div className="case-modal">
+            <h2 className="case-modal-title">Внимание!</h2>
+            <p className="case-modal-text">
+              Вы не можете добавить товар в корзину или избранное, потому что не зарегистрированы.
+            </p>
+            <div className="case-modal-buttons">
+              <button className="case-register-btn" onClick={handleRegisterRedirect}>
+                Регистрация
+              </button>
+              <button className="case-close-btn" onClick={() => setShowModal(false)}>
+                Закрыть
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   );
 }
