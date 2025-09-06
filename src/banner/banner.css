@@ -11,6 +11,11 @@
    font-family: Montserrat;
  
 }
+.banner img{
+  width: 1100px;
+  border-radius: 15px;
+  height: 250px;
+}
 .banner-all{
     display: flex;
   align-items: center;
@@ -47,3 +52,12 @@
     grid-template-columns: 1fr;
   }
 }
+  .carousel{
+        width: 892px;
+        height: 344px;
+        /* img{
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        } */
+    }

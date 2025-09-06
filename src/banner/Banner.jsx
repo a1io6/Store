@@ -1,6 +1,7 @@
 import React from 'react'
 import './banner.css'
 import banner from '../assets/banner.png'
+import Carousel from 'react-bootstrap/Carousel';
 function Banner() {
   return (
     <div className='banner'>
@@ -11,6 +12,7 @@ function Banner() {
             <div className='banner-img'><img src={banner} /></div>
            
         </div>
+    
       
     </div>
   )
