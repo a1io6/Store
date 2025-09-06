@@ -1,16 +1,16 @@
-@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Work+Sans:ital,wght@0,100..900;1,100..900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap');
 
-.headphones{
+.headphones {
   display: flex;
   justify-content: center;
   background-color: #E2E2E2;
   padding: 20px 0;
   width: 100%;
   box-sizing: border-box;
-  font-family: Montserrat;
+  font-family: Montserrat, sans-serif;
 }
 
-.headphones-all{
+.headphones-all {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 40px 70px;
@@ -25,7 +25,7 @@
   width: 100%;
 }
 
-.blok1{
+.blok1 {
   width: 320px;
   height: 380px;
   background-color: #fff;
@@ -36,9 +36,10 @@
   align-items: center;
   padding: 0px;
   box-sizing: border-box;
+  text-decoration: none;
 }
 
-/* Heart жана Cart иконкалары */
+/* Иконкалар */
 .blok1-icons {
   position: absolute;
   top: 15px;
@@ -49,15 +50,25 @@
   box-sizing: border-box;
 }
 
-.heart-icon, .cart-icon {
-  font-size: 24px;
+/* Иконкалар ар дайым кара */
+.heart-icon,
+.cart-icon {
+  font-size: 26px;
   cursor: pointer;
+  color: black;
+  transition: none;
 }
 
-.blok1 img{
+/* active болсо дагы ошол эле кара */
+.heart-icon.active,
+.cart-icon.active {
+  color: black;
+}
+
+.blok1 img {
   width: 200px;
   height: 220px;
-  object-fit: cover;
+  object-fit: contain;
   margin-top: 25px;
 }
 
@@ -94,7 +105,7 @@
 .price-container h4 {
   position: absolute;
   top: 40px;
-   margin-right: 25px;
+  margin-right: 25px;
   font-size: 14px;
   font-weight: 600;
   color: #FFCE7F;
@@ -116,7 +127,7 @@
   margin: 0;
 }
 
-/* Адаптивность */
+/* Адаптив */
 @media (max-width: 1100px) {
   .headphones-all {
     grid-template-columns: repeat(2, 1fr);
