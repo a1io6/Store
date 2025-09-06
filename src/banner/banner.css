@@ -63,8 +63,11 @@
     width: 200px;
   }
 }
-.img1,.img2,.img3{
+.carousel-img {
   width: 1100px;
-  height: 300px;
+  height: 300px;       /* фиксированная высота */
+  object-fit: cover;   /* обрезает, чтобы всё было одинаково */
   border-radius: 32px;
+  display: block;
+  margin: 0 auto;
 }
