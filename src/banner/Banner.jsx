@@ -34,19 +34,19 @@ function Banner() {
       <div className="carousel">
         <Carousel interval={2000}>
           <Carousel.Item>
-            <img className="img1"
+            <img className="carousel-img"
               src="https://rapticstrong.com/cdn/shop/collections/collection-banner_iPhone_Cases_Desktop.jpg?v=1625072679"
               alt="Banner 1"
             />
           </Carousel.Item>
           <Carousel.Item>
-            <img className="img2"
+            <img className="carousel-img"
               src="https://www.ringkestore.com/cdn/shop/collections/iPhone-13-Pro-Max_Coming-soon_banner_e7e2609a-d411-4fde-aafc-ceef1f59acce.jpg?v=1708371837&width=1230"
               alt="Banner 2"
             />
           </Carousel.Item>
           <Carousel.Item>
-            <img className="img3"
+            <img className="carousel-img"
               src="https://justswitch.com/wp-content/uploads/2023/03/Main-Banner_1500x550.jpg"
               alt="Banner 3"
             />
