@@ -25,6 +25,7 @@ import Case from "./home/case/Case";
 import Favorite from "./page/favorite/Favorite";
 import ListPhone from "./page/ListPhone";
 import Contact from "./contact/contact";
+import Catalog from "./page/catalog/Catalog";
 const myRouter = createBrowserRouter([
     {
         path: "/",
@@ -97,7 +98,10 @@ const myRouter = createBrowserRouter([
             {
                 path: "contact",
                 element: <Contact />
-            },
+            },{
+                path: "catalog",
+                element: <Catalog/>
+              }
 
         ]
     },
