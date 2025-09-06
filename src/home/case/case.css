@@ -127,6 +127,10 @@
 .case-rating p {
   margin: 0;
 }
+.case-logo h3{
+  margin: 0 auto;
+  /* margin-left: 100px; */
+}
 
 /* Адаптивность */
 @media (max-width: 1100px) {

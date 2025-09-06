@@ -1,13 +1,20 @@
-@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Work+Sans:ital,wght@0,100..900;1,100..900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap');
 
-.airpods {
+.airpods-page {
   display: flex;
-  justify-content: center;
+  flex-direction: column;
+  align-items: center;
   background-color: #E2E2E2;
   padding: 20px 0;
   width: 100%;
   box-sizing: border-box;
-  font-family: Montserrat;
+  font-family: Montserrat, sans-serif;
+}
+
+.section-title {
+  width: 1140px;
+  color: #838383;
+  margin: 0 auto 30px;
 }
 
 .airpods-all {
@@ -49,9 +56,19 @@
   box-sizing: border-box;
 }
 
-.heart-icon, .cart-icon {
-  font-size: 24px;
+/* Иконкалар ар дайым кара */
+.heart-icon,
+.cart-icon {
+  font-size: 26px;
   cursor: pointer;
+  color: black;
+  transition: none;
+}
+
+/* active болсо дагы кара бойдон калат */
+.heart-icon.active,
+.cart-icon.active {
+  color: black;
 }
 
 .air-blok img {
@@ -70,7 +87,7 @@
 }
 
 .air-info h2 {
-margin-left: 20px;
+  margin-left: 20px;
   font-size: 17px;
   font-weight: 600;
   color: #1C1C27;
@@ -92,9 +109,9 @@ margin-left: 20px;
 }
 
 .air-price h4 {
-    position: absolute;
-    top: 40px;
-    margin-right: 25px;
+  position: absolute;
+  top: 40px;
+  margin-right: 25px;
   font-size: 14px;
   font-weight: 600;
   color: #FFCE7F;
@@ -116,7 +133,7 @@ margin-left: 20px;
   margin: 0;
 }
 
-/* Адаптивность */
+/* Адаптив */
 @media (max-width: 1100px) {
   .airpods-all {
     grid-template-columns: repeat(2, 1fr);

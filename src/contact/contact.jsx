@@ -36,7 +36,7 @@ function Contact() {
           <a href="https://instagram.com/a1i.o6" target="_blank" rel="noreferrer">
             <FaInstagram />
           </a>
-          <a href="https://t.me/995880806" target="_blank" rel="noreferrer">
+          <a href="https://t.me/https://web.telegram.org/a/" target="_blank" rel="noreferrer">
             <FaTelegramPlane />
           </a>
         </div>

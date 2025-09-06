@@ -28,7 +28,19 @@ function Case() {
       });
   }, []);
 
-  if (loading) return <Loading />;
+   if (loading)
+    return (
+      <div
+        style={{
+          margin: "100px auto",
+          display: "flex",
+          justifyContent: "center",
+          alignItems: "center",
+        }}
+      >
+        <Loading />
+      </div>
+    );
 
   const toggleFavorite = (product) => {
     const isFav = favoriteItems.some(item => item.id === product.id);
@@ -45,7 +57,13 @@ function Case() {
   return (
     <div className='case-logo'>
       <h3 
-        style={{ cursor: "pointer" }} 
+        style={{ 
+          cursor: "pointer",
+          width: "1100px",
+          color: "#838383",
+          marginTop:"40px",
+          margin: "0 auto"
+         }} 
         onClick={() => setShowAll(!showAll)}
       >
         Чехлы {showAll ? "▲" : "▼"}

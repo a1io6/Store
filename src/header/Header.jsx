@@ -115,10 +115,7 @@ function Header() {
             </select>
           </div>
         </div>
-
-        {/* Правая часть — иконки */}
         <div className="haeder-icons">
-          {/* ❤ Избранное */}
           <Link to="/favorite" className="icon-wrapper">
             <CiHeart size={24} style={{ cursor: "pointer" }} />
             {favoriteItems.length > 0 && (
@@ -126,7 +123,7 @@ function Header() {
             )}
           </Link>
 
-          {/* 🛒 Корзина */}
+
           <Link to="/cartlist" className="icon-wrapper">
             <IoCartOutline size={24} style={{ cursor: "pointer" }} />
             {cartItems.length > 0 && (
@@ -134,7 +131,6 @@ function Header() {
             )}
           </Link>
 
-          {/* 👤 Пользователь */}
           <BiUser
             size={24}
             style={{ cursor: "pointer" }}

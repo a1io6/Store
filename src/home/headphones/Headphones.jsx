@@ -1,34 +1,36 @@
-// src/page/headphones/Headphones.jsx
 import React, { useState, useEffect, useContext } from 'react';
 import axios from 'axios';
 import { CiHeart } from "react-icons/ci";
-import { IoCartOutline } from "react-icons/io5";
+import { FaHeart } from "react-icons/fa";
+import { IoCartOutline, IoCart } from "react-icons/io5";
 import './headphones.css';
 import { CartContext } from '../../context/CartContext';
-import { FavoriteContext } from "../../context/FavoriteContext"; // ✅ Favorite коштук
+import { FavoriteContext } from "../../context/FavoriteContext";
+import { Link } from 'react-router-dom';
 import Loading from '../../shared/Loading';
 
 function Headphones() {
   const [productsData, setProductsData] = useState([]);
   const [loading, setLoading] = useState(true);
 
-  const { addToCart, cartItems } = useContext(CartContext);
-  const { addToFavorite, favoriteItems } = useContext(FavoriteContext); // ✅ favorite колдонобуз
+  const { cartItems, addToCart, removeFromCart } = useContext(CartContext);
+  const { favoriteItems, addToFavorite, removeFromFavorite } = useContext(FavoriteContext);
 
   useEffect(() => {
-    axios.get('https://689ead013fed484cf877ace7.mockapi.io/fruit?category=headphones')
-      .then(response => {
-        setProductsData(response.data);
+    setLoading(true);
+    axios.get(`https://689ead013fed484cf877ace7.mockapi.io/fruit?category=headphones`)
+      .then(res => {
+        setProductsData(res.data);
         setLoading(false);
       })
-      .catch(error => {
-        console.error(error);
+      .catch(err => {
+        console.error(err);
         setLoading(false);
       });
   }, []);
 
   if (loading)
-    return (
+     return (
       <div
         style={{
           margin: "100px auto",
@@ -41,7 +43,32 @@ function Headphones() {
       </div>
     );
 
+  const handleFavorite = (product) => {
+    const isFav = favoriteItems.some(item => item.id === product.id);
+    if (isFav) removeFromFavorite(product.id);
+    else addToFavorite(product);
+  };
+
+  const handleCart = (product) => {
+    const isInCart = cartItems.some(item => item.id === product.id);
+    if (isInCart) removeFromCart(product.id);
+    else addToCart(product);
+  };
+
   return (
+    <div>
+
+    
+      <h3 
+      style={{
+        cursor: "pointer",
+        width: "1100px",
+        color: "#838383",
+        margin: "0 auto"
+      }}
+    >
+      Наушники
+    </h3>
     <div className='headphones'>
       <div className="headphones-all">
         {productsData.map(product => {
@@ -49,23 +76,42 @@ function Headphones() {
           const isInCart = cartItems.some(item => item.id === product.id);
 
           return (
-            <div className="headphones-blok1" key={product.id} style={{
-              display: product.activated ? "block" : "none"
-            }}>
-              <div className='blok1'>
+            <div
+              className="headphones-blok1"
+              key={product.id}
+              style={{ display: product.activated ? "block" : "none" }}
+            >
+              <Link to={`/listphone/${product.id}`} className='blok1'>
                 <div className='blok1-icons'>
-                  <CiHeart 
-                    className="heart-icon"
-                    style={{ color: isInFavorite ? 'red' : 'black' }}
-                    onClick={() => addToFavorite(product)}
-                  />
-                  <IoCartOutline 
-                    className="cart-icon"
-                    style={{ color: isInCart ? 'green' : 'black' }}
-                    onClick={() => addToCart(product)} 
-                  />
+                  {isInFavorite ? (
+                    <FaHeart
+                      className="heart-icon active"
+                      onClick={(e) => { e.preventDefault(); handleFavorite(product); }}
+                    />
+                  ) : (
+                    <CiHeart
+                      className="heart-icon"
+                      onClick={(e) => { e.preventDefault(); handleFavorite(product); }}
+                    />
+                  )}
+
+                  {isInCart ? (
+                    <IoCart
+                      className="cart-icon active"
+                      onClick={(e) => { e.preventDefault(); handleCart(product); }}
+                    />
+                  ) : (
+                    <IoCartOutline
+                      className="cart-icon"
+                      onClick={(e) => { e.preventDefault(); handleCart(product); }}
+                    />
+                  )}
                 </div>
-                <img src={product.img} alt={product.name} />
+
+                <div>
+                  <img src={product.img} alt={product.name} />
+                </div>
+
                 <div className="product-info">
                   <h2>{product.name}</h2>
                   <div className="price-container">
@@ -73,14 +119,16 @@ function Headphones() {
                     {product.oldPrice && <h4>{product.oldPrice}</h4>}
                   </div>
                 </div>
+
                 <div className='reiting'>
                   <p>⭐ {product.rating}</p>
                 </div>
-              </div>
+              </Link>
             </div>
           );
         })}
       </div>
+    </div>
     </div>
   );
 }
