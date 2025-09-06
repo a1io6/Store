@@ -1,9 +1,9 @@
-
 import React, { useContext } from "react";
 import { Link } from "react-router-dom";
 import { CartContext } from "../context/CartContext";
+import cartCorzina from '../assets/cart.svg';
 import "./CartList.css";
-import cartCorzina from '../assets/cart.svg'
+
 function CartList() {
   const { cartItems, updateCount, removeFromCart } = useContext(CartContext);
   const deliveryBase = 499;
@@ -15,52 +15,46 @@ function CartList() {
 
   if (cartItems.length === 0) {
     return (
-      <div className="cart-empty">
-        <img
-          src={cartCorzina} 
-          alt="Корзина пустая"
-          className="empty-img"
-        />
+      <div className="cartEmpty">
+        <img src={cartCorzina} alt="Корзина пустая" className="cartEmptyImg" />
         <h2>Корзина пуста</h2>
         <p>Но это никогда не поздно исправить 🙂</p>
-        <Link to="/" className="back-to-shop">В каталог товаров</Link>
+        <Link to="/" className="backToShop">В каталог товаров</Link>
       </div>
     );
   }
 
   return (
-    <div className="list">
-      <div className="grid">
-        <div className="col-left">
-          <h3 className="section-title">Корзина</h3>
+    <div className="cartList">
+      <div className="cartGrid">
+        <div className="cartColLeft">
+          <h3 className="cartSectionTitle">Корзина</h3>
           {cartItems.map(item => (
-            <div className="card card-cart" key={item.id}>
-              <div className="cart-row">
-                <img className="item-img" src={item.img} alt={item.name} />
-                <div className="item-main">
-                  <div className="item-head">
+            <div className="cartCard" key={item.id}>
+              <div className="cartRow">
+                <img className="cartItemImg" src={item.img} alt={item.name} />
+                <div className="cartItemMain">
+                  <div className="cartItemHead">
                     <div>
-                      <p className="item-title">{item.name}</p>
-                      <p className="item-sub">{item.price} $</p>
+                      <p className="cartItemTitle">{item.name}</p>
+                      <p className="cartItemSub">{item.price} $</p>
                     </div>
-                    <div className="item-right-price">
-                      {(item.price * (item.count || 1))} $
-                    </div>
+                    <div className="cartItemTotal">{(item.price * (item.count || 1))} $</div>
                   </div>
-                  <div className="qty">
+                  <div className="cartQty">
                     <button type="button" onClick={() => updateCount(item.id, -1)}>−</button>
                     <span>{item.count || 1}</span>
                     <button type="button" onClick={() => updateCount(item.id, 1)}>+</button>
-                    <button type="button" onClick={() => removeFromCart(item.id)}>х</button>
+                    <button type="button" className="cartRemoveBtn" onClick={() => removeFromCart(item.id)}>х</button>
                   </div>
                 </div>
               </div>
             </div>
           ))}
 
-          <h3 className="section-title">Доставка</h3>
-          <div className="card card-delivery">
-            <div className="map">
+          <h3 className="cartSectionTitle">Доставка</h3>
+          <div className="cartDeliveryCard">
+            <div className="cartMap">
               <iframe
                 src="https://yandex.com/map-widget/v1/?ll=74.585671%2C42.880350&z=16&l=map&pt=74.585671,42.880350,pm2rdm"
                 width="625px"
@@ -70,34 +64,34 @@ function CartList() {
                 title="Yandex Map"
               ></iframe>
             </div>
-            <div className="delivery-row">
-              <div className="delivery-left">
+            <div className="cartDeliveryRow">
+              <div className="cartDeliveryLeft">
                 <span>Доставка курьером</span>
               </div>
-              <div className="delivery-price">{totalDelivery} $</div>
+              <div className="cartDeliveryPrice">{totalDelivery} $</div>
             </div>
           </div>
         </div>
 
-        <aside className="col-right">
-          <div className="card summary">
-            <div className="summary-head">
+        <aside className="cartRight">
+          <div className="cartSummary">
+            <div className="cartSummaryHead">
               <span>ИТОГО</span>
               <strong>{total} $</strong>
             </div>
-            <div className="summary-row">
+            <div className="cartSummaryRow">
               <span>Товаров</span>
               <span>{totalCount}</span>
             </div>
-            <div className="summary-row">
+            <div className="cartSummaryRow">
               <span>Сумма</span>
               <span>{subtotal} $</span>
             </div>
-            <div className="summary-row">
+            <div className="cartSummaryRow">
               <span>Доставка</span>
               <span>{totalDelivery} $</span>
             </div>
-            <Link to="/auther" className="checkout-btn">
+            <Link to="/auther" className="cartCheckoutBtn">
               Перейти к оформлению
             </Link>
           </div>
