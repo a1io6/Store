@@ -136,3 +136,24 @@
   min-width: 18px;
   height: 18px;
 }
+
+
+.header-catalog {
+  position: relative;
+  cursor: pointer;
+  font-weight: 500;
+  color: #333;
+  margin-left: -400px;
+}
+.header-catalog a{
+  position: relative;
+  cursor: pointer;
+  color: #333;
+  width: 100px;
+  font-weight: 500;
+  text-decoration: none;
+}
+
+.header-catalog a:hover {
+  color: #ff6b00;
+}
