@@ -7,13 +7,16 @@ import './airpots.css';
 import { CartContext } from '../../context/CartContext';
 import { FavoriteContext } from "../../context/FavoriteContext";
 import Loading from '../../shared/Loading';
+import { useNavigate } from 'react-router-dom';
 
 function Airpots() {
   const [productsData, setProductsData] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [showModal, setShowModal] = useState(false);
 
   const { cartItems, addToCart, removeFromCart } = useContext(CartContext);
   const { favoriteItems, addToFavorite, removeFromFavorite } = useContext(FavoriteContext);
+  const navigate = useNavigate();
 
   useEffect(() => {
     setLoading(true);
@@ -43,88 +46,102 @@ function Airpots() {
     );
   }
 
+  // Favorite логика
   const toggleFavorite = (product) => {
+    const user = JSON.parse(localStorage.getItem("user"));
+    if (!user) {
+      setShowModal(true);
+      return;
+    }
     const isFav = favoriteItems.some(item => item.id === product.id);
     if (isFav) removeFromFavorite(product.id);
     else addToFavorite(product);
   };
 
+  // Cart логика
   const toggleCart = (product) => {
+    const user = JSON.parse(localStorage.getItem("user"));
+    if (!user) {
+      setShowModal(true);
+      return;
+    }
     const isInCart = cartItems.some(item => item.id === product.id);
     if (isInCart) removeFromCart(product.id);
     else addToCart(product);
   };
 
+  const handleRegisterRedirect = () => {
+    navigate("/register");
+  };
+
   return (
     <div>
+      <h3 
+        style={{
+          cursor: "pointer",
+          width: "1100px",
+          color: "#838383",
+          marginTop:"40px",
+          margin: "0 auto",
+        }}
+      >
+        Беспроводные наушники
+      </h3>
 
+      <div className="airpods-page">
+        <div className="airpods-all">
+          {productsData.map(product => {
+            const isInFavorite = favoriteItems.some(item => item.id === product.id);
+            const isInCart = cartItems.some(item => item.id === product.id);
 
-       <h3 
-      style={{
-        cursor: "pointer",
-        width: "1100px",
-        color: "#838383",
-        marginTop:"40px",
-        margin: "0 auto",
+            return (
+              <div className="airpods-blok1" key={product.id} style={{ display: product.activated ? "block" : "none" }}>
+                <div className='air-blok'>
+                  <div className='air-icons'>
+                    {isInFavorite ? (
+                      <FaHeart className="heart-icon active" onClick={() => toggleFavorite(product)} />
+                    ) : (
+                      <CiHeart className="heart-icon" onClick={() => toggleFavorite(product)} />
+                    )}
 
-      }}
-    >
-      Беспроводные наушники
-    </h3>
-   
-    <div className="airpods-page">
-      <div className="airpods-all">
-        {productsData.map(product => {
-          const isInFavorite = favoriteItems.some(item => item.id === product.id);
-          const isInCart = cartItems.some(item => item.id === product.id);
+                    {isInCart ? (
+                      <IoCart className="cart-icon active" onClick={() => toggleCart(product)} />
+                    ) : (
+                      <IoCartOutline className="cart-icon" onClick={() => toggleCart(product)} />
+                    )}
+                  </div>
 
-          return (
-            <div className="airpods-blok1" key={product.id} style={{ display: product.activated ? "block" : "none" }}>
-              <div className='air-blok'>
-                <div className='air-icons'>
-                  {isInFavorite ? (
-                    <FaHeart
-                      className="heart-icon active"
-                      onClick={() => toggleFavorite(product)}
-                    />
-                  ) : (
-                    <CiHeart
-                      className="heart-icon"
-                      onClick={() => toggleFavorite(product)}
-                    />
-                  )}
-
-                  {isInCart ? (
-                    <IoCart
-                      className="cart-icon active"
-                      onClick={() => toggleCart(product)}
-                    />
-                  ) : (
-                    <IoCartOutline
-                      className="cart-icon"
-                      onClick={() => toggleCart(product)}
-                    />
-                  )}
-                </div>
-
-                <img src={product.img} alt={product.name} />
-                <div className="air-info">
-                  <h2>{product.name}</h2>
-                  <div className="air-price">
-                    <h3>{product.price} $</h3>
-                    {product.oldPrice && <h4>{product.oldPrice}</h4>}
+                  <img src={product.img} alt={product.name} />
+                  <div className="air-info">
+                    <h2>{product.name}</h2>
+                    <div className="air-price">
+                      <h3>{product.price} $</h3>
+                      {product.oldPrice && <h4>{product.oldPrice}</h4>}
+                    </div>
+                  </div>
+                  <div className='air-reiting'>
+                    <p>⭐ {product.rating}</p>
                   </div>
                 </div>
-                <div className='air-reiting'>
-                  <p>⭐ {product.rating}</p>
-                </div>
               </div>
-            </div>
-          );
-        })}
+            );
+          })}
+        </div>
+      </div>
+
+     {showModal && (
+  <div className="airpods-modal-backdrop">
+    <div className="airpods-modal">
+      <h2>Внимание!</h2>
+      <p>Вы не можете добавить товар в корзину, потому что не зарегистрированы.</p>
+      <div className="airpods-modal-buttons">
+        <button className="airpods-register-btn" onClick={handleRegisterRedirect}>Регистрация</button>
+        <button className="airpods-close-btn" onClick={() => setShowModal(false)}>Закрыть</button>
       </div>
     </div>
-    </div> 
+  </div>
+)}
+    </div>
   );
 }
 

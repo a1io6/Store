@@ -146,3 +146,94 @@
     grid-template-columns: 1fr;
   }
 }
+/* Модалка фон жана блок */
+/* Airpods модалка фон жана блок */
+.airpods-modal-backdrop {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(220, 220, 220, 0.5); /* жеңил серый фон */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+.airpods-modal {
+  background: #fff;
+  padding: 24px;
+  border-radius: 16px;
+  max-width: 400px;
+  width: 90%;
+  text-align: center;
+}
+
+.airpods-modal-title {
+  margin-bottom: 10px;
+  font-size: 22px;
+}
+
+.airpods-modal-text {
+  font-size: 16px;
+  margin-bottom: 20px;
+}
+
+.airpods-modal-buttons {
+  display: flex;
+  justify-content: space-around;
+}
+
+.airpods-register-btn {
+  background: #FFA542;
+  color: #fff;
+  padding: 10px 16px;
+  border-radius: 8px;
+  border: none;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.airpods-register-btn:hover {
+  background-color: #ff9a1a;
+}
+
+.airpods-close-btn {
+  background: #ccc;
+  color: #333;
+  padding: 10px 16px;
+  border-radius: 8px;
+  border: none;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.airpods-close-btn:hover {
+  background-color: #aaa;
+}
+
+.airpods-register-btn {
+  background-color: #FFA542;
+  color: white;
+}
+
+.airpods-register-btn:hover {
+  background-color: #ff9a1a;
+}
+
+.airpods-close-btn {
+  background-color: #ccc;
+  color: #333;
+}
+
+.airpods-close-btn:hover {
+  background-color: #aaa;
+}
+
+/* Анимация модалка пайда болуу */
+@keyframes airpodsModalFadeIn {
+  from { opacity: 0; transform: translateY(-20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+

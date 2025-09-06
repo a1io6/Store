@@ -1,115 +1,107 @@
-.one-section {
-  width: 100%;
-  max-width: 1440px;
+.register-section {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 50px;
+  padding: 40px 20px;
+  background: #E2E2E2;
+  min-height: 80vh;
+  width: 1100px;
   margin: 0 auto;
 }
 
-.one-section .cont {
+.left-block, .right-block {
+  flex: 1;
+  max-width: 50%;
+}
+
+.left-block img {
   width: 100%;
-  min-height: 781px;
-  display: flex;
-  align-items: center;
-  gap: 50px;
-  padding: 24px;
+  height: auto;
+  border-radius: 12px;
+  box-shadow: 0 8px 16px rgba(0,0,0,0.1);
+  transition: transform 0.5s ease;
 }
 
-.one-section .cont img {
-  width: 819px;
-  height: 606px;
-  object-fit: cover;
+.left-block img:hover {
+  transform: scale(1.03);
 }
 
-.one-section .cont .sign {
-  width: 371px;
+.right-block {
   display: flex;
   flex-direction: column;
+  animation: fadeSlide 0.6s ease forwards;
 }
 
-.one-section .cont .sign h2 {
-  color: rgba(0, 0, 0, 1);
-  font-family: Inter, system-ui, -apple-system, sans-serif;
+@keyframes fadeSlide {
+  0% { opacity: 0; transform: translateX(50px); }
+  100% { opacity: 1; transform: translateX(0); }
+}
+
+.right-block h2 {
   font-size: 36px;
   font-weight: 500;
-  line-height: 30px;
-  letter-spacing: 0.04em;
-  margin: 0 0 16px;
-  text-align: left;
+  margin-bottom: 16px;
+  color: #1c1c27;
 }
 
-.one-section .cont .sign p {
-  margin: 0 0 32px;
+.right-block p {
+  margin-bottom: 32px;
   color: #777;
 }
 
-.one-section .cont .sign .inputs {
+.inputs {
   display: flex;
   flex-direction: column;
   gap: 24px;
-  margin-top: 16px;
-  width: 370px;
-  height: 176px;
 }
 
-.one-section .cont .sign .inputs input {
+.inputs input {
   width: 100%;
-  height: 32px;
+  height: 42px;
   border: none;
-  border-bottom: 1px solid #ccc;
+  border-bottom: 1.5px solid #ccc;
   font-size: 16px;
   outline: none;
   background: transparent;
-  transition: border-color 0.2s;
-  padding: 0;
+  transition: all 0.3s ease;
+  padding: 0 4px;
+  border-radius: 4px;
 }
 
-.one-section .cont .sign .inputs input::placeholder {
-  color: #999;
+.inputs input::placeholder { color: #999; }
+
+.inputs input:focus {
+  border-bottom: 2px solid #db4444;
+  box-shadow: 0 2px 8px rgba(219,68,68,0.2);
 }
 
-.one-section .cont .sign .inputs input:focus {
-  border-bottom: 2px solid #000;
-}
-
-.one-section .cont .sign .actions {
+.actions {
   display: flex;
   flex-direction: column;
   gap: 17px;
   margin-top: 32px;
 }
 
-.one-section .cont .sign .actions .primary {
-  width: 371px;
+.primary {
+  width: 100%;
   height: 56px;
   border: none;
-  border-radius: 4px;
+  border-radius: 8px;
   background: #db4444;
   color: #fff;
   font-size: 16px;
+  font-weight: 500;
   cursor: pointer;
+  transition: all 0.3s ease;
 }
 
-.one-section .cont .sign .actions .google-btn {
-  width: 371px;
-  height: 56px;
-  border: 1px solid #000;
-  background: #fff;
-  border-radius: 4px;
-  align-items: center;
-  gap: 8px;
-  cursor: pointer;
-  display: flex;
+.primary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(219,68,68,0.3);
 }
 
-.one-section .cont .sign .actions .google-btn .gicon {
-  width: 20px;
-  height: 20px;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  font-weight: 700;
-}
-
-.one-section .cont .sign .actions .login {
+.login {
   margin-top: 8px;
   display: flex;
   justify-content: center;
@@ -117,23 +109,19 @@
   font-size: 14px;
 }
 
-.one-section .cont .sign .actions .login a {
-  color: #000;
+.login a {
+  color: #db4444;
   text-decoration: underline;
 }
 
-@media (max-width: 1024px) {
-  .one-section .cont {
+/* Адаптив */
+@media (max-width: 1100px) {
+  .register-section {
+    width: 100%;
     flex-direction: column;
+    gap: 30px;
   }
-
-  .one-section .cont img {
-    width: 100%;
-    height: auto;
-  }
-
-  .one-section .cont .sign {
-    width: 100%;
-    max-width: 420px;
+  .left-block, .right-block {
+    max-width: 100%;
   }
 }
