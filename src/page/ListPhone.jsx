@@ -1,11 +1,12 @@
+// ListPhone.jsx
 import React, { useState, useEffect, useContext } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import axios from "axios";
 import { CartContext } from "../context/CartContext";
 import { toast } from "react-toastify";
-import "./ListPhone.css";
 import ReviewForm from "../review/RevievForm";
-
+import  { QRCodeCanvas } from "qrcode.react";
+import "./ListPhone.css";
 
 function ListPhone() {
   const [phone, setPhone] = useState(null);
@@ -15,7 +16,6 @@ function ListPhone() {
   const { addToCart } = useContext(CartContext);
   const navigate = useNavigate();
 
-  // Reviews
   const [reviews, setReviews] = useState(
     JSON.parse(localStorage.getItem(`reviews_${id}`)) || []
   );
@@ -52,7 +52,6 @@ function ListPhone() {
 
   const handleGoBack = () => navigate(-1);
 
-  // Review handlers
   const handleAddReview = (newReview) => {
     const reviewWithId = { ...newReview, id: Date.now() };
     const updatedReviews = [...reviews, reviewWithId];
@@ -87,7 +86,8 @@ function ListPhone() {
             ))}
           </div>
 
-          <div className="phone-buttons">
+          {/* Кнопкалар + QR */}
+          <div className="phone-buttons-qr">
             <button className="buy-now" onClick={handleBuyNow}>
               Купить
             </button>
@@ -97,6 +97,12 @@ function ListPhone() {
             >
               {added ? "Добавлено!" : "Добавить в корзину"}
             </button>
+            <QRCodeCanvas
+              value={`https://buy.example.com/product/${phone.id}?price=${phone.price}`}
+              size={50}
+              bgColor="#ffffff"
+              fgColor="#000000"
+            />
             <button className="go-back" onClick={handleGoBack}>
               Назад
             </button>
@@ -106,7 +112,7 @@ function ListPhone() {
 
       {/* Reviews section */}
       <div className="reviews-section">
-        <h3 className="reviews-title">Отзывы</h3>
+        <h3 className="reviews-title">Вопросы</h3>
         <div className="reviews-grid">
           {reviews.map((r) => (
             <div key={r.id} className="review-item">

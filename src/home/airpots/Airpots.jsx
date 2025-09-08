@@ -3,6 +3,7 @@ import axios from 'axios';
 import { CiHeart } from "react-icons/ci";
 import { FaHeart } from "react-icons/fa";
 import { IoCartOutline, IoCart } from "react-icons/io5";
+import  { QRCodeCanvas } from 'qrcode.react';
 import './airpots.css';
 import { CartContext } from '../../context/CartContext';
 import { FavoriteContext } from "../../context/FavoriteContext";
@@ -46,7 +47,6 @@ function Airpots() {
     );
   }
 
-  // Favorite логика
   const toggleFavorite = (product) => {
     const user = JSON.parse(localStorage.getItem("user"));
     if (!user) {
@@ -58,7 +58,6 @@ function Airpots() {
     else addToFavorite(product);
   };
 
-  // Cart логика
   const toggleCart = (product) => {
     const user = JSON.parse(localStorage.getItem("user"));
     if (!user) {
@@ -119,9 +118,13 @@ function Airpots() {
                       {product.oldPrice && <h4>{product.oldPrice}</h4>}
                     </div>
                   </div>
-                  <div className='air-reiting'>
+
+                  {/* Рейтинг жана QR */}
+                  <div className='air-reiting' style={{ display: 'flex', alignItems: 'center', gap: '10px', marginTop: '10px' }}>
                     <p>⭐ {product.rating}</p>
+                    <QRCodeCanvas value={`https://buy.example.com/product/${product.id}?price=${product.price}`} size={50} />
                   </div>
+
                 </div>
               </div>
             );
@@ -130,17 +133,17 @@ function Airpots() {
       </div>
 
      {showModal && (
-  <div className="airpods-modal-backdrop">
-    <div className="airpods-modal">
-      <h2>Внимание!</h2>
-      <p>Вы не можете добавить товар в корзину, потому что не зарегистрированы.</p>
-      <div className="airpods-modal-buttons">
-        <button className="airpods-register-btn" onClick={handleRegisterRedirect}>Регистрация</button>
-        <button className="airpods-close-btn" onClick={() => setShowModal(false)}>Закрыть</button>
+      <div className="airpods-modal-backdrop">
+        <div className="airpods-modal">
+          <h2>Внимание!</h2>
+          <p>Вы не можете добавить товар в корзину, потому что не зарегистрированы.</p>
+          <div className="airpods-modal-buttons">
+            <button className="airpods-register-btn" onClick={handleRegisterRedirect}>Регистрация</button>
+            <button className="airpods-close-btn" onClick={() => setShowModal(false)}>Закрыть</button>
+          </div>
+        </div>
       </div>
-    </div>
-  </div>
-)}
+     )}
     </div>
   );
 }

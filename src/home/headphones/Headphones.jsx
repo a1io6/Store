@@ -8,6 +8,7 @@ import { CartContext } from '../../context/CartContext';
 import { FavoriteContext } from "../../context/FavoriteContext";
 import { Link, useNavigate } from 'react-router-dom';
 import Loading from '../../shared/Loading';
+import { QRCodeCanvas } from 'qrcode.react';
 
 function Headphones() {
   const [productsData, setProductsData] = useState([]);
@@ -136,8 +137,9 @@ function Headphones() {
                     </div>
                   </div>
 
-                  <div className='reiting'>
+                  <div className='air-reiting' style={{ display: 'flex', alignItems: 'center', gap: '10px', marginTop: '10px' }}>
                     <p>⭐ {product.rating}</p>
+                    <QRCodeCanvas value={`https://buy.example.com/product/${product.id}?price=${product.price}`} size={50} />
                   </div>
                 </Link>
               </div>
