@@ -134,8 +134,11 @@ const displayedProducts = isAdmin ? products : products.filter((p) => p.activate
           onSubmit={handleAddProduct}
         />
       )}
+      
     </>
+    
   );
+  
 }
 
 export default Products;

@@ -1,13 +1,14 @@
-.phone-list {
+.phone-page {
   display: flex;
-  justify-content: center;
+  flex-direction: column;
+  align-items: center;
   padding: 40px 20px;
   background-color: #E2E2E2;
 }
 
 .phone-card-horizontal {
   display: flex;
-  width: 900px;
+  width: 1100px; /* өзгөртүлдү */
   background-color: #fff;
   border-radius: 20px;
   box-shadow: 0 8px 24px rgba(0,0,0,0.15);
@@ -20,14 +21,12 @@
   box-shadow: 0 12px 32px rgba(0,0,0,0.2);
 }
 
-/* Фото слева */
 .phone-img {
-  flex: 0 0 350px; /* фиксированная ширина для фото */
-  height: auto;
-  background-color: #f9f9f9;
+  flex: 0 0 400px;
   display: flex;
-  align-items: center;
   justify-content: center;
+  align-items: center;
+  background-color: #f9f9f9;
 }
 
 .phone-img img {
@@ -36,7 +35,6 @@
   object-fit: cover;
 }
 
-/* Текст справа */
 .phone-info {
   flex: 1;
   padding: 20px 30px;
@@ -52,11 +50,10 @@
 .price {
   font-size: 22px;
   font-weight: 700;
-  color:  #FFA542;
+  color: #FFA542;
   margin-bottom: 20px;
 }
 
-/* Specs Grid */
 .specs-grid {
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -69,86 +66,143 @@
   margin: 3px 0;
 }
 
-@media (max-width: 1000px) {
-  .phone-card-horizontal {
-    flex-direction: column;
-    width: 90%;
-  }
-  .phone-img {
-    width: 100%;
-  }
-  .specs-grid {
-    grid-template-columns: 1fr;
-  }
-  .phone-buttons {
+.phone-buttons {
   display: flex;
   gap: 15px;
   margin-top: 20px;
 }
 
-
-}
-
-.go-back {
+.phone-buttons button {
   flex: 1;
-  padding: 10px 0;
-  background-color: #757575;
-  color: #fff;
+  padding: 12px 0;
   border: none;
   border-radius: 8px;
-  cursor: pointer;
   font-weight: 600;
-  transition: background 0.2s;
+  color: #fff;
+  cursor: pointer;
+  transition: background 0.2s, transform 0.2s;
 }
 
-.go-back:hover {
-  background-color: #616161;
+.phone-buttons button:hover {
+  transform: translateY(-2px);
 }
 
-/* Обновим контейнер кнопок чтобы все 3 кнопки красиво выглядели */
-.phone-buttons {
+.buy-now { background-color: #e53935; }
+.buy-now:hover { background-color: #d32f2f; }
+
+.add-cart { background-color: #FFA542; }
+.add-cart.added { background-color: #4caf50; }
+
+.go-back { background-color: #757575; }
+.go-back:hover { background-color: #616161; }
+.reviews-section {
+  width: 1100px;
+  background-color: #fff;
+  padding: 20px 30px;
+  border-radius: 20px;
+  box-shadow: 0 6px 18px rgba(0,0,0,0.1);
+  max-height: 500px;
+  overflow-y: auto; /* вертикалдык скролл */
+}
+
+.reviews-title {
+  font-size: 24px;
+  font-weight: 600;
+  margin-bottom: 20px;
+  color: #333;
+}
+
+.reviews-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+}
+
+.review-item {
+  border: 1px solid #eee;
+  border-radius: 10px;
+  padding: 12px;
   display: flex;
-  gap: 15px;
-  margin-top: 20px;
-}
-.phone-buttons {
-  display: flex;
-  gap: 15px;
-  margin-top: 20px;
+  flex-direction: column;
+  gap: 6px;
+  background-color: #fafafa;
 }
 
-.buy-now {
-  flex: 1;
-  padding: 10px 0;
+.review-rating {
+  color: #FFD700;
+  font-size: 14px;
+  margin-bottom: 5px;
+}
+
+.delete-review {
+  margin-top: 5px;
+  padding: 4px 8px;
+  font-size: 10px;
   background-color: #e53935;
   color: #fff;
   border: none;
-  border-radius: 8px;
+  border-radius: 4px;
   cursor: pointer;
-  font-weight: 600;
+  align-self: flex-end;
   transition: background 0.2s;
 }
 
-.buy-now:hover {
+.delete-review:hover {
   background-color: #d32f2f;
 }
+/* Form үчүн */
+.review-form {
+  margin-top: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  width: 400px; /* форма кичинекей кылдык */
+  align-self: center; /* ортого коюу */
+  background-color: #fff;
+  padding: 15px 20px;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+}
 
-.add-cart {
-  flex: 1;
-  padding: 10px 0;
-  background-color:  #FFA542; 
+.review-form input,
+.review-form select,
+.review-form textarea {
+  padding: 8px;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+  font-size: 14px;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.review-form textarea {
+  resize: vertical;
+  min-height: 50px;
+  max-height: 100px;
+  overflow-y: auto;
+}
+
+.review-form button {
+  width: 120px;
+  padding: 8px 0;
+  background-color: #FFA542;
   color: #fff;
+  font-weight: 600;
   border: none;
   border-radius: 8px;
   cursor: pointer;
-  font-weight: 600;
   transition: background 0.2s;
+  align-self: flex-end; /* оң жакка */
 }
 
-/* .add-cart:hover {
-  background-color: #1565c0;
-} */
-.add-cart.added {
-  background-color: #4caf50; /* зелёный цвет при добавлении */
-  color: #fff;
+.review-form button:hover {
+  background-color: #e59433;
+}
+
+/* Адаптив */
+@media (max-width: 500px) {
+  .review-form {
+    width: 100%; /* мобилде толук кеңейт */
+    padding: 10px 15px;
+  }
 }

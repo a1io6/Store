@@ -2,8 +2,9 @@ import React, { useState } from "react";
 import axios from "axios";
 import "./Modal.css";
 
-function Modal({ isOpen, onClose, onSubmit }) {
+function Model({ isOpen, onClose, onSubmit }) {
   const [formData, setFormData] = useState({
+    id: "",           // id коштук
     name: "",
     img: "",
     price: "",
@@ -26,7 +27,7 @@ function Modal({ isOpen, onClose, onSubmit }) {
         "https://689ead013fed484cf877ace7.mockapi.io/fruit",
         {
           ...formData,
-          rating: parseFloat(formData.rating) // рейтинг как число
+          rating: parseFloat(formData.rating)
         }
       );
 
@@ -42,17 +43,63 @@ function Modal({ isOpen, onClose, onSubmit }) {
   if (!isOpen) return null;
 
   return (
-    <div className="modal-overlay">
-      <div className="modal">
+    <div className="product-modal-overlay">
+      <div className="product-modal">
         <h2>Создать товар</h2>
         <form onSubmit={handleSubmit}>
-          <input name="name" placeholder="Название" value={formData.name} onChange={handleChange} required />
-          <input name="img" placeholder="URL картинки" value={formData.img} onChange={handleChange} required />
-          <input name="price" placeholder="Цена" value={formData.price} onChange={handleChange} required />
-          <input name="discount" placeholder="Скидка (10%)" value={formData.discount} onChange={handleChange} />
-          <input name="oldPrice" placeholder="Старая цена" value={formData.oldPrice} onChange={handleChange} />
-          <input name="description" placeholder="Описание" value={formData.description} onChange={handleChange} />
-          <select name="category" value={formData.category} onChange={handleChange}required>
+          <input
+            name="id"
+            placeholder="ID товара"
+            value={formData.id}
+            onChange={handleChange}
+            required
+          />
+          <input
+            name="name"
+            placeholder="Название"
+            value={formData.name}
+            onChange={handleChange}
+            required
+          />
+          <input
+            name="img"
+            placeholder="URL картинки"
+            value={formData.img}
+            onChange={handleChange}
+            required
+          />
+          <input
+            name="price"
+            placeholder="Цена"
+            value={formData.price}
+            onChange={handleChange}
+            required
+          />
+          <input
+            name="discount"
+            placeholder="Скидка (10%)"
+            value={formData.discount}
+            onChange={handleChange}
+          />
+          <input
+            name="oldPrice"
+            placeholder="Старая цена"
+            value={formData.oldPrice}
+            onChange={handleChange}
+          />
+          <input
+            name="description"
+            placeholder="Описание"
+            value={formData.description}
+            onChange={handleChange}
+          />
+          <select
+            name="category"
+            value={formData.category}
+            onChange={handleChange}
+            required
+          >
+            <option value="">-- Категория --</option>
             <option value="iphone">iphone</option>
             <option value="samsung">samsung</option>
             <option value="nokia">nokia</option>
@@ -62,13 +109,21 @@ function Modal({ isOpen, onClose, onSubmit }) {
             <option value="airpods">airpods</option>
             <option value="headphones">headphones</option>
             <option value="case">case</option>
-            
           </select>
-          <input name="rating" type="number" step="0.1" placeholder="Рейтинг" value={formData.rating} onChange={handleChange} />
+          <input
+            name="rating"
+            type="number"
+            step="0.1"
+            placeholder="Рейтинг"
+            value={formData.rating}
+            onChange={handleChange}
+          />
 
-          <div className="modal-actions">
+          <div className="product-modal-actions">
             <button type="submit">Создать</button>
-            <button type="button" onClick={onClose}>Закрыть</button>
+            <button type="button" onClick={onClose}>
+              Закрыть
+            </button>
           </div>
         </form>
       </div>
@@ -76,4 +131,4 @@ function Modal({ isOpen, onClose, onSubmit }) {
   );
 }
 
-export default Modal;
+export default Model;

@@ -7,11 +7,14 @@ import { CartContext } from "../../context/CartContext";
 import { FavoriteContext } from "../../context/FavoriteContext";
 import { Link } from "react-router-dom";
 import Loading from "../../shared/Loading";
-import "./Catalog.css"; // новый CSS
+import "./Catalog.css";
 
 function Catalog() {
   const [products, setProducts] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [searchTerm, setSearchTerm] = useState("");
+  const [minPrice, setMinPrice] = useState(""); // мин баа
+  const [maxPrice, setMaxPrice] = useState(""); // макс баа
 
   const { cartItems, addToCart, removeFromCart } = useContext(CartContext);
   const { favoriteItems, addToFavorite, removeFromFavorite } =
@@ -43,6 +46,21 @@ function Catalog() {
     else addToCart(product);
   };
 
+  // издөө жана баа боюнча фильтр
+  const filteredProducts = products.filter((product) => {
+    const matchesName = product.name
+      .toLowerCase()
+      .includes(searchTerm.toLowerCase());
+
+    const price = parseFloat(product.price);
+    const min = minPrice ? parseFloat(minPrice) : 0;
+    const max = maxPrice ? parseFloat(maxPrice) : Infinity;
+
+    const matchesPrice = price >= min && price <= max;
+
+    return matchesName && matchesPrice;
+  });
+
   if (loading)
     return (
       <div className="catalog-loading">
@@ -53,72 +71,101 @@ function Catalog() {
   return (
     <div className="catalog-container">
       <h2 className="catalog-title">Все товары</h2>
+
+      {/* издөө жана фильтр */}
+      <div className="catalog-filters">
+        <input
+          type="text"
+          placeholder="Поиск товара..."
+          value={searchTerm}
+          onChange={(e) => setSearchTerm(e.target.value)}
+        />
+
+        <input
+          type="number"
+          placeholder="Мин цена"
+          value={minPrice}
+          onChange={(e) => setMinPrice(e.target.value)}
+        />
+
+        <input
+          type="number"
+          placeholder="Макс цена"
+          value={maxPrice}
+          onChange={(e) => setMaxPrice(e.target.value)}
+        />
+      </div>
+
       <div className="catalog-grid">
-        {products.map((product) => {
-          const isInFavorite = favoriteItems.some(
-            (item) => item.id === product.id
-          );
-          const isInCart = cartItems.some((item) => item.id === product.id);
+        {filteredProducts.length > 0 ? (
+          filteredProducts.map((product) => {
+            const isInFavorite = favoriteItems.some(
+              (item) => item.id === product.id
+            );
+            const isInCart = cartItems.some((item) => item.id === product.id);
 
-          return (
-            <div className="catalog-card" key={product.id}>
-              <Link to={`/listphone/${product.id}`} className="catalog-link">
-                <div className="catalog-icons">
-                  {isInFavorite ? (
-                    <FaHeart
-                      className="catalog-heart active"
-                      onClick={(e) => {
-                        e.preventDefault();
-                        handleFavorite(product);
-                      }}
-                    />
-                  ) : (
-                    <CiHeart
-                      className="catalog-heart"
-                      onClick={(e) => {
-                        e.preventDefault();
-                        handleFavorite(product);
-                      }}
-                    />
-                  )}
+            return (
+              <div className="catalog-card" key={product.id}>
+                <Link to={`/listphone/${product.id}`} className="catalog-link">
+                  <div className="catalog-icons">
+                    {isInFavorite ? (
+                      <FaHeart
+                        className="catalog-heart active"
+                        onClick={(e) => {
+                          e.preventDefault();
+                          handleFavorite(product);
+                        }}
+                      />
+                    ) : (
+                      <CiHeart
+                        className="catalog-heart"
+                        onClick={(e) => {
+                          e.preventDefault();
+                          handleFavorite(product);
+                        }}
+                      />
+                    )}
 
-                  {isInCart ? (
-                    <IoCart
-                      className="catalog-cart active"
-                      onClick={(e) => {
-                        e.preventDefault();
-                        handleCart(product);
-                      }}
-                    />
-                  ) : (
-                    <IoCartOutline
-                      className="catalog-cart"
-                      onClick={(e) => {
-                        e.preventDefault();
-                        handleCart(product);
-                      }}
-                    />
-                  )}
-                </div>
-
-                <div className="catalog-image">
-                  <img src={product.img} alt={product.name} />
-                </div>
-
-                <div className="catalog-info">
-                  <h3>{product.name}</h3>
-                  <div className="catalog-price">
-                    <span className="current-price">{product.price} $</span>
-                    {product.oldPrice && (
-                      <span className="old-price">{product.oldPrice} $</span>
+                    {isInCart ? (
+                      <IoCart
+                        className="catalog-cart active"
+                        onClick={(e) => {
+                          e.preventDefault();
+                          handleCart(product);
+                        }}
+                      />
+                    ) : (
+                      <IoCartOutline
+                        className="catalog-cart"
+                        onClick={(e) => {
+                          e.preventDefault();
+                          handleCart(product);
+                        }}
+                      />
                     )}
                   </div>
-                  <div className="catalog-rating">⭐ {product.rating}</div>
-                </div>
-              </Link>
-            </div>
-          );
-        })}
+
+                  <div className="catalog-image">
+                    <img src={product.img} alt={product.name} />
+                  </div>
+
+                  <div className="catalog-info">
+                    <h3>{product.name}</h3>
+                    <div className="catalog-price">
+                      <span className="current-price">{product.price} $</span>
+                      {product.oldPrice && (
+                        <span className="old-price">{product.oldPrice} $</span>
+                      )}
+                    </div>
+                    <div className="catalog-rating">⭐ {product.rating}</div>
+                  </div>
+                </Link>
+              </div>
+            );
+          })
+        ) : (
+          <p className="no-results">Товар табылган жок</p>
+        )}
       </div>
     </div>
   );

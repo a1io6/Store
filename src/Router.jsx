@@ -26,6 +26,9 @@ import Favorite from "./page/favorite/Favorite";
 import ListPhone from "./page/ListPhone";
 import Contact from "./contact/contact";
 import Catalog from "./page/catalog/Catalog";
+import AllReviews from "./review/AllReviews";
+import AdminReviews from "./admin/AdminReviews/AdminReviews";
+
 const myRouter = createBrowserRouter([
     {
         path: "/",
@@ -101,7 +104,14 @@ const myRouter = createBrowserRouter([
             },{
                 path: "catalog",
                 element: <Catalog/>
-              }
+              },
+               { 
+                path: "/reviews",
+                element: <AllReviews /> 
+              },
+             
+              
+
 
         ]
     },
@@ -120,7 +130,11 @@ const myRouter = createBrowserRouter([
             {
                 path: "/shopping",
                 element: <Shopping />
-            }
+            },
+            { 
+                path: "adminreviews", 
+                element: <AdminReviews /> 
+            },
         ]
     }
 ]);
