@@ -237,3 +237,18 @@
   to { opacity: 1; transform: translateY(0); }
 }
 
+.air-price-rating-qr {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-top: 8px;
+}
+
+.air-price-rating-qr .price {
+  font-weight: 700;
+  color: #FFA542;
+}
+
+.air-price-rating-qr .rating {
+  color: #FFD700;
+}

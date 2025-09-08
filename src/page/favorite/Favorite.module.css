@@ -142,3 +142,44 @@
     grid-template-columns: 1fr;
   }
 }
+/* 🎯 Стиль для пустого избранного */
+.emptyFav {
+  width: 100%;
+  min-height: 400px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  gap: 15px;
+}
+
+.emptyImg {
+  width: 200px;
+  height: auto;
+  opacity: 0.9;
+}
+
+.emptyFav h2 {
+  font-size: 24px;
+  margin-bottom: 5px;
+}
+
+.emptyFav p {
+  color: #666;
+  margin-bottom: 20px;
+}
+
+.backBtn {
+  display: inline-block;
+  padding: 10px 20px;
+  background: #FFA542;
+  color: #fff;
+  border-radius: 8px;
+  text-decoration: none;
+  transition: background 0.2s ease;
+}
+
+.backBtn:hover {
+  background: #ff8a1a;
+}
