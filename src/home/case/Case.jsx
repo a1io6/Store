@@ -6,6 +6,7 @@ import { CartContext } from '../../context/CartContext';
 import { FavoriteContext } from "../../context/FavoriteContext"; 
 import { CiHeart } from "react-icons/ci";
 import { IoCartOutline } from "react-icons/io5";
+import { QRCodeCanvas } from 'qrcode.react';
 
 function Case() {
   const [productsData, setProductsData] = useState([]);
@@ -101,8 +102,9 @@ function Case() {
                       {product.oldPrice && <h4>{product.oldPrice}</h4>}
                     </div>
                   </div>
-                  <div className='case-rating'>
+                   <div className='air-reiting' style={{ display: 'flex', alignItems: 'center', gap: '10px', marginTop: '10px' }}>
                     <p>⭐ {product.rating}</p>
+                    <QRCodeCanvas value={`https://buy.example.com/product/${product.id}?price=${product.price}`} size={50} />
                   </div>
                 </div>
               </div>

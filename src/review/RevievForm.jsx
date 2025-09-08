@@ -32,11 +32,11 @@ function ReviewForm() {
         onChange={(e) => setName(e.target.value)}
         required
       />
-      <select value={rating} onChange={(e) => setRating(Number(e.target.value))}>
+      {/* <select value={rating} onChange={(e) => setRating(Number(e.target.value))}>
         {[5, 4, 3, 2, 1].map((n) => (
           <option key={n} value={n}>{n} ⭐</option>
         ))}
-      </select>
+      </select> */}
       <textarea
         placeholder="Ваш вопрос"
         value={comment}

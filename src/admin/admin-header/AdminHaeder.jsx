@@ -16,8 +16,7 @@ function AdminHeader() {
         <Link to="/admin">Главная</Link>
         <Link to="/products">Товары</Link>
         <Link to="/shopping">покупки</Link>
-        <Link to="/adminreviews">Отзывы</Link>
-        <Link to="/questions">Вопросы</Link>
+        <Link to="/adminreviews">Вопросы</Link>
         <Link to="/calls">Запросы звонков</Link>
       </nav>
 
