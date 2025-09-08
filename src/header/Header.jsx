@@ -126,6 +126,7 @@ function Header() {
   
         <div className="header-catalog">
           <Link to="/catalog">Все товары</Link>
+         
         </div>
 
         {/* Иконки */}

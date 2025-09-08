@@ -3,7 +3,7 @@
    
   padding: 20px;
   font-family: 'Montserrat', sans-serif;
-  background-color: #f5f5f5;
+  background-color: #E2E2E2;
   margin: auto;
 }
 
@@ -55,11 +55,11 @@
 }
 
 .catalog-heart.active {
-  color: red;
+  color: rgb(10, 10, 10);
 }
 
 .catalog-cart.active {
-  color: green;
+  color: rgb(10, 10, 10);
 }
 
 .catalog-image img {
@@ -168,11 +168,36 @@
 
 .catalog-heart:hover {
   transform: scale(1.2);
-  color: red;
+  color: black;
 }
 
 .catalog-cart:hover {
   transform: scale(1.2);
-  color: green;
+  color: black;
+}
+.catalog-search {
+  margin: 20px 0;
+  text-align: center;
+}
+
+.catalog-search input {
+  width: 60%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 12px;
+  font-size: 16px;
+}
+.catalog-filters {
+  margin: 20px 0;
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+}
+
+.catalog-filters input {
+  padding: 8px 12px;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  font-size: 15px;
 }
 

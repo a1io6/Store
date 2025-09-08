@@ -4,6 +4,7 @@ import axios from 'axios';
 import { CiHeart } from "react-icons/ci";
 import { FaHeart } from "react-icons/fa";
 import { IoCartOutline, IoCart } from "react-icons/io5";
+import QRCode from "react-qr-code";
 import './Phone.css';
 import { CartContext } from '../../context/CartContext';
 import { FavoriteContext } from "../../context/FavoriteContext";
@@ -41,9 +42,7 @@ function Phone() {
       </div>
     );
 
-  const handleRegisterRedirect = () => {
-    navigate("/register");
-  };
+  const handleRegisterRedirect = () => navigate("/register");
 
   const handleAction = (type, product) => {
     const user = JSON.parse(localStorage.getItem("user"));
@@ -117,6 +116,16 @@ function Phone() {
 
                 <div className='reiting'>
                   <p>⭐ {product.rating}</p>
+                </div>
+
+                {/* QR код кичинекей иконка катары */}
+                <div style={{ marginTop: "5px" }}>
+                 <QRCode 
+  value={`PAYMENT?product=${encodeURIComponent(product.name)}&amount=${product.price}`} 
+  size={50} 
+/>
+
+                  
                 </div>
               </Link>
             </div>
