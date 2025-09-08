@@ -1,6 +1,6 @@
 import './footer.css'
 import { SlSocialVkontakte } from "react-icons/sl";
-import { FaInstagram } from "react-icons/fa";
+import { FaInstagram,  } from "react-icons/fa";
 import { FaTelegram } from "react-icons/fa";
 import { FaWhatsapp } from "react-icons/fa6";
 import { CiGlobe } from "react-icons/ci";
@@ -33,11 +33,28 @@ function Footer() {
       </ul>
     </div>
     <div className="footer-icons">
-      <div><SlSocialVkontakte /></div>
-      <div><FaInstagram /></div>
-      <div><FaTelegram /></div>
-      <div><FaWhatsapp /></div>
-    </div>
+  <div>
+    <a href="https://vk.com" target="_blank" rel="noreferrer" style={{ color: "#000" }}>
+      <SlSocialVkontakte />
+    </a>
+  </div>
+  <div>
+    <a href="https://instagram.com/a1i.o6" target="_blank" rel="noreferrer" style={{ color: "#000" }}>
+      <FaInstagram />
+    </a>
+  </div>
+  <div>
+    <a href="https://t.me/https://web.telegram.org/a/" target="_blank" rel="noreferrer" style={{ color: "#000" }}>
+      <FaTelegram />
+    </a>
+  </div>
+  <div>
+    <a href="https://wa.me/995880806" target="_blank" rel="noreferrer" style={{ color: "#000" }}>
+      <FaWhatsapp />
+    </a>
+  </div>
+</div>
+
   </div>
 </div>
 

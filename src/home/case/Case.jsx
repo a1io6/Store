@@ -5,14 +5,15 @@ import Loading from '../../shared/Loading';
 import { CartContext } from '../../context/CartContext';
 import { FavoriteContext } from "../../context/FavoriteContext"; 
 import { CiHeart } from "react-icons/ci";
-import { IoCartOutline } from "react-icons/io5";
+import { FaHeart } from "react-icons/fa";
+import { IoCartOutline, IoCart } from "react-icons/io5";
 import { QRCodeCanvas } from 'qrcode.react';
 
 function Case() {
   const [productsData, setProductsData] = useState([]);
   const [loading, setLoading] = useState(true);
   const [showAll, setShowAll] = useState(false);
-  const [showModal, setShowModal] = useState(false); // модалка
+  const [showModal, setShowModal] = useState(false);
 
   const { cartItems, addToCart, removeFromCart } = useContext(CartContext);
   const { favoriteItems, addToFavorite, removeFromFavorite } = useContext(FavoriteContext);
@@ -30,12 +31,11 @@ function Case() {
       });
   }, []);
 
-  if (loading)
-    return (
-      <div style={{ margin: "100px auto", display: "flex", justifyContent: "center", alignItems: "center" }}>
-        <Loading />
-      </div>
-    );
+  if (loading) return (
+    <div style={{ margin: "100px auto", display: "flex", justifyContent: "center", alignItems: "center" }}>
+      <Loading />
+    </div>
+  );
 
   const toggleFavorite = (product) => {
     const user = JSON.parse(localStorage.getItem("user"));
@@ -61,7 +61,7 @@ function Case() {
 
   const handleRegisterRedirect = () => {
     setShowModal(false);
-    window.location.href = "/register"; // navigate жок болсо window.location
+    window.location.href = "/register";
   };
 
   return (
@@ -83,17 +83,31 @@ function Case() {
               <div className="case-blok1" key={product.id} style={{ display: product.activated ? "block" : "none" }}>
                 <div className='case-item'>
                   <div className='case-icons'>
-                    <CiHeart 
-                      className="heart-icon" 
-                      style={{ color: isInFavorite ? "red" : "black" }}
-                      onClick={() => toggleFavorite(product)} 
-                    />
-                    <IoCartOutline 
-                      className="cart-icon" 
-                      style={{ color: isInCart ? "green" : "black" }}
-                      onClick={() => toggleCart(product)} 
-                    />
+                    {isInFavorite ? (
+                      <FaHeart 
+                        className="heart-icon active" 
+                        onClick={() => toggleFavorite(product)} 
+                      />
+                    ) : (
+                      <CiHeart 
+                        className="heart-icon" 
+                        onClick={() => toggleFavorite(product)} 
+                      />
+                    )}
+
+                    {isInCart ? (
+                      <IoCart 
+                        className="cart-icon active" 
+                        onClick={() => toggleCart(product)} 
+                      />
+                    ) : (
+                      <IoCartOutline 
+                        className="cart-icon" 
+                        onClick={() => toggleCart(product)} 
+                      />
+                    )}
                   </div>
+
                   <img src={product.img} alt={product.name} />
                   <div className="case-info">
                     <h2>{product.name}</h2>
@@ -102,7 +116,9 @@ function Case() {
                       {product.oldPrice && <h4>{product.oldPrice}</h4>}
                     </div>
                   </div>
-                   <div className='air-reiting' style={{ display: 'flex', alignItems: 'center', gap: '10px', marginTop: '10px' }}>
+
+                  {/* Рейтинг жана QR */}
+                  <div className='air-reiting' style={{ display: 'flex', alignItems: 'center', gap: '10px', marginTop: '10px' }}>
                     <p>⭐ {product.rating}</p>
                     <QRCodeCanvas value={`https://buy.example.com/product/${product.id}?price=${product.price}`} size={50} />
                   </div>

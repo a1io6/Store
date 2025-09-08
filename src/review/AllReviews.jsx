@@ -27,9 +27,6 @@ function AllReviews() {
     <div className="all-reviews-page">
       <h2>Вопросы пользователей</h2>
 
-      {reviews.length === 0 ? (
-        <p>Пока вопросов нет</p>
-      ) : (
         <div className="reviews-grid">
           {reviews.map((r) => (
             <div key={r.id} className="review-item">
@@ -41,7 +38,7 @@ function AllReviews() {
             </div>
           ))}
         </div>
-      )}
+      
 
       <ReviewForm onSubmit={handleAddReview} />
     </div>
