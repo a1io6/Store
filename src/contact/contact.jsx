@@ -13,7 +13,7 @@ function Contact() {
           <iframe
           src="https://yandex.com/map-widget/v1/?ll=74.585671%2C42.880350&z=16&l=map&pt=74.585671,42.880350,pm2rdm"
           width="770px"
-          height="300px"
+          height="250px"
           frameBorder="0"
           allowFullScreen
           title="Yandex Map"

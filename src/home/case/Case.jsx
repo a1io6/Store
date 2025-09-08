@@ -5,6 +5,8 @@ import Loading from "../../shared/Loading";
 import { CartContext } from "../../context/CartContext";
 import { FavoriteContext } from "../../context/FavoriteContext";
 import { CiHeart } from "react-icons/ci";
+// import { FaHeart } from "react-icons/fa";
+
 import { IoCartOutline } from "react-icons/io5";
 import { QRCodeCanvas } from "qrcode.react";
 import { Link } from "react-router-dom";

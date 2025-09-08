@@ -34,7 +34,7 @@ function LogIn() {
           <img src={register} alt="preview" />
 
           <div className="sign">
-            <h2>Log in to Exclusive</h2>
+            <h2>Log in to QPICK</h2>
             <p>Enter your details below</p>
 
             <div className="inputs">
