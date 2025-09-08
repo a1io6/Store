@@ -20,7 +20,7 @@ function AdminHeader() {
         {/* <Link to="/questions">Вопросы</Link> */}
         <Link to="/calls">Запросы звонков</Link>
       </nav>
-
+    
       <div className="sidebar-footer">
         <button onClick={()=>{
           navigate("/")
