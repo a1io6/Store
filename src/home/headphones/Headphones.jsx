@@ -139,7 +139,7 @@ function Headphones() {
 
                   <div className='air-reiting' style={{ display: 'flex', alignItems: 'center', gap: '10px', marginTop: '10px' }}>
                     <p>⭐ {product.rating}</p>
-                    <QRCodeCanvas value={`https://buy.example.com/product/${product.id}?price=${product.price}`} size={50} />
+                    <QRCodeCanvas className='qrr' value={`https://buy.example.com/product/${product.id}?price=${product.price}`} size={50} />
                   </div>
                 </Link>
               </div>
