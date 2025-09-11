@@ -23,12 +23,10 @@ function Products({ isAdmin = true }) {
       });
   }, []);
 
-  // Добавление нового товара
   const handleAddProduct = (newProduct) => {
     setProducts((prev) => [...prev, newProduct]);
   };
 
-  // Удаление товара
   const handleDelete = async (id) => {
     try {
       await axios.delete(`https://689ead013fed484cf877ace7.mockapi.io/fruit/${id}`);
@@ -39,7 +37,6 @@ function Products({ isAdmin = true }) {
     }
   };
 
-  // Включение / Отключение товара
   const toggleActivation = async (id, activated) => {
     try {
       const res = await axios.put(
@@ -47,9 +44,7 @@ function Products({ isAdmin = true }) {
         { activated: !activated }
       );
       setProducts((prev) =>
-        prev.map((p) =>
-          p.id === id ? { ...p, activated: res.data.activated } : p
-        )
+        prev.map((p) => (p.id === id ? { ...p, activated: res.data.activated } : p))
       );
     } catch (err) {
       console.error("Ошибка при обновлении:", err);
@@ -72,16 +67,14 @@ function Products({ isAdmin = true }) {
     );
   }
 
-  // Показываем только активные товары для пользователя
-// Колдонуучу үчүн активдүү товарлар гана көрсөтүлөт
-const displayedProducts = isAdmin ? products : products.filter((p) => p.activated);
+  const displayedProducts = isAdmin ? products : products.filter((p) => p.activated);
 
   return (
     <>
       <div className="products">
         <div className="products-header">
           <h1>Товары</h1>
-          {isAdmin && <button onClick={() => setModal(true)}>Create</button>}
+          {isAdmin && <button className="btn-create" onClick={() => setModal(true)}>Create</button>}
         </div>
 
         <table className="products-table">
@@ -93,7 +86,6 @@ const displayedProducts = isAdmin ? products : products.filter((p) => p.activate
               <th>Скидка</th>
               <th>Старая цена</th>
               <th>Категория</th>
-              <th>Рейтинг</th>
               {isAdmin && <th>Действия</th>}
             </tr>
           </thead>
@@ -112,12 +104,14 @@ const displayedProducts = isAdmin ? products : products.filter((p) => p.activate
                 <td>{p.discount}%</td>
                 <td style={{ textDecoration: "line-through", color: "gray" }}>{p.oldPrice}$</td>
                 <td>{p.category}</td>
-                <td>⭐ {p.rating}</td>
                 {isAdmin && (
-                  <td>
-                    <button onClick={() => handleDelete(p.id)}>Delete</button>
-                    <button onClick={() => toggleActivation(p.id, p.activated)}>
-                      {p.activated ? "Отключить" : "Включить"}
+                  <td className="action-buttons">
+                    <button className="btn-delete" onClick={() => handleDelete(p.id)}>Delete</button>
+                    <button
+                      className={`btn-toggle ${p.activated ? "active" : ""}`}
+                      onClick={() => toggleActivation(p.id, p.activated)}
+                    >
+                      {p.activated ? "Включить" : "Отключить"}
                     </button>
                   </td>
                 )}
@@ -134,11 +128,8 @@ const displayedProducts = isAdmin ? products : products.filter((p) => p.activate
           onSubmit={handleAddProduct}
         />
       )}
-      
     </>
-    
   );
-  
 }
 
 export default Products;

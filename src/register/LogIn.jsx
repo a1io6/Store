@@ -1,32 +1,35 @@
 import { Link } from "react-router-dom";
-import Airpods from "../assets/airpods.jpg";
-import register from "../assets/register.png"
+import register from "../assets/register.png";
 import "./LogIn.css";
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { loginUser } from "../store/auth/Login";
 import { useNavigate } from "react-router-dom";
+import { useTranslation } from "react-i18next";
+
 function LogIn() {
+  const { t } = useTranslation();
   const navigate = useNavigate();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const dispatch = useDispatch();
   const { loading, error } = useSelector((state) => state.auth);
   const user = JSON.parse(localStorage.getItem("user"));
-  const hendleSubmit = (e) => {
+
+  const handleSubmit = (e) => {
     e.preventDefault();
     dispatch(loginUser({ email, password }));
-    if (user.role === "admin") {
+    if (user?.role === "admin") {
       navigate("/admin");
     }
   };
+
   useEffect(() => {
-    if (user) {
-      if (user.role === "admin") {
-        navigate("/admin");
-      }
+    if (user?.role === "admin") {
+      navigate("/admin");
     }
   }, [user, navigate]);
+
   return (
     <main>
       <section className="one-section">
@@ -34,31 +37,35 @@ function LogIn() {
           <img src={register} alt="preview" />
 
           <div className="sign">
-            <h2>Log in to QPICK</h2>
-            <p>Enter your details below</p>
+            <h2>{t("logInToQpick")}</h2>
+            <p>{t("enterDetailsBelow")}</p>
 
             <div className="inputs">
               <input
                 type="email"
-                placeholder="Email or Phone Number"
+                placeholder={t("emailOrPhone")}
+                value={email}
                 onChange={(e) => setEmail(e.target.value)}
               />
               <input
-                type=""
-                placeholder="Password"
+                type="password"
+                placeholder={t("password")}
+                value={password}
                 onChange={(e) => setPassword(e.target.value)}
               />
             </div>
 
             <div className="aaa">
-              <button onClick={hendleSubmit} className="mary">
-                {loading ? "logIning" : "logIN"}
+              <button onClick={handleSubmit} className="mary">
+                {loading ? t("loggingIn") : t("logIn")}
               </button>
 
               <Link className="bbb" aria-hidden>
-                Forget Password?
+                {t("forgetPassword")}
               </Link>
             </div>
+
+            {error && <p style={{ color: "red", marginTop: "10px" }}>{t("loginError")}</p>}
           </div>
         </div>
       </section>

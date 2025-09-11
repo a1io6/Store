@@ -6,6 +6,7 @@
   border-radius: 10px;
   box-shadow: 0 0 10px rgba(0,0,0,0.1);
   font-family: Arial, sans-serif;
+  margin-left: 300px;
 }
 
 .shopping-admin h1 {
@@ -34,8 +35,8 @@
 }
 
 .orders-table th {
-  background-color: #FFA542; /* заказ панели темасы */
-  color: #fff;
+background-color:#fff ;
+  color: black;
   font-weight: 600;
 }
 

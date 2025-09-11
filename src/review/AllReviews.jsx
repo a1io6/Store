@@ -1,8 +1,11 @@
 import React, { useState, useEffect } from "react";
 import "./AllReviews.css";
 import ReviewForm from "./RevievForm";
+import { useTranslation } from "react-i18next";
 
 function AllReviews() {
+      const {t} = useTranslation()
+  
   const [reviews, setReviews] = useState([]);
 
   useEffect(() => {
@@ -25,7 +28,7 @@ function AllReviews() {
 
   return (
     <div className="all-reviews-page">
-      <h2>Вопросы пользователей</h2>
+      <h2> {t("titlee")} </h2>
 
         <div className="reviews-grid">
           {reviews.map((r) => (

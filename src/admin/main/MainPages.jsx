@@ -1,20 +1,19 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useContext } from "react";
 import axios from "axios";
 import "./MainPages.css";
+import { ReviewContext } from "../../context/ReviewContext";
 
 function MainPages() {
   const [products, setProducts] = useState([]);
   const [orders, setOrders] = useState([]);
   const [deletedOrders, setDeletedOrders] = useState([]);
+  const { reviews } = useContext(ReviewContext); // бардык суроолорду алабыз
 
-  // Бардык маалыматтарды алуу
   const fetchData = () => {
-    // Товары
     axios.get("https://689ead013fed484cf877ace7.mockapi.io/fruit")
       .then(res => setProducts(res.data))
       .catch(err => console.error(err));
 
-    // Заказы
     axios.get("https://689ead013fed484cf877ace7.mockapi.io/orders")
       .then(res => {
         const allOrders = res.data;
@@ -28,44 +27,31 @@ function MainPages() {
     fetchData();
   }, []);
 
-  // Акыркы 5 операция – товар кошуу
-  const lastAddedProducts = products
-    .slice(-5)
-    .reverse()
-    .map((p, i) => ({
-      type: "add-product",
-      text: `Добавлен товар "${p.name}"`,
-      id: `p-${i}`,
-    }));
+  const lastAddedProducts = products.slice(-5).reverse().map((p, i) => ({
+    type: "add-product",
+    text: `Добавлен товар "${p.name}"`,
+    id: `p-${i}`,
+  }));
 
-  // Акыркы 5 заказ
-  const lastOrdersActions = orders
-    .slice(-5)
-    .reverse()
-    .map((o, i) => ({
-      type: "new-order",
-      text: `Новый заказ от "${o.buyer}" - ${o.product} (${o.quantity} шт)`,
-      id: `o-${i}`,
-    }));
+  const lastOrdersActions = orders.slice(-5).reverse().map((o, i) => ({
+    type: "new-order",
+    text: `Новый заказ от "${o.buyer}" - ${o.product} (${o.quantity} шт)`,
+    id: `o-${i}`,
+  }));
 
-  // Акыркы 5 өчүрүлгөн заказ
-  const lastDeletedOrdersActions = deletedOrders
-    .slice(-5)
-    .reverse()
-    .map((o, i) => ({
-      type: "deleted-order",
-      text: `Удалён заказ от "${o.buyer}" - ${o.product} (${o.quantity} шт)`,
-      id: `d-${i}`,
-    }));
+  const lastDeletedOrdersActions = deletedOrders.slice(-5).reverse().map((o, i) => ({
+    type: "deleted-order",
+    text: `Удалён заказ от "${o.buyer}" - ${o.product} (${o.quantity} шт)`,
+    id: `d-${i}`,
+  }));
 
-  // Бардык соңку аракеттерди бириктирүү
   const lastActions = [
     ...lastAddedProducts,
     ...lastOrdersActions,
     ...lastDeletedOrdersActions,
   ]
-    .sort((a, b) => a.id.localeCompare(b.id)) // сортировка керек болсо
-    .slice(-10); // акыркы 10 аракетти гана көрсөтөт
+    .sort((a, b) => a.id.localeCompare(b.id))
+    .slice(-10);
 
   return (
     <div className="dashboard">
@@ -76,8 +62,7 @@ function MainPages() {
         <div className="card">
           Активные товары <span>{products.filter(p => p.activated).length}</span>
         </div>
-        <div className="card">Новые отзывы <span>0</span></div>
-        <div className="card">Вопросы <span>0</span></div>
+        <div className="card">Вопросы <span>{reviews.length}</span></div>
       </div>
 
       <div className="activity">

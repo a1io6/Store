@@ -1,34 +1,42 @@
+// ReviewForm.jsx
 import React, { useState } from "react";
-import ReviewForm from "../review/ReviewForm";
+import { useTranslation } from "react-i18next";
 
-function ProductDetails({ product }) {
-  const [reviews, setReviews] = useState([]);
+function ReviewForm({ onSubmit }) {
+  const { t } = useTranslation();
+  const [name, setName] = useState("");
+  const [rating, setRating] = useState(5);
+  const [comment, setComment] = useState("");
 
-  const handleAddReview = (newReview) => {
-    setReviews([...reviews, newReview]);
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    onSubmit({ name, rating, comment });
+    setName("");
+    setRating(5);
+    setComment("");
   };
 
   return (
-    <div style={{ padding: "20px" }}>
-      <h2>{product.name}</h2>
-      <p>Цена: {product.price} $</p>
-
-      <h3>Вопросы:</h3>
-      {reviews.length === 0 ? (
-        <p>Пока вопросов нет</p>
-      ) : (
-        reviews.map((r) => (
-          <div key={r.id} style={{ borderBottom: "1px solid #ccc", marginBottom: "10px" }}>
-            <strong>{r.name}</strong> — {r.rating}⭐
-            <p>{r.comment}</p>
-            <small>{r.date}</small>
-          </div>
-        ))
-      )}
-
-      <ReviewForm onSubmit={handleAddReview} />
-    </div>
+    <form className="review-form" onSubmit={handleSubmit}>
+      <input
+        type="text"
+        placeholder={t("reviews.namePlaceholder")}
+        value={name}
+        onChange={(e) => setName(e.target.value)}
+        required
+      />
+      <select value={rating} onChange={(e) => setRating(Number(e.target.value))}>
+        {[5,4,3,2,1].map(n => <option key={n} value={n}>{n} ⭐</option>)}
+      </select>
+      <textarea
+        placeholder={t("reviews.commentPlaceholder")}
+        value={comment}
+        onChange={(e) => setComment(e.target.value)}
+        required
+      />
+      <button type="submit">{t("reviews.submitBtn")}</button>
+    </form>
   );
 }
 
-export default ProductDetails;
+export default ReviewForm;

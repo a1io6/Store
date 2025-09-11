@@ -10,6 +10,8 @@ import { ToastContainer } from "react-toastify";
 
 import { FruitProvider } from "./context/FruitContext.jsx";
 
+
+
 function App() {
   return (
     <CartProvider>
@@ -26,5 +28,6 @@ function App() {
     </CartProvider>
   );
 }
+
 
 export default App;

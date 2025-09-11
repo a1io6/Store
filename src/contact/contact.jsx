@@ -1,27 +1,30 @@
 // src/page/contact/Contact.jsx
 import React from "react";
 import { FaWhatsapp, FaVk, FaInstagram, FaTelegramPlane, FaPhoneAlt } from "react-icons/fa";
-import "./contact.css"
+import "./contact.css";
+import { useTranslation } from "react-i18next";
 
 function Contact() {
+  const { t } = useTranslation();
+
   return (
     <div className="contact-section">
       <div className="contact-container">
         {/* Сол жакта карта */}
         <div className="map-block">
-          <h4>Наш офис</h4>
+          <h4>{t("officeTitle")}</h4>
           <iframe
-          src="https://yandex.com/map-widget/v1/?ll=74.585671%2C42.880350&z=16&l=map&pt=74.585671,42.880350,pm2rdm"
-          width="770px"
-          height="250px"
-          frameBorder="0"
-          allowFullScreen
-          title="Yandex Map"
-        ></iframe>
+            src="https://yandex.com/map-widget/v1/?ll=74.585671%2C42.880350&z=16&l=map&pt=74.585671,42.880350,pm2rdm"
+            width="750px"
+            height="250px"
+            frameBorder="0"
+            allowFullScreen
+            title="Yandex Map"
+          ></iframe>
 
           <p className="address">
-            📍 турусбекова-109.1, Бишкек, Кыргызстан <br />
-            4 этаж, 411 кабинет
+            📍 {t("officeAddress")} <br />
+            {t("officeFloor")}
           </p>
         </div>
 
@@ -45,7 +48,7 @@ function Contact() {
       {/* Телефон */}
       <div className="phone-block">
         <FaPhoneAlt className="phone-icon" />
-        <span>+996 995880806    </span>
+        <span>{t("phoneNumber")}</span>
       </div>
     </div>
   );

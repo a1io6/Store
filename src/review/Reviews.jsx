@@ -1,5 +1,6 @@
 import React, { useContext, useState } from "react";
 import { ReviewContext } from "../../context/ReviewContext";
+import { useTranslation } from "react-i18next"; // i18n.js колдонуп жатабыз
 import "./Reviews.css";
 
 function Reviews({ productId }) {
@@ -7,6 +8,7 @@ function Reviews({ productId }) {
   const [name, setName] = useState("");
   const [rating, setRating] = useState(5);
   const [comment, setComment] = useState("");
+  const { t } = useTranslation(); // i18n колдонуу
 
   const productReviews = reviews.filter((r) => r.productId === productId);
 
@@ -28,7 +30,7 @@ function Reviews({ productId }) {
 
   return (
     <div className="reviews-section">
-      <h3 className="reviews-title">Вопросы</h3>
+      <h3 className="reviews-title">{t("reviews.title")}</h3>
 
       <div className="reviews-grid">
         {productReviews.map((r) => (
@@ -44,21 +46,24 @@ function Reviews({ productId }) {
       <form className="review-form" onSubmit={handleSubmit}>
         <input
           type="text"
-          placeholder="Имя"
+          placeholder={t("reviews.namePlaceholder")}
           value={name}
           onChange={(e) => setName(e.target.value)}
           required
         />
-        <select value={rating} onChange={(e) => setRating(Number(e.target.value))}>
+        <select
+          value={rating}
+          onChange={(e) => setRating(Number(e.target.value))}
+        >
           {[5,4,3,2,1].map(n => <option key={n} value={n}>{n} ⭐</option>)}
         </select>
         <textarea
-          placeholder="Ваш отзыв"
+          placeholder={t("reviews.commentPlaceholder")}
           value={comment}
           onChange={(e) => setComment(e.target.value)}
           required
         />
-        <button type="submit">вопрос отправлен</button>
+        <button type="submit">{t("reviews.submitBtn")}</button>
       </form>
     </div>
   );

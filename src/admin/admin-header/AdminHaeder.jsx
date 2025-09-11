@@ -15,10 +15,8 @@ function AdminHeader() {
       <nav className="sidebar-menu">
         <Link to="/admin">Главная</Link>
         <Link to="/products">Товары</Link>
-        <Link to="/shopping">покупки</Link>
+        <Link to="/shopping">Покупки</Link>
         <Link to="/adminreviews">Вопросы</Link>
-        {/* <Link to="/questions">Вопросы</Link> */}
-        <Link to="/calls">Запросы звонков</Link>
       </nav>
     
       <div className="sidebar-footer">

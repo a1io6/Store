@@ -10,6 +10,7 @@ import Loading from "../../shared/Loading";
 import "./Catalog.css";
 
 function Catalog() {
+    const {t} = useTranslation()
   const [products, setProducts] = useState([]);
   const [loading, setLoading] = useState(true);
   const [searchTerm, setSearchTerm] = useState("");
@@ -70,27 +71,27 @@ function Catalog() {
 
   return (
     <div className="catalog-container">
-      <h2 className="catalog-title">Все товары</h2>
+      <h2 className="catalog-title"> {t("catalogTitle")} </h2>
 
       {/* издөө жана фильтр */}
       <div className="catalog-filters">
         <input
           type="text"
-          placeholder="Поиск товара..."
+          placeholder={t("searchPlaceholder")}
           value={searchTerm}
           onChange={(e) => setSearchTerm(e.target.value)}
         />
 
         <input
           type="number"
-          placeholder="Мин цена"
+          placeholder={t("minPrice")}
           value={minPrice}
           onChange={(e) => setMinPrice(e.target.value)}
         />
 
         <input
           type="number"
-          placeholder="Макс цена"
+          placeholder={t("maxPrice")}
           value={maxPrice}
           onChange={(e) => setMaxPrice(e.target.value)}
         />
@@ -164,7 +165,7 @@ function Catalog() {
             );
           })
         ) : (
-          <p className="no-results">Товар табылган жок</p>
+          <p className="no-results"> {t("phoneNotFound")} </p>
         )}
       </div>
     </div>

@@ -1,4 +1,9 @@
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap');
+.headphones-logo{
+  width: 100%;
+  max-width: 1140px;
+  margin: 0 auto;
+}
 
 .headphones {
   display: flex;
@@ -8,6 +13,7 @@
   width: 100%;
   box-sizing: border-box;
   font-family: Montserrat, sans-serif;
+  
 }
 
 .headphones-all {
