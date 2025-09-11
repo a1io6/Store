@@ -23,7 +23,7 @@ function Footer() {
     </div>
     <div className="footer-sslk1">
       <li><Link to="condition">Условия сервиса</Link></li>
-                <li><Link to="/reviews">Вопросы</Link></li>
+          <li><Link to="/reviews">Вопросы</Link></li>
                 
       <ul>
         <CiGlobe />
