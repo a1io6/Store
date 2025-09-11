@@ -11,18 +11,15 @@
 }
 
 .headphones-all {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
   gap: 40px 70px;
   width: 1140px;
   padding: 0px 20px;
   background: #E2E2E2;
   border-radius: 12px;
   box-sizing: border-box;
-}
-
-.headphones-blok1 {
-  width: 100%;
 }
 
 .blok1 {

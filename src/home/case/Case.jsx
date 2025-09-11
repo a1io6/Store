@@ -5,8 +5,7 @@ import Loading from "../../shared/Loading";
 import { CartContext } from "../../context/CartContext";
 import { FavoriteContext } from "../../context/FavoriteContext";
 import { CiHeart } from "react-icons/ci";
-// import { FaHeart } from "react-icons/fa";
-
+import { FaHeart } from "react-icons/fa";
 import { IoCartOutline } from "react-icons/io5";
 import { QRCodeCanvas } from "qrcode.react";
 import { Link } from "react-router-dom";
@@ -18,8 +17,7 @@ function Case() {
   const [showModal, setShowModal] = useState(false);
 
   const { cartItems, addToCart, removeFromCart } = useContext(CartContext);
-  const { favoriteItems, addToFavorite, removeFromFavorite } =
-    useContext(FavoriteContext);
+  const { favoriteItems, addToFavorite, removeFromFavorite } = useContext(FavoriteContext);
 
   useEffect(() => {
     setLoading(true);
@@ -94,9 +92,7 @@ function Case() {
       <div className="case">
         <div className={`case-all ${showAll ? "expanded" : "collapsed"}`}>
           {productsData.map((product) => {
-            const isInFavorite = favoriteItems.some(
-              (item) => item.id === product.id
-            );
+            const isInFavorite = favoriteItems.some((item) => item.id === product.id);
             const isInCart = cartItems.some((item) => item.id === product.id);
 
             return (
@@ -108,19 +104,28 @@ function Case() {
                 <div className="case-item">
                   {/* Иконки избранного и корзины */}
                   <div className="case-icons">
-                    <CiHeart
-                      className="heart-icon"
-                      style={{ color: isInFavorite ? "red" : "black" }}
-                      onClick={() => toggleFavorite(product)}
-                    />
+                    {isInFavorite ? (
+                      <FaHeart
+                        className="heart-icon active"
+                        style={{ color: "black" }} // толук кара жүрөк
+                        onClick={() => toggleFavorite(product)}
+                      />
+                    ) : (
+                      <CiHeart
+                        className="heart-icon"
+                        style={{ color: "black" }} // бош жүрөк
+                        onClick={() => toggleFavorite(product)}
+                      />
+                    )}
+
+                    {/* Cart иконка толук кара активде */}
                     <IoCartOutline
-                      className="cart-icon"
-                      style={{ color: isInCart ? "green" : "black" }}
+                      className={`cart-icon ${isInCart ? "active" : ""}`}
+                      style={{ color: isInCart ? "black" : "black" }}
                       onClick={() => toggleCart(product)}
                     />
                   </div>
 
-                  {/* Ссылка на страницу характеристик */}
                   <Link to={`/listphone/${product.id}`} className="case-link">
                     <img src={product.img} alt={product.name} />
                   </Link>
@@ -143,7 +148,7 @@ function Case() {
                     }}
                   >
                     <p>⭐ {product.rating}</p>
-                    <QRCodeCanvas
+                    <QRCodeCanvas className="qrr"
                       value={`https://buy.example.com/product/${product.id}?price=${product.price}`}
                       size={50}
                     />
@@ -161,8 +166,7 @@ function Case() {
           <div className="case-modal">
             <h2 className="case-modal-title">Внимание!</h2>
             <p className="case-modal-text">
-              Вы не можете добавить товар в корзину или избранное, потому что не
-              зарегистрированы.
+              Вы не можете добавить товар в корзину или избранное, потому что не зарегистрированы.
             </p>
             <div className="case-modal-buttons">
               <button

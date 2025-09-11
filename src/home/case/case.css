@@ -12,8 +12,9 @@
 }
 
 .case-all {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
+ display: flex;
+ justify-content: center;
+ flex-wrap: wrap;
   gap: 40px 70px;
   width: 1140px;
   padding: 0px 20px;
@@ -34,9 +35,9 @@
   max-height: 3000px; 
 }
 
-.case-blok1 {
+/* .case-blok1 {
   width: 100%;
-}
+} */
 
 .case-item {
   width: 320px;
@@ -132,18 +133,8 @@
   /* margin-left: 100px; */
 }
 
-/* Адаптивность */
-@media (max-width: 1100px) {
-  .case-all {
-    grid-template-columns: repeat(2, 1fr);
-  }
-}
 
-@media (max-width: 768px) {
-  .case-all {
-    grid-template-columns: 1fr;
-  }
-}
+
 .case-modal-backdrop {
   position: fixed;
   top: 0;
@@ -198,4 +189,3 @@
   border: none;
   cursor: pointer;
 }
-

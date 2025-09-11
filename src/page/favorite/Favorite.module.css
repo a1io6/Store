@@ -1,3 +1,6 @@
+/* Favorite.module.css */
+
+/* Контейнер карточкалар */
 .favContainer {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
@@ -12,88 +15,83 @@
 }
 
 .favBox {
-  width: 320px;
-  height: 380px;
+  width: 100%;
+  max-width: 320px;
   background-color: #fff;
   border-radius: 30px;
-  position: relative;
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: 0;
+  padding: 25px 15px 15px; /* rating үчүн боштук коштук */
   box-sizing: border-box;
+  position: relative;
 }
 
+/* Иконкалар (корзина + сердце) */
 .favIcons {
-  position: absolute;
-  top: 15px;
   width: 100%;
   display: flex;
   justify-content: flex-end;
-  padding: 0 15px;
-  box-sizing: border-box;
-  gap: 10px; /* иконкалардын аралыгы */
+  gap: 10px;
+  margin-bottom: 10px;
 }
 
-/* 🛒 корзина иконка */
 .cartIcon {
   font-size: 24px;
   cursor: pointer;
   color: black;
   transition: 0.2s;
 }
-
 .cartIcon:hover {
   transform: scale(1.2);
   color: #007bff;
 }
 
-/* 🤍 жүрөк (ак контур) */
 .favoriteIcon {
   cursor: pointer;
   font-size: 26px;
-  color: #ccc; /* баштапкы боз-ак */
+  color: #ccc;
   transition: 0.3s;
 }
-
 .favoriteIcon:hover {
   color: black;
   transform: scale(1.2);
 }
 
-/* 🖤 активдүү жүрөк (кара толгон) */
 .favoriteIconActive {
   cursor: pointer;
   font-size: 26px;
   color: black;
   transition: 0.3s;
 }
-
 .favoriteIconActive:hover {
   color: #333;
   transform: scale(1.2);
 }
 
+/* Сүрөт */
 .favBox img {
   width: 200px;
   height: 220px;
   object-fit: contain;
-  margin-top: 25px;
+  margin-top: 10px;
 }
 
+/* Информация */
 .favInfo {
   display: flex;
   width: 100%;
-  margin-top: 20px;
-  padding: 0 15px;
+  margin-top: 15px;
+  padding: 0 5px;
   justify-content: space-between;
+  align-items: flex-end;
 }
 
 .favInfo h2 {
   font-size: 17px;
   font-weight: 600;
   color: #1C1C27;
-  margin-bottom: 15px;
+  margin-bottom: 5px;
 }
 
 .favPrice {
@@ -115,34 +113,46 @@
   text-decoration: line-through;
 }
 
+/* Рейтинг */
 .favRating {
-  position: absolute;
-  bottom: 20px;
-  left: 15px;
+  position: static;
+  align-self: flex-start;
+  margin-top: 10px;
   color: black;
   padding: 5px 10px;
   border-radius: 8px;
-  font-size: 15px;
+  font-size: 14px;
+  /* background-color: #f0f0f0; */
 }
 
-.favRating p {
-  margin: 0;
-}
-
-/* 📱 адаптив */
+/* 📱 Адаптивка мобилдик жана планшет */
 @media (max-width: 1100px) {
   .favContainer {
     grid-template-columns: repeat(2, 1fr);
-    width: 100%;
+    width: 95%;
+    gap: 30px 30px;
+  }
+  .favBox {
+    padding: 20px 10px 10px;
   }
 }
 
 @media (max-width: 768px) {
   .favContainer {
     grid-template-columns: 1fr;
+    width: 90%;
+    gap: 20px 20px;
+  }
+  .favBox {
+    padding: 15px 10px 10px;
+  }
+  .favRating {
+    font-size: 13px;
+    margin-top: 5px;
   }
 }
-/* 🎯 Стиль для пустого избранного */
+
+/* 🎯 Пустое избранное */
 .emptyFav {
   width: 100%;
   min-height: 400px;
@@ -179,7 +189,6 @@
   text-decoration: none;
   transition: background 0.2s ease;
 }
-
 .backBtn:hover {
   background: #ff8a1a;
 }

@@ -1,0 +1,276 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap');
+
+/* ---------------- HEADER ---------------- */
+.header {
+  display: flex;
+  justify-content: center;
+  background-color: #E2E2E2;
+  padding: 20px 0;
+  width: 100%;
+  box-sizing: border-box;
+  border-bottom: 1px solid #e5e5e5;
+}
+
+.header-all {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  max-width: 1100px;
+  width: 100%;
+  padding: 12px 20px;
+  background: #E2E2E2;
+  border-radius: 12px;
+  box-sizing: border-box;
+}
+
+.header-left {
+  display: flex;
+  align-items: center;
+  gap: 40px;
+}
+
+.header-logo h1 {
+  font-size: 22px;
+  font-weight: 700;
+  color: #000;
+  margin: 0;
+  cursor: pointer;
+}
+.header-logo a {
+  text-decoration: none;
+  color: inherit;
+}
+
+.header-iphone {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.header-iphone select {
+  border: none;
+  background: transparent;
+  font-size: 14px;
+  font-weight: 500;
+  color: #333;
+  outline: none;
+  cursor: pointer;
+  padding: 4px 8px;
+  border-radius: 6px;
+}
+.header-iphone select:hover {
+  background: #ececec;
+}
+
+.haeder-icons {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  position: relative;
+}
+.haeder-icons svg {
+  font-size: 24px;
+  color: #444;
+  cursor: pointer;
+  transition: 0.2s;
+}
+.haeder-icons svg:hover {
+  color: #ff6b00;
+}
+
+/* Иконка үстүндөгү сан */
+.cart-count {
+  position: absolute;
+  top: -8px;
+  right: -10px;
+  background-color: #a90d0d;
+  color: white;
+  font-size: 11px;
+  font-weight: bold;
+  padding: 2px 6px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 18px;
+  height: 18px;
+}
+.cart-count.orange {
+  background-color: #FFA542;
+}
+
+.header-catalog a {
+  font-weight: 500;
+  color: #333;
+  text-decoration: none;
+}
+.header-catalog a:hover {
+  color: #ff6b00;
+}
+
+/* Планшет & мобилка адаптив */
+@media (max-width: 1100px) {
+  .header-all {
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
+  }
+  .header-left {
+    flex-direction: column;
+    gap: 10px;
+  }
+}
+@media (max-width: 480px) {
+  .header-logo h1 { font-size: 18px; }
+  .header-iphone select { font-size: 12px; }
+  .haeder-icons svg { font-size: 20px; }
+  .cart-count { font-size: 10px; min-width:16px; height:16px; }
+}
+
+/* ---------------- BANNER ---------------- */
+.banner {
+  display: flex;
+  justify-content: center;
+  background-color: #e2e2e2;
+  padding: 20px 0;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.banner-all {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  max-width: 1100px;
+  width: 100%;
+  height: 250px;
+  padding: 20px 40px;
+  background: #000000;
+  border-radius: 30px;
+  box-sizing: border-box;
+  gap: 20px;
+}
+
+.banner-logo h2 {
+  color: white;
+  font-size: 28px;
+  font-weight: 600;
+  line-height: 1.3;
+  margin: 0;
+}
+
+.banner-img img {
+  width: 300px;
+  height: 220px;
+  object-fit: cover;
+  border-radius: 15px;
+}
+
+/* Планшет */
+@media (max-width: 1100px) {
+  .banner-all {
+    flex-direction: column;
+    height: auto;
+    text-align: center;
+    padding: 30px 20px;
+  }
+  .banner-logo h2 { font-size: 24px; }
+  .banner-img img { width: 250px; height: auto; margin-top: 20px; }
+}
+
+/* Телефон */
+@media (max-width: 768px) {
+  .banner-logo h2 { font-size: 20px; }
+  .banner-img img { width: 200px; }
+}
+
+/* ---------------- CAROUSEL ---------------- */
+.carousel-img {
+  max-width: 1100px;
+  width: 100%;
+  height: auto;
+  max-height: 300px;
+  object-fit: cover;
+  border-radius: 32px;
+  display: block;
+  margin: 20px auto 0;
+}
+
+/* ---------------- FOOTER ---------------- */
+.footer {
+  width: 100%;
+  margin: auto;
+  height: 120px;
+  background-color: #E2E2E2;
+}
+
+.footer-all {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  padding:12px 10px;
+  max-width: 1100px;
+  width: 100%;
+  margin: 0 auto;
+  background: #FFFFFF;
+  border-radius: 30px 30px 0px 0px;
+}
+
+.footer-logo h1 {
+  font-size: 18px;
+  font-weight: 700;
+  color: #000;
+  margin-top: 10px;
+}
+
+.footer-sslk ul { list-style: none; padding: 0; margin: 0; }
+.footer-sslk ul li { margin: 10px 0 8px; }
+.footer-sslk ul li a { text-decoration: none; color: #000; font-size: 14px; transition: 0.3s; }
+.footer-sslk ul li a:hover { color: #FFA542; }
+
+.footer-sslk1 {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 10px;
+  margin-top: 10px;
+}
+.footer-sslk1 ul { display:flex; gap:10px; padding:0; margin:0; }
+.footer-sslk1 li { list-style:none; }
+.footer-sslk1 li a { text-decoration:none; font-size:14px; color:#000; margin-right:8px; transition:0.3s; }
+.footer-sslk1 li a:hover { color:#FFA542; }
+
+.footer-icons { display:flex; gap:15px; font-size:20px; margin-top:10px; }
+.footer-icons div { cursor:pointer; transition: transform 0.2s, color 0.3s; }
+.footer-icons div:hover { transform: scale(1.2); color:#FFA542; }
+
+/* Планшет & мобилка */
+@media (max-width: 1100px) {
+  .footer-all { flex-direction: column; align-items: center; gap: 15px; height:auto; padding:20px;}
+}
+@media (max-width: 480px) {
+  .footer-logo h1 { font-size:16px; }
+  .footer-sslk ul li a, .footer-sslk1 li a { font-size:12px; }
+  .footer-icons { font-size:18px; }
+}
+
+/* ---------------- ПРОДУКТЫ (пример: airpods, case и т.д.) ---------------- */
+.airpods-all, .case-all, .headphones-all, .iphone-all {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 40px 70px;
+  max-width: 1140px;
+  width: 100%;
+  padding: 0 20px;
+  box-sizing: border-box;
+}
+
+@media(max-width:1100px){
+  .airpods-all, .case-all, .headphones-all, .iphone-all {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+@media(max-width:768px){
+  .airpods-all, .case-all, .headphones-all, .iphone-all {
+    grid-template-columns: 1fr;
+  }
+}
