@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { MdPhoneIphone } from "react-icons/md";
 import { CiHeart } from "react-icons/ci";
@@ -7,9 +7,13 @@ import { BiUser } from "react-icons/bi";
 import { CartContext } from "../context/CartContext";
 import { FavoriteContext } from "../context/FavoriteContext";
 import "./header.css";
+import { useTranslation } from 'react-i18next'
+
 
 function Header() {
+    const {t} = useTranslation()
   const navigate = useNavigate();
+  const [Scrolled, SetScrolled] = useState(false)
   const { cartItems } = useContext(CartContext);
   const { favoriteItems } = useContext(FavoriteContext);
 
@@ -22,19 +26,26 @@ function Header() {
       setMenuOpen(false);
     }
   };
+  useEffect(()=>{
+    const handleScrolled = () =>{
+      SetScrolled(window.scrollY > 100)
+    }
+    window.addEventListener("scroll",handleScrolled)
+    return () => window.removeEventListener("scroll", handleScrolled)
+  }, [])
 
   return (
-    <div className="header">
+    <div className={`header ${Scrolled ? "active" : ""}`}>
       <div className="header-all">
         {/* Левая часть */}
         <div className="header-left">
           <div className="header-logo">
-            <Link to="/"><h1>QPICK</h1></Link>
+            <Link to="/"><h1> {t("logo")} </h1></Link>
           </div>
           <div className="header-iphone">
             <div className="header-img"><MdPhoneIphone /></div>
             <select onChange={handleChange}>
-              <option>Выбрать модель телефона</option>
+              <option> {t("chooseModel")} </option>
               <option>apple</option>
               <option>samsung</option>
               <option>nokia</option>
@@ -49,7 +60,7 @@ function Header() {
         </div>
 
         <div className="header-catalog">
-          <Link to="/catalog">Все товары</Link>
+          <Link to="/catalog"> {t("catalogTitle")} </Link>
         </div>
 
         {/* Иконки */}
@@ -90,16 +101,16 @@ function Header() {
       <div className={`mobile-menu ${menuOpen ? "show" : ""}`}>
         <button className="close-btn" onClick={() => setMenuOpen(false)}>✕</button>
         <nav>
-          <Link to="/catalog" onClick={() => setMenuOpen(false)}>Все товары</Link>
-          <Link to="/favorite" onClick={() => setMenuOpen(false)}>Избранное</Link>
-          <Link to="/cartlist" onClick={() => setMenuOpen(false)}>Корзина</Link>
-          <Link to="/contact" onClick={() => setMenuOpen(false)}>Контакты</Link>
+          <Link to="/catalog" onClick={() => setMenuOpen(false)}> {t("catalogTitle")} </Link>
+          <Link to="/favorite" onClick={() => setMenuOpen(false)}> {t("favorite")} </Link>
+          <Link to="/cartlist" onClick={() => setMenuOpen(false)}> {t("cart")} </Link>
+          <Link to="/contact" onClick={() => setMenuOpen(false)}> {t("contact")} </Link>
         </nav>
 
         <div className="mobile-select">
-          <label>Выбрать модель телефона:</label>
+          <label> {t("chooseModel")} </label>
           <select onChange={handleChange}>
-            <option>Выбрать модель телефона</option>
+            <option>{t("chooseModel")} </option>
             <option>apple</option>
             <option>samsung</option>
             <option>nokia</option>

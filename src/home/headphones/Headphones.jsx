@@ -9,11 +9,13 @@ import { FavoriteContext } from "../../context/FavoriteContext";
 import { Link, useNavigate } from 'react-router-dom';
 import Loading from '../../shared/Loading';
 import { QRCodeCanvas } from 'qrcode.react';
+import { useTranslation } from 'react-i18next';
 
 function Headphones() {
+  const { t } = useTranslation();
   const [productsData, setProductsData] = useState([]);
   const [loading, setLoading] = useState(true);
-  const [showModal, setShowModal] = useState(false); // модалка учун
+  const [showModal, setShowModal] = useState(false);
 
   const { cartItems, addToCart, removeFromCart } = useContext(CartContext);
   const { favoriteItems, addToFavorite, removeFromFavorite } = useContext(FavoriteContext);
@@ -36,7 +38,7 @@ function Headphones() {
     return (
       <div
         style={{
-          margin: "100px auto",
+          margin: "0 auto",
           display: "flex",
           justifyContent: "center",
           alignItems: "center",
@@ -74,16 +76,16 @@ function Headphones() {
   };
 
   return (
-    <div>
+    <div className='headphones-logo'>
       <h3 
         style={{
           cursor: "pointer",
-          width: "1100px",
+          paddingLeft:"30px" ,
           color: "#838383",
           margin: "0 auto"
         }}
       >
-        Наушники
+        {t('headphones')}
       </h3>
 
       <div className='headphones'>
@@ -148,20 +150,17 @@ function Headphones() {
         </div>
       </div>
 
-      {/* Модалка */}
       {showModal && (
         <div className="headphones-modal-backdrop">
           <div className="headphones-modal">
-            <h2 className="headphones-modal-title">Внимание!</h2>
-            <p className="headphones-modal-text">
-              Вы не можете добавить товар в корзину или избранное, потому что не зарегистрированы.
-            </p>
+            <h2 className="headphones-modal-title">{t('attention')}</h2>
+            <p className="headphones-modal-text">{t('notRegistered')}</p>
             <div className="headphones-modal-buttons">
               <button className="headphones-register-btn" onClick={handleRegisterRedirect}>
-                Регистрация
+                {t('register')}
               </button>
               <button className="headphones-close-btn" onClick={() => setShowModal(false)}>
-                Закрыть
+                {t('close')}
               </button>
             </div>
           </div>

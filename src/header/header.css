@@ -1,8 +1,9 @@
 /* ===== Header ===== */
 .header {
-  position: fixed;       /* экранда туруктуу */
+  position: relative;       /* экранда туруктуу */
   top: 0;
   left: 0;
+  right: 0;
   width: 100%;
   z-index: 300;          /* мобил менюдан үстүндө болсун */
   display: flex;
@@ -13,9 +14,10 @@
   border-bottom: 1px solid #e5e5e5;
 }
 
-body {
-  padding-top: 80px; /* headerдын бийиктигине жараша туурала */
+.header.active{
+  position: sticky;
 }
+
 
 .header-all {
   display: flex;
@@ -131,7 +133,7 @@ body {
   cursor: pointer;
   font-weight: 500;
   color: #333;
-  margin-left: -400px;
+  margin-left: -350px;
 }
 
 .header-catalog a {

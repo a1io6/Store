@@ -1,11 +1,11 @@
-// ListPhone.jsx
 import React, { useState, useEffect, useContext } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import axios from "axios";
 import { CartContext } from "../context/CartContext";
 import { toast } from "react-toastify";
 import ReviewForm from "../review/RevievForm";
-import  { QRCodeCanvas } from "qrcode.react";
+import { QRCodeCanvas } from "qrcode.react";
+import { useTranslation } from "react-i18next";
 import "./ListPhone.css";
 
 function ListPhone() {
@@ -15,6 +15,7 @@ function ListPhone() {
   const { id } = useParams();
   const { addToCart } = useContext(CartContext);
   const navigate = useNavigate();
+  const { t } = useTranslation();
 
   const [reviews, setReviews] = useState(
     JSON.parse(localStorage.getItem(`reviews_${id}`)) || []
@@ -35,17 +36,24 @@ function ListPhone() {
   }, [id]);
 
   const handleAddToCart = () => {
-    const user = localStorage.getItem("user");
+    const user = JSON.parse(localStorage.getItem("user"));
     if (user) {
       addToCart(phone);
       setAdded(true);
+      toast.success(t("addedToCart"));
     } else {
-      toast.warn("Вы не зарегистрированы");
+      toast.warn(t("notRegistered"));
       navigate("/register");
     }
   };
 
   const handleBuyNow = () => {
+    const user = JSON.parse(localStorage.getItem("user"));
+    if (!user) {
+      toast.warn(t("notRegistered"));
+      navigate("/register");
+      return;
+    }
     addToCart(phone);
     navigate("/auther");
   };
@@ -65,8 +73,8 @@ function ListPhone() {
     localStorage.setItem(`reviews_${id}`, JSON.stringify(updatedReviews));
   };
 
-  if (loading) return <p>Loading...</p>;
-  if (!phone) return <p>Phone not found</p>;
+  if (loading) return <p>{t("loading")}...</p>;
+  if (!phone) return <p>{t("phoneNotFound")}</p>;
 
   return (
     <div className="phone-page">
@@ -86,16 +94,15 @@ function ListPhone() {
             ))}
           </div>
 
-          {/* Кнопкалар + QR */}
           <div className="phone-buttons-qr">
             <button className="buy-now" onClick={handleBuyNow}>
-              Купить
+              {t("buyNow")}
             </button>
             <button
               className={`add-cart ${added ? "added" : ""}`}
               onClick={handleAddToCart}
             >
-              {added ? "Добавлено!" : " корзинa"}
+              {added ? t("added") : t("addToCart")}
             </button>
             <QRCodeCanvas
               value={`https://buy.example.com/product/${phone.id}?price=${phone.price}`}
@@ -104,15 +111,14 @@ function ListPhone() {
               fgColor="#000000"
             />
             <button className="go-back" onClick={handleGoBack}>
-              Назад
+              {t("goBack")}
             </button>
           </div>
         </div>
       </div>
 
-      {/* Reviews section */}
       <div className="reviews-section">
-        <h3 className="reviews-title">Вопросы</h3>
+        <h3 className="reviews-title">{t("reviews")}</h3>
         <div className="reviews-grid">
           {reviews.map((r) => (
             <div key={r.id} className="review-item">
@@ -124,7 +130,7 @@ function ListPhone() {
                 className="delete-review"
                 onClick={() => handleDeleteReview(r.id)}
               >
-                удалить
+                {t("delete")}
               </button>
             </div>
           ))}

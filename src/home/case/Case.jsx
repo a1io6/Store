@@ -9,8 +9,10 @@ import { FaHeart } from "react-icons/fa";
 import { IoCartOutline } from "react-icons/io5";
 import { QRCodeCanvas } from "qrcode.react";
 import { Link } from "react-router-dom";
+import { useTranslation } from 'react-i18next';
 
 function Case() {
+  const { t } = useTranslation();
   const [productsData, setProductsData] = useState([]);
   const [loading, setLoading] = useState(true);
   const [showAll, setShowAll] = useState(false);
@@ -79,14 +81,14 @@ function Case() {
       <h3
         style={{
           cursor: "pointer",
-          width: "1100px",
           color: "#838383",
           marginTop: "40px",
           margin: "0 auto",
+          paddingLeft:"30px"
         }}
         onClick={() => setShowAll(!showAll)}
       >
-        Чехлы {showAll ? "▲" : "▼"}
+        {t('cases')} {showAll ? "▲" : "▼"}
       </h3>
 
       <div className="case">
@@ -107,18 +109,17 @@ function Case() {
                     {isInFavorite ? (
                       <FaHeart
                         className="heart-icon active"
-                        style={{ color: "black" }} // толук кара жүрөк
+                        style={{ color: "black" }}
                         onClick={() => toggleFavorite(product)}
                       />
                     ) : (
                       <CiHeart
                         className="heart-icon"
-                        style={{ color: "black" }} // бош жүрөк
+                        style={{ color: "black" }}
                         onClick={() => toggleFavorite(product)}
                       />
                     )}
 
-                    {/* Cart иконка толук кара активде */}
                     <IoCartOutline
                       className={`cart-icon ${isInCart ? "active" : ""}`}
                       style={{ color: isInCart ? "black" : "black" }}
@@ -148,7 +149,8 @@ function Case() {
                     }}
                   >
                     <p>⭐ {product.rating}</p>
-                    <QRCodeCanvas className="qrr"
+                    <QRCodeCanvas
+                      className="qrr"
                       value={`https://buy.example.com/product/${product.id}?price=${product.price}`}
                       size={50}
                     />
@@ -164,22 +166,20 @@ function Case() {
       {showModal && (
         <div className="case-modal-backdrop">
           <div className="case-modal">
-            <h2 className="case-modal-title">Внимание!</h2>
-            <p className="case-modal-text">
-              Вы не можете добавить товар в корзину или избранное, потому что не зарегистрированы.
-            </p>
+            <h2 className="case-modal-title">{t('attention')}</h2>
+            <p className="case-modal-text">{t('notRegistered')}</p>
             <div className="case-modal-buttons">
               <button
                 className="case-register-btn"
                 onClick={handleRegisterRedirect}
               >
-                Регистрация
+                {t('register')}
               </button>
               <button
                 className="case-close-btn"
                 onClick={() => setShowModal(false)}
               >
-                Закрыть
+                {t('close')}
               </button>
             </div>
           </div>

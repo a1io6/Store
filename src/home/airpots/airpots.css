@@ -1,5 +1,9 @@
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap');
-
+.airpods-logo{
+  width: 100%;
+  max-width: 1140px;
+  margin: 0 auto;
+}
 .airpods-page {
   display: flex;
   flex-direction: column;

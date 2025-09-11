@@ -3,14 +3,16 @@ import axios from 'axios';
 import { CiHeart } from "react-icons/ci";
 import { FaHeart } from "react-icons/fa";
 import { IoCartOutline, IoCart } from "react-icons/io5";
-import  { QRCodeCanvas } from 'qrcode.react';
+import { QRCodeCanvas } from 'qrcode.react';
 import './airpots.css';
 import { CartContext } from '../../context/CartContext';
 import { FavoriteContext } from "../../context/FavoriteContext";
 import Loading from '../../shared/Loading';
 import { useNavigate } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
 
 function Airpots() {
+  const { t } = useTranslation();
   const [productsData, setProductsData] = useState([]);
   const [loading, setLoading] = useState(true);
   const [showModal, setShowModal] = useState(false);
@@ -34,14 +36,7 @@ function Airpots() {
 
   if (loading) {
     return (
-      <div
-        style={{
-          margin: "100px auto",
-          display: "flex",
-          justifyContent: "center",
-          alignItems: "center",
-        }}
-      >
+      <div style={{ margin: "0 auto", display: "flex", justifyContent: "center", alignItems: "center" }}>
         <Loading />
       </div>
     );
@@ -74,17 +69,9 @@ function Airpots() {
   };
 
   return (
-    <div>
-      <h3 
-        style={{
-          cursor: "pointer",
-          width: "1100px",
-          color: "#838383",
-          marginTop:"40px",
-          margin: "0 auto",
-        }}
-      >
-        Беспроводные наушники
+    <div className='airpods-logo'>
+      <h3 style={{ cursor: "pointer", color: "#838383", marginTop:"40px", margin: "0 auto",paddingLeft:"30px" }}>
+        {t('wirelessHeadphones')}
       </h3>
 
       <div className="airpods-page">
@@ -119,12 +106,10 @@ function Airpots() {
                     </div>
                   </div>
 
-                  {/* Рейтинг жана QR */}
                   <div className='air-reiting' style={{ display: 'flex', alignItems: 'center', gap: '10px', marginTop: '10px' }}>
                     <p>⭐ {product.rating}</p>
                     <QRCodeCanvas className='qrr' value={`https://buy.example.com/product/${product.id}?price=${product.price}`} size={50} />
                   </div>
-
                 </div>
               </div>
             );
@@ -132,18 +117,18 @@ function Airpots() {
         </div>
       </div>
 
-     {showModal && (
-      <div className="airpods-modal-backdrop">
-        <div className="airpods-modal">
-          <h2>Внимание!</h2>
-          <p>Вы не можете добавить товар в корзину, потому что не зарегистрированы.</p>
-          <div className="airpods-modal-buttons">
-            <button className="airpods-register-btn" onClick={handleRegisterRedirect}>Регистрация</button>
-            <button className="airpods-close-btn" onClick={() => setShowModal(false)}>Закрыть</button>
+      {showModal && (
+        <div className="airpods-modal-backdrop">
+          <div className="airpods-modal">
+            <h2>{t('attention')}</h2>
+            <p>{t('notRegistered')}</p>
+            <div className="airpods-modal-buttons">
+              <button className="airpods-register-btn" onClick={handleRegisterRedirect}>{t('register')}</button>
+              <button className="airpods-close-btn" onClick={() => setShowModal(false)}>{t('close')}</button>
+            </div>
           </div>
         </div>
-      </div>
-     )}
+      )}
     </div>
   );
 }

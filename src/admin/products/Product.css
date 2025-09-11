@@ -1,12 +1,33 @@
-.products{
-    max-width: 1600px;
-    margin:0 auto;
-    width: 800px;
-    margin-left: 350px;
+.products {
+  max-width: 850px;
+  margin: 20px auto;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  margin-left: 300px;
 }
-.products h1 {
-  font-size: 24px;
+
+.products-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
   margin-bottom: 20px;
+}
+
+.products-header h1 {
+  font-size: 24px;
+}
+
+.btn-create {
+  padding: 8px 16px;
+  border: none;
+  border-radius: 6px;
+  background-color: #007bff;
+  color: #fff;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+.btn-create:hover {
+  background-color: #0056b3;
+  transform: translateY(-2px) scale(1.05);
 }
 
 .products-table {
@@ -33,8 +54,56 @@
 
 .products-table tr:hover {
   background: #f9fafb;
+  transform: translateX(2px);
+  transition: all 0.3s ease;
 }
 
 .products-table img {
   display: block;
+  border-radius: 6px;
+}
+
+/* Action buttons */
+.action-buttons {
+  display: flex;
+  gap: 8px;
+}
+
+.btn-delete {
+  padding: 6px 12px;
+  border: none;
+  border-radius: 6px;
+  background-color: #dc3545;
+  color: #fff;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+.btn-delete:hover {
+  background-color: #a71d2a;
+  transform: translateY(-2px) scale(1.05);
+}
+
+/* Toggle activation button */
+.btn-toggle {
+  padding: 6px 12px;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  color: #fff;
+  font-weight: 500;
+  transition: all 0.3s ease;
+}
+.btn-toggle.active {
+  background-color: #28a745;
+}
+.btn-toggle.active:hover {
+  background-color: #218838;
+  transform: translateY(-2px) scale(1.05);
+}
+.btn-toggle:not(.active) {
+  background-color: #dc3545;
+}
+.btn-toggle:not(.active):hover {
+  background-color: #a71d2a;
+  transform: translateY(-2px) scale(1.05);
 }

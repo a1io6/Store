@@ -10,8 +10,11 @@ import { CartContext } from '../../context/CartContext';
 import { FavoriteContext } from "../../context/FavoriteContext";
 import { useParams, Link, useNavigate } from 'react-router-dom';
 import Loading from '../../shared/Loading';
+import { useTranslation } from 'react-i18next';
+
 
 function Phone() {
+    const { t } = useTranslation();
   const { name } = useParams();
   const [productsData, setProductsData] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -136,11 +139,11 @@ function Phone() {
       {showModal && (
         <div className="phone-modal-backdrop">
           <div className="phone-modal">
-            <h2 className="phone-modal-title">Внимание!</h2>
+            <h2 className="phone-modal-title"> {t("attention")} </h2>
             <p className="phone-modal-text">{modalText}</p>
             <div className="phone-modal-buttons">
-              <button className="phone-register-btn" onClick={handleRegisterRedirect}>Регистрация</button>
-              <button className="phone-close-btn" onClick={() => setShowModal(false)}>Закрыть</button>
+              <button className="phone-register-btn" onClick={handleRegisterRedirect}> {t("register")} </button>
+              <button className="phone-close-btn" onClick={() => setShowModal(false)}> {t("close")} </button>
             </div>
           </div>
         </div>

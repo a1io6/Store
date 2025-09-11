@@ -6,8 +6,11 @@ import { IoCartOutline } from "react-icons/io5";
 import { MdFavorite, MdFavoriteBorder } from "react-icons/md";
 import { Link } from "react-router-dom";
 import styles from "./Favorite.module.css";
+import { useTranslation } from "react-i18next";
 
 function Favorite() {
+      const {t} = useTranslation()
+  
   const { favoriteItems, addToFavorite, removeFromFavorite } =
     useContext(FavoriteContext);
   const { addToCart } = useContext(CartContext);
@@ -28,10 +31,10 @@ function Favorite() {
           alt="empty favorite"
           className={styles.emptyImg}
         />
-        <h2>Избранное пустое 😢</h2>
-        <p>Добавьте товары в избранное, чтобы они появились здесь.</p>
+        <h2> {t("emptyFavorite")} </h2>
+        <p> {t("emptyMessage")} </p>
         <Link to="/catalog" className={styles.backBtn}>
-          Вернуться в каталог
+         {t("backToCatalog")}
         </Link>
       </div>
     );

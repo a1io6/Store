@@ -3,8 +3,10 @@ import { Link } from "react-router-dom";
 import { CartContext } from "../context/CartContext";
 import cartCorzina from '../assets/cart.svg';
 import "./CartList.css";
+import { useTranslation } from "react-i18next";
 
 function CartList() {
+  const { t } = useTranslation();
   const { cartItems, updateCount, removeFromCart } = useContext(CartContext);
   const deliveryBase = 499;
 
@@ -16,10 +18,10 @@ function CartList() {
   if (cartItems.length === 0) {
     return (
       <div className="cartEmpty">
-        <img src={cartCorzina} alt="Корзина пустая" className="cartEmptyImg" />
-        <h2>Корзина пуста</h2>
-        <p>Но это никогда не поздно исправить 🙂</p>
-        <Link to="/" className="backToShop">В каталог товаров</Link>
+        <img src={cartCorzina} alt={t("cartEmpty")} className="cartEmptyImg" />
+        <h2>{t("cartEmpty")}</h2>
+        <p>{t("cartEmptySub")}</p>
+        <Link to="/" className="backToShop">{t("backToCatalog")}</Link>
       </div>
     );
   }
@@ -28,7 +30,7 @@ function CartList() {
     <div className="cartList">
       <div className="cartGrid">
         <div className="cartColLeft">
-          <h3 className="cartSectionTitle">Корзина</h3>
+          <h3 className="cartSectionTitle">{t("cartTitle")}</h3>
           {cartItems.map(item => (
             <div className="cartCard" key={item.id}>
               <div className="cartRow">
@@ -52,7 +54,7 @@ function CartList() {
             </div>
           ))}
 
-          <h3 className="cartSectionTitle">Доставка</h3>
+          <h3 className="cartSectionTitle">{t("deliveryTitle")}</h3>
           <div className="cartDeliveryCard">
             <div className="cartMap">
               <iframe
@@ -66,7 +68,7 @@ function CartList() {
             </div>
             <div className="cartDeliveryRow">
               <div className="cartDeliveryLeft">
-                <span>Доставка курьером</span>
+                <span>{t("deliveryCourier")}</span>
               </div>
               <div className="cartDeliveryPrice">{totalDelivery} $</div>
             </div>
@@ -76,23 +78,23 @@ function CartList() {
         <aside className="cartRight">
           <div className="cartSummary">
             <div className="cartSummaryHead">
-              <span>ИТОГО</span>
+              <span>{t("total")}</span>
               <strong>{total} $</strong>
             </div>
             <div className="cartSummaryRow">
-              <span>Товаров</span>
+              <span>{t("products")}</span>
               <span>{totalCount}</span>
             </div>
             <div className="cartSummaryRow">
-              <span>Сумма</span>
+              <span>{t("sum")}</span>
               <span>{subtotal} $</span>
             </div>
             <div className="cartSummaryRow">
-              <span>Доставка</span>
+              <span>{t("delivery")}</span>
               <span>{totalDelivery} $</span>
             </div>
             <Link to="/auther" className="cartCheckoutBtn">
-              Перейти к оформлению
+              {t("checkout")}
             </Link>
           </div>
         </aside>
