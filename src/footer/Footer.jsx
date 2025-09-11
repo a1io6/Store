@@ -12,7 +12,7 @@ function Footer() {
 <div className="footer">
   <div className="footer-all">
     <div className="footer-logo">
-      <h1>QPICK</h1>
+    <Link to="/"><h1>QPICK</h1 ></Link >
     </div>
     <div className="footer-sslk">
       <ul>

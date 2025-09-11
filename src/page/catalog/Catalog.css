@@ -1,6 +1,8 @@
+/* Catalog.css */
+
+/* Контейнер */
 .catalog-container {
-   width: 1100px;
-   
+  width: 1100px;
   padding: 20px;
   font-family: 'Montserrat', sans-serif;
   background-color: #E2E2E2;
@@ -14,6 +16,7 @@
   text-align: center;
 }
 
+/* Grid карточек */
 .catalog-grid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
@@ -21,6 +24,7 @@
   justify-items: center;
 }
 
+/* Карточка */
 .catalog-card {
   width: 220px;
   background-color: #fff;
@@ -28,8 +32,17 @@
   overflow: hidden;
   position: relative;
   box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+  display: flex;
+  flex-direction: column;
+  transition: transform 0.3s, box-shadow 0.3s;
 }
 
+.catalog-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+}
+
+/* Ссылка внутри карточки */
 .catalog-link {
   display: flex;
   flex-direction: column;
@@ -37,6 +50,7 @@
   color: inherit;
 }
 
+/* Иконки (сердце и корзина) */
 .catalog-icons {
   position: absolute;
   top: 10px;
@@ -51,36 +65,53 @@
 .catalog-cart {
   font-size: 24px;
   cursor: pointer;
-  transition: color 0.2s;
+  transition: transform 0.2s, color 0.2s;
 }
 
-.catalog-heart.active {
-  color: rgb(10, 10, 10);
-}
-
+.catalog-heart.active,
 .catalog-cart.active {
-  color: rgb(10, 10, 10);
+  color: #0a0a0a;
 }
 
+.catalog-heart:hover,
+.catalog-cart:hover {
+  transform: scale(1.2);
+  color: black;
+}
+
+/* Изображение */
 .catalog-image img {
   width: 100%;
   height: 180px;
   object-fit: contain;
   margin-top: 20px;
+  transition: transform 0.3s;
 }
 
+.catalog-card:hover .catalog-image img {
+  transform: scale(1.05);
+}
+
+/* Информация о товаре */
 .catalog-info {
   padding: 10px 15px;
   display: flex;
   flex-direction: column;
-  gap: 10px;
+  gap: 8px;
 }
 
+/* Название товара */
 .catalog-info h3 {
   font-size: 16px;
   font-weight: 600;
+  transition: color 0.3s;
 }
 
+.catalog-card:hover .catalog-info h3 {
+  color: #FFA542;
+}
+
+/* Цена */
 .catalog-price {
   display: flex;
   gap: 10px;
@@ -90,6 +121,11 @@
 .current-price {
   color: #FFA542;
   font-weight: 600;
+  transition: transform 0.3s;
+}
+
+.catalog-card:hover .current-price {
+  transform: scale(1.05);
 }
 
 .old-price {
@@ -98,12 +134,15 @@
   font-size: 14px;
 }
 
+/* Рейтинг */
 .catalog-rating {
   font-size: 14px;
   color: #333;
+  margin-top: 5px;
+  text-align: left;
 }
 
-/* Loading center */
+/* Loading центр */
 .catalog-loading {
   margin: 100px auto;
   display: flex;
@@ -111,70 +150,7 @@
   align-items: center;
 }
 
-/* Адаптивность */
-@media (max-width: 900px) {
-  .catalog-grid {
-    grid-template-columns: repeat(2, 1fr);
-  }
-}
-
-@media (max-width: 600px) {
-  .catalog-grid {
-    grid-template-columns: 1fr;
-  }
-}
-/* Hover эффекты для карточек */
-.catalog-card {
-  transition: transform 0.3s, box-shadow 0.3s;
-}
-
-.catalog-card:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 8px 20px rgba(0,0,0,0.2);
-}
-
-/* Hover для изображения */
-.catalog-image img {
-  transition: transform 0.3s;
-}
-
-.catalog-card:hover .catalog-image img {
-  transform: scale(1.05);
-}
-
-/* Hover для названия товара */
-.catalog-info h3 {
-  transition: color 0.3s;
-}
-
-.catalog-card:hover .catalog-info h3 {
-  color: #FFA542;
-}
-
-/* Hover для цены */
-.current-price {
-  transition: transform 0.3s;
-}
-
-.catalog-card:hover .current-price {
-  transform: scale(1.05);
-}
-
-/* Hover для сердечка и корзины */
-.catalog-heart,
-.catalog-cart {
-  transition: transform 0.2s, color 0.2s;
-}
-
-.catalog-heart:hover {
-  transform: scale(1.2);
-  color: black;
-}
-
-.catalog-cart:hover {
-  transform: scale(1.2);
-  color: black;
-}
+/* Поиск и фильтры */
 .catalog-search {
   margin: 20px 0;
   text-align: center;
@@ -187,11 +163,13 @@
   border-radius: 12px;
   font-size: 16px;
 }
+
 .catalog-filters {
   margin: 20px 0;
   display: flex;
   gap: 10px;
   justify-content: center;
+  flex-wrap: wrap;
 }
 
 .catalog-filters input {
@@ -199,5 +177,31 @@
   border: 1px solid #ccc;
   border-radius: 10px;
   font-size: 15px;
+  min-width: 100px;
 }
 
+/* Адаптив */
+@media (max-width: 900px) {
+  .catalog-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 600px) {
+  .catalog-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .catalog-container {
+    width: 95%;
+    padding: 15px;
+  }
+
+  .catalog-filters input {
+    width: 45%;
+  }
+
+  .catalog-search input {
+    width: 80%;
+  }
+}

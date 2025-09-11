@@ -9,7 +9,6 @@ import "./App.css";
 import { ToastContainer } from "react-toastify";
 
 import { FruitProvider } from "./context/FruitContext.jsx";
-import FruitList from "./qrcode/FruitList.jsx";
 
 function App() {
   return (
@@ -17,16 +16,15 @@ function App() {
       <FavoriteProvider>
         <OrdersProvider>
           <ReviewProvider>
-           
-              <FruitProvider>
-                <RouterProvider router={myRouter} />
-                <ToastContainer />
-              </FruitProvider>
-          
+            <FruitProvider>
+              <RouterProvider router={myRouter} />
+              <ToastContainer />
+            </FruitProvider>
           </ReviewProvider>
         </OrdersProvider>
       </FavoriteProvider>
     </CartProvider>
   );
 }
+
 export default App;

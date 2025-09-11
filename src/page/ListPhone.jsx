@@ -95,7 +95,7 @@ function ListPhone() {
               className={`add-cart ${added ? "added" : ""}`}
               onClick={handleAddToCart}
             >
-              {added ? "Добавлено!" : "Добавить в корзину"}
+              {added ? "Добавлено!" : " корзинa"}
             </button>
             <QRCodeCanvas
               value={`https://buy.example.com/product/${phone.id}?price=${phone.price}`}

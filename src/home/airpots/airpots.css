@@ -18,8 +18,9 @@
 }
 
 .airpods-all {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
+ display: flex;
+ justify-content: center;
+ flex-wrap:wrap ;
   gap: 40px 70px;
   width: 1140px;
   padding: 0px 20px;
@@ -27,11 +28,6 @@
   border-radius: 12px;
   box-sizing: border-box;
 }
-
-.airpods-blok1 {
-  width: 100%;
-}
-
 .air-blok {
   width: 320px;
   height: 380px;
@@ -251,4 +247,7 @@
 
 .air-price-rating-qr .rating {
   color: #FFD700;
+}
+.qrr{
+  margin-left: 160px;
 }

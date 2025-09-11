@@ -2,18 +2,20 @@
   max-width: 1600px;
   margin: 0 auto;
   background: #E2E2E2;
-  padding: 30px 0;
+  padding: 30px 20px;
   display: flex;
   flex-direction: column;
   align-items: center;
-  
-  
 }
 
 .contact-container {
   display: flex;
+  justify-content: center;
+ flex-wrap:wrap ;
   gap: 20px;
   align-items: flex-start;
+  flex-wrap: wrap;
+  justify-content: center;
 }
 
 .map-block {
@@ -23,6 +25,7 @@
   box-shadow: 0 2px 10px rgba(0,0,0,0.1);
   width: 800px;
   height: 400px;
+  box-sizing: border-box;
 }
 
 .address {
@@ -68,6 +71,68 @@
 .phone-icon {
   font-size: 20px;
 }
-.map-block h4{
-    padding-bottom:15px ;
+
+.map-block h4 {
+  padding-bottom: 15px;
+}
+
+/* ----------- Адаптив ----------- */
+
+/* Планшет ≤1100px */
+@media (max-width: 1100px) {
+  .map-block {
+    width: 600px;
+    height: 380px;
+  }
+iframe{
+  width: 570px;
+}
+  .phone-block {
+    font-size: 16px;
+  }
+}
+
+/* Мобил ≤768px */
+@media (max-width: 768px) {
+  .contact-container {
+    flex-direction: column; /* вертикалка кылуу */
+    align-items: center;
+    gap: 20px;
+  }
+canvas{
+  width: 300px;
+}
+  .map-block {
+    width: 100%;
+    max-width: 400px;
+    height: auto; /* автоматтык бийиктик */
+  }
+
+  .social-icons {
+    flex-direction: row; /* горизонталка кылуу */
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+}
+
+/* Кичинекей мобил ≤480px */
+@media (max-width: 480px) {
+  .map-block {
+    width: 340px;
+    height: auto;
+    padding: 10px;
+  }
+  iframe{
+     width: 340px
+  }
+
+  .social-icons a {
+    width: 40px;
+    height: 40px;
+    font-size: 20px;
+  }
+
+  .phone-block {
+    font-size: 14px;
+  }
 }
