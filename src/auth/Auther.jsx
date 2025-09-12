@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import { CartContext } from '../context/CartContext';
 import { OrdersContext } from '../context/OrdersContext';
 import { useTranslation } from 'react-i18next';
-import './Auther.css';
+import './auther.css';
 
 function Auther() {
   const navigate = useNavigate();
