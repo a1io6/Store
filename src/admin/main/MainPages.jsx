@@ -1,6 +1,6 @@
 import React, { useEffect, useState, useContext } from "react";
 import axios from "axios";
-import "./MainPages.css";
+import "./mainPages.css";
 import { ReviewContext } from "../../context/ReviewContext";
 
 function MainPages() {
