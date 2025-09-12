@@ -1,12 +1,15 @@
 import React, { useState, useEffect, useContext } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import axios from "axios";
-import { CartContext } from "../context/CartContext";
+// import { CartContext } from "../../context/CartContext";
 import { toast } from "react-toastify";
-import ReviewForm from "../review/RevievForm";
+// import ReviewForm from "../../review/RevievForm";
 import { QRCodeCanvas } from "qrcode.react";
 import { useTranslation } from "react-i18next";
-import "./ListPhone.css";
+import "./ListPhone.css"; // CSS файлын даярдап коюңуз
+import { CartContext } from "../context/CartContext";
+import ReviewForm from "../review/RevievForm";
+import Loading from "../shared/Loading";
 
 function ListPhone() {
   const [phone, setPhone] = useState(null);
@@ -20,6 +23,8 @@ function ListPhone() {
   const [reviews, setReviews] = useState(
     JSON.parse(localStorage.getItem(`reviews_${id}`)) || []
   );
+
+  const [showModal, setShowModal] = useState(false); // модалка үчүн
 
   useEffect(() => {
     setLoading(true);
@@ -37,21 +42,19 @@ function ListPhone() {
 
   const handleAddToCart = () => {
     const user = JSON.parse(localStorage.getItem("user"));
-    if (user) {
-      addToCart(phone);
-      setAdded(true);
-      toast.success(t("addedToCart"));
-    } else {
-      toast.warn(t("notRegistered"));
-      navigate("/register");
+    if (!user) {
+      setShowModal(true); // модалка чыгат
+      return;
     }
+    addToCart(phone);
+    setAdded(true);
+    toast.success(t("addedToCart"));
   };
 
   const handleBuyNow = () => {
     const user = JSON.parse(localStorage.getItem("user"));
     if (!user) {
-      toast.warn(t("notRegistered"));
-      navigate("/register");
+      setShowModal(true); // модалка чыгат
       return;
     }
     addToCart(phone);
@@ -73,8 +76,24 @@ function ListPhone() {
     localStorage.setItem(`reviews_${id}`, JSON.stringify(updatedReviews));
   };
 
-  if (loading) return <p>{t("loading")}...</p>;
-  if (!phone) return <p>{t("phoneNotFound")}</p>;
+  const handleRegisterRedirect = () => {
+    setShowModal(false);
+    navigate("/register");
+  };
+
+if (loading)
+    return (
+      <div
+        style={{
+          margin: "100px auto",
+          display: "flex",
+          justifyContent: "center",
+          alignItems: "center",
+        }}
+      >
+        <Loading />
+      </div>
+    );  if (!phone) return <p>{t("phoneNotFound")}</p>;
 
   return (
     <div className="phone-page">
@@ -137,6 +156,26 @@ function ListPhone() {
         </div>
         <ReviewForm onSubmit={handleAddReview} />
       </div>
+
+      {/* Модалка катталуу үчүн */}
+     {/* Модалка катталуу үчүн */}
+{showModal && (
+  <div className="phone-modal-backdrop">
+    <div className="phone-modal">
+      <h2>{t("attention")}</h2>
+      <p>{t("notRegistered")}</p>
+      <div className="phone-modal-buttons">
+        <button onClick={handleRegisterRedirect}>
+          {t("register")}
+        </button>
+        <button onClick={() => setShowModal(false)}>
+          {t("close")}
+        </button>
+      </div>
+    </div>
+  </div>
+)}
+
     </div>
   );
 }

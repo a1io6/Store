@@ -43,3 +43,10 @@
 .review-form button:hover {
   background: #43a047;
 }
+.success-msg {
+  color: green;
+  font-weight: 600;
+  margin-bottom: 8px;
+  text-align: center;
+}
+

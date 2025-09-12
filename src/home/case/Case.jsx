@@ -7,9 +7,9 @@ import { FavoriteContext } from "../../context/FavoriteContext";
 import { CiHeart } from "react-icons/ci";
 import { FaHeart } from "react-icons/fa";
 import { IoCartOutline } from "react-icons/io5";
-import { QRCodeCanvas } from "qrcode.react";
 import { Link } from "react-router-dom";
 import { useTranslation } from 'react-i18next';
+import QRCode from "react-qr-code";
 
 function Case() {
   const { t } = useTranslation();
@@ -84,7 +84,7 @@ function Case() {
           color: "#838383",
           marginTop: "40px",
           margin: "0 auto",
-          paddingLeft:"30px"
+          paddingLeft: "30px"
         }}
         onClick={() => setShowAll(!showAll)}
       >
@@ -149,9 +149,8 @@ function Case() {
                     }}
                   >
                     <p>⭐ {product.rating}</p>
-                    <QRCodeCanvas
-                      className="qrr"
-                      value={`https://buy.example.com/product/${product.id}?price=${product.price}`}
+                    <QRCode
+                      value={`PAYMENT?product=${encodeURIComponent(product.name)}&amount=${product.price}`}
                       size={50}
                     />
                   </div>

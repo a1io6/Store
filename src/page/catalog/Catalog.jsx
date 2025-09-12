@@ -8,6 +8,7 @@ import { FavoriteContext } from "../../context/FavoriteContext";
 import { Link } from "react-router-dom";
 import Loading from "../../shared/Loading";
 import "./Catalog.css";
+import { useTranslation } from "react-i18next";
 
 function Catalog() {
     const {t} = useTranslation()

@@ -36,7 +36,7 @@ function Footer() {
 
           <ul>
             <CiGlobe />
-            <li onClick={() => translate("kz")}>Каз</li>
+            <li onClick={() => translate("kgz")}>Кыр</li>
             <li onClick={() => translate("ru")}>Рус</li>
             <li onClick={() => translate("en")}>Eng</li>
           </ul>

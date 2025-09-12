@@ -1,21 +1,30 @@
-/* ===== Header ===== */
+
 .header {
-  position: relative;       /* экранда туруктуу */
+  position: fixed;      
   top: 0;
   left: 0;
   right: 0;
   width: 100%;
-  z-index: 300;          /* мобил менюдан үстүндө болсун */
+  z-index: 999;          
   display: flex;
   justify-content: center;
-  background-color: #E2E2E2;
+  background-color: rgba(226,226,226,0.95);
   padding: 20px 0;
   box-sizing: border-box;
+  border-bottom: 1px solid transparent;
+
+
+  transition: background-color 0.5s ease, box-shadow 0.5s ease, border-bottom 0.5s ease;
+}
+
+.header.active {
+  box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+  background-color: #E2E2E2;
   border-bottom: 1px solid #e5e5e5;
 }
 
-.header.active{
-  position: sticky;
+body {
+  padding-top: 80px; 
 }
 
 
@@ -23,10 +32,9 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  width: 1100px;
+  width: 100%;
+  max-width: 1100px;
   padding: 12px 20px;
-  background: #E2E2E2;
-  border-radius: 12px;
   box-sizing: border-box;
 }
 
@@ -76,6 +84,18 @@
   background: #ececec;
 }
 
+.header-catalog {
+  cursor: pointer;
+  font-weight: 500;
+  color: #333;
+}
+
+.header-catalog a {
+  color: #333;
+  text-decoration: none;
+  font-weight: 500;
+}
+
 .haeder-icons {
   display: flex;
   align-items: center;
@@ -87,73 +107,51 @@
   font-size: 24px;
   color: #444;
   cursor: pointer;
-  transition: 0.2s;
+  transition: color 0.3s ease;
 }
 
 .haeder-icons svg:hover {
   color: #ff6b00;
 }
 
-.cart-count1 {
+.cart-count1,
+.cart-count2 {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 12px;
+  font-weight: bold;
+  padding: 2px 6px;
+  border-radius: 12px;
+  min-width: 18px;
+  height: 18px;
+  color: white;
   position: absolute;
+}
+
+.cart-count1 {
   top: -9px;
   left: 12px;
   background-color: #a90d0d;
-  color: white;
-  font-size: 12px;
-  font-weight: bold;
-  padding: 2px 6px;
-  border-radius: 12px;
-  min-width: 18px;
-  height: 18px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
 }
 
 .cart-count2 {
-  position: absolute;
   top: -9px;
   left: 57px;
   background-color: #FFA542;
-  color: white;
-  font-size: 12px;
-  font-weight: bold;
-  padding: 2px 6px;
-  border-radius: 12px;
-  min-width: 18px;
-  height: 18px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
 }
 
-.header-catalog {
-  position: relative;
-  cursor: pointer;
-  font-weight: 500;
-  color: #333;
-  margin-left: -350px;
-}
-
-.header-catalog a {
-  color: #333;
-  text-decoration: none;
-  font-weight: 500;
-}
-
-/* ------------------- */
-/* Бургер меню стили */
-/* ------------------- */
+/* ===== Бургер меню ===== */
 .burger-btn {
   display: none;
 }
 
+/* ===== Мобил меню ===== */
 .mobile-menu {
   display: none;
 }
 
-/* Мобил версия */
+/* ===== Мобил версия ===== */
 @media (max-width: 768px) {
   .header-iphone,
   .header-catalog,
@@ -180,7 +178,7 @@
     height: 3px;
     background: #333;
     border-radius: 3px;
-    transition: 0.3s;
+    transition: transform 0.3s ease, opacity 0.3s ease;
   }
 
   .burger-btn.open span:nth-child(1) {
@@ -226,6 +224,7 @@
     font-weight: 500;
     color: #333;
     text-decoration: none;
+    transition: color 0.3s ease;
   }
 
   .mobile-menu nav a:hover {
