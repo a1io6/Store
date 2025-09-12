@@ -1,10 +1,18 @@
-import React, { createContext, useState } from "react";
+import React, { createContext, useState, useEffect } from "react";
 
 export const FavoriteContext = createContext();
 
 export function FavoriteProvider({ children }) {
-  const [favoriteItems, setFavoriteItems] = useState([]);
+  // Загружаем из localStorage при старте
+  const [favoriteItems, setFavoriteItems] = useState(() => {
+    const saved = localStorage.getItem("favorites");
+    return saved ? JSON.parse(saved) : [];
+  });
 
+  // Сохраняем в localStorage при изменении
+  useEffect(() => {
+    localStorage.setItem("favorites", JSON.stringify(favoriteItems));
+  }, [favoriteItems]);
 
   const addToFavorite = (product) => {
     setFavoriteItems((prev) => {
@@ -12,7 +20,7 @@ export function FavoriteProvider({ children }) {
       if (!existing) {
         return [...prev, product];
       }
-      return prev; 
+      return prev;
     });
   };
 
