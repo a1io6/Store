@@ -1,6 +1,6 @@
 import React, { useContext } from "react";
 import { ReviewContext } from "../../context/ReviewContext";
-import "./AdminReviews.css";
+import "./adminReviews.css";
 
 function AdminReviews() {
   const { reviews, deleteReview } = useContext(ReviewContext);
