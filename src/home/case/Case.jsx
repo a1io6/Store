@@ -6,9 +6,9 @@ import { CartContext } from "../../context/CartContext";
 import { FavoriteContext } from "../../context/FavoriteContext";
 import { CiHeart } from "react-icons/ci";
 import { FaHeart } from "react-icons/fa";
-import { IoCartOutline } from "react-icons/io5";
+import { IoCartOutline, IoCartSharp } from "react-icons/io5"; // ✅ Sharp версиясын коштук
 import { Link } from "react-router-dom";
-import { useTranslation } from 'react-i18next';
+import { useTranslation } from "react-i18next";
 import { QRCodeCanvas } from "qrcode.react";
 
 function Case() {
@@ -19,7 +19,8 @@ function Case() {
   const [showModal, setShowModal] = useState(false);
 
   const { cartItems, addToCart, removeFromCart } = useContext(CartContext);
-  const { favoriteItems, addToFavorite, removeFromFavorite } = useContext(FavoriteContext);
+  const { favoriteItems, addToFavorite, removeFromFavorite } =
+    useContext(FavoriteContext);
 
   useEffect(() => {
     setLoading(true);
@@ -84,17 +85,19 @@ function Case() {
           color: "#838383",
           marginTop: "40px",
           margin: "0 auto",
-          paddingLeft: "30px"
+          paddingLeft: "30px",
         }}
         onClick={() => setShowAll(!showAll)}
       >
-        {t('cases')} {showAll ? "▲" : "▼"}
+        {t("cases")} {showAll ? "▲" : "▼"}
       </h3>
 
       <div className="case">
         <div className={`case-all ${showAll ? "expanded" : "collapsed"}`}>
           {productsData.map((product) => {
-            const isInFavorite = favoriteItems.some((item) => item.id === product.id);
+            const isInFavorite = favoriteItems.some(
+              (item) => item.id === product.id
+            );
             const isInCart = cartItems.some((item) => item.id === product.id);
 
             return (
@@ -120,11 +123,20 @@ function Case() {
                       />
                     )}
 
-                    <IoCartOutline
-                      className={`cart-icon ${isInCart ? "active" : ""}`}
-                      style={{ color: isInCart ? "black" : "black" }}
-                      onClick={() => toggleCart(product)}
-                    />
+                    {/* ✅ Эми корзина толук кара болот */}
+                    {isInCart ? (
+                      <IoCartSharp
+                        className="cart-icon active"
+                        style={{ color: "black" }}
+                        onClick={() => toggleCart(product)}
+                      />
+                    ) : (
+                      <IoCartOutline
+                        className="cart-icon"
+                        style={{ color: "black" }}
+                        onClick={() => toggleCart(product)}
+                      />
+                    )}
                   </div>
 
                   <Link to={`/listphone/${product.id}`} className="case-link">
@@ -150,7 +162,9 @@ function Case() {
                   >
                     <p>⭐ {product.rating}</p>
                     <QRCodeCanvas
-                      value={`PAYMENT?product=${encodeURIComponent(product.name)}&amount=${product.price}`}
+                      value={`PAYMENT?product=${encodeURIComponent(
+                        product.name
+                      )}&amount=${product.price}`}
                       size={50}
                     />
                   </div>
@@ -165,20 +179,20 @@ function Case() {
       {showModal && (
         <div className="case-modal-backdrop">
           <div className="case-modal">
-            <h2 className="case-modal-title">{t('attention')}</h2>
-            <p className="case-modal-text">{t('notRegistered')}</p>
+            <h2 className="case-modal-title">{t("attention")}</h2>
+            <p className="case-modal-text">{t("notRegistered")}</p>
             <div className="case-modal-buttons">
               <button
                 className="case-register-btn"
                 onClick={handleRegisterRedirect}
               >
-                {t('register')}
+                {t("register")}
               </button>
               <button
                 className="case-close-btn"
                 onClick={() => setShowModal(false)}
               >
-                {t('close')}
+                {t("close")}
               </button>
             </div>
           </div>
