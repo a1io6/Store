@@ -9,7 +9,7 @@ import { FaHeart } from "react-icons/fa";
 import { IoCartOutline } from "react-icons/io5";
 import { Link } from "react-router-dom";
 import { useTranslation } from 'react-i18next';
-import QRCode from "react-qr-code";
+import { QRCodeCanvas } from "qrcode.react";
 
 function Case() {
   const { t } = useTranslation();
@@ -149,7 +149,7 @@ function Case() {
                     }}
                   >
                     <p>⭐ {product.rating}</p>
-                    <QRCode
+                    <QRCodeCanvas
                       value={`PAYMENT?product=${encodeURIComponent(product.name)}&amount=${product.price}`}
                       size={50}
                     />

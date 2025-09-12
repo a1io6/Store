@@ -141,7 +141,7 @@ function Airpods() {
 
                   <div className='air-reiting' style={{ display: 'flex', alignItems: 'center', gap: '10px', marginTop: '10px', color: '#000' }}>
                     <p>⭐ {product.rating}</p>
-                    <QRCode
+                    <QRCodeCanvas
                       value={`PAYMENT?product=${encodeURIComponent(product.name)}&amount=${product.price}`}
                       size={50}
                     />                  </div>
