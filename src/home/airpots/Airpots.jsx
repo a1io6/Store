@@ -3,7 +3,7 @@ import axios from 'axios';
 import { CiHeart } from "react-icons/ci";
 import { FaHeart } from "react-icons/fa";
 import { IoCartOutline, IoCart } from "react-icons/io5";
-import "../headphones/Headphones.css"
+import "../headphones/headphones.css"
 import { CartContext } from '../../context/CartContext';
 import { FavoriteContext } from "../../context/FavoriteContext";
 import { Link, useNavigate } from 'react-router-dom';
