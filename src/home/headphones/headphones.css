@@ -120,10 +120,10 @@
   position: absolute;
   bottom: 20px;
   left: 15px;
-  color: black;
   padding: 5px 10px;
   border-radius: 8px;
   font-size: 15px;
+  color: black;
 }
 
 .reiting p {

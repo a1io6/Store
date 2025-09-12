@@ -1,11 +1,9 @@
-// AdminSidebar.jsx
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import "./adminHeader.css";
-import { useNavigate } from "react-router-dom";
 
 function AdminHeader() {
-  const navigate = useNavigate()
+  const navigate = useNavigate();
   return (
     <aside className="adminSidebar">
       <div className="sidebar-header">
@@ -18,12 +16,17 @@ function AdminHeader() {
         <Link to="/shopping">Покупки</Link>
         <Link to="/adminreviews">Вопросы</Link>
       </nav>
-    
+
       <div className="sidebar-footer">
-        <button onClick={()=>{
-          navigate("/")
-          localStorage.removeItem("user")
-        }} className="logout-btn">Выход</button>
+        <button
+          onClick={() => {
+            navigate("/");
+            localStorage.removeItem("user");
+          }}
+          className="logout-btn"
+        >
+          Выход
+        </button>
       </div>
     </aside>
   );

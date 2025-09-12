@@ -4,6 +4,7 @@ import { CartContext } from "../context/CartContext";
 import cartCorzina from '../assets/cart.svg';
 import "./CartList.css";
 import { useTranslation } from "react-i18next";
+// import { useTranslation } from "react-i18next";
 
 function CartList() {
   const { t } = useTranslation();
@@ -18,7 +19,7 @@ function CartList() {
   if (cartItems.length === 0) {
     return (
       <div className="cartEmpty">
-        <img src={cartCorzina} alt={t("cartEmpty")} className="cartEmptyImg" />
+        <img src={cartCorzina} alt={t("")} className="cartEmptyImg" />
         <h2>{t("cartEmpty")}</h2>
         <p>{t("cartEmptySub")}</p>
         <Link to="/" className="backToShop">{t("backToCatalog")}</Link>
@@ -59,7 +60,7 @@ function CartList() {
             <div className="cartMap">
               <iframe
                 src="https://yandex.com/map-widget/v1/?ll=74.585671%2C42.880350&z=16&l=map&pt=74.585671,42.880350,pm2rdm"
-                width="625px"
+                width="745px"
                 height="200px"
                 frameBorder="0"
                 allowFullScreen

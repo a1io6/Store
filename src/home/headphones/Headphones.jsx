@@ -8,8 +8,8 @@ import { CartContext } from '../../context/CartContext';
 import { FavoriteContext } from "../../context/FavoriteContext";
 import { Link, useNavigate } from 'react-router-dom';
 import Loading from '../../shared/Loading';
-import { QRCodeCanvas } from 'qrcode.react';
 import { useTranslation } from 'react-i18next';
+import QRCode from 'react-qr-code';
 
 function Headphones() {
   const { t } = useTranslation();
@@ -77,10 +77,10 @@ function Headphones() {
 
   return (
     <div className='headphones-logo'>
-      <h3 
+      <h3
         style={{
           cursor: "pointer",
-          paddingLeft:"30px" ,
+          paddingLeft: "30px",
           color: "#838383",
           margin: "0 auto"
         }}
@@ -139,10 +139,12 @@ function Headphones() {
                     </div>
                   </div>
 
-                  <div className='air-reiting' style={{ display: 'flex', alignItems: 'center', gap: '10px', marginTop: '10px' }}>
+                  <div className='air-reiting' style={{ display: 'flex', alignItems: 'center', gap: '10px', marginTop: '10px', color: '#000' }}>
                     <p>⭐ {product.rating}</p>
-                    <QRCodeCanvas className='qrr' value={`https://buy.example.com/product/${product.id}?price=${product.price}`} size={50} />
-                  </div>
+                    <QRCode
+                      value={`PAYMENT?product=${encodeURIComponent(product.name)}&amount=${product.price}`}
+                      size={50}
+                    />                  </div>
                 </Link>
               </div>
             );

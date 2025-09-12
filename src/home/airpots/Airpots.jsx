@@ -3,15 +3,15 @@ import axios from 'axios';
 import { CiHeart } from "react-icons/ci";
 import { FaHeart } from "react-icons/fa";
 import { IoCartOutline, IoCart } from "react-icons/io5";
-import { QRCodeCanvas } from 'qrcode.react';
-import './airpots.css';
+import "../headphones/Headphones.css"
 import { CartContext } from '../../context/CartContext';
 import { FavoriteContext } from "../../context/FavoriteContext";
+import { Link, useNavigate } from 'react-router-dom';
 import Loading from '../../shared/Loading';
-import { useNavigate } from 'react-router-dom';
+import { QRCodeCanvas } from 'qrcode.react';
 import { useTranslation } from 'react-i18next';
 
-function Airpots() {
+function Airpods() {
   const { t } = useTranslation();
   const [productsData, setProductsData] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -23,26 +23,32 @@ function Airpots() {
 
   useEffect(() => {
     setLoading(true);
-    axios.get('https://689ead013fed484cf877ace7.mockapi.io/fruit?category=airpods')
-      .then(response => {
-        setProductsData(response.data);
+    axios.get(`https://689ead013fed484cf877ace7.mockapi.io/fruit?category=airpods`)
+      .then(res => {
+        setProductsData(res.data);
         setLoading(false);
       })
-      .catch(error => {
-        console.error(error);
+      .catch(err => {
+        console.error(err);
         setLoading(false);
       });
   }, []);
 
-  if (loading) {
+  if (loading)
     return (
-      <div style={{ margin: "0 auto", display: "flex", justifyContent: "center", alignItems: "center" }}>
+      <div
+        style={{
+          margin: "0 auto",
+          display: "flex",
+          justifyContent: "center",
+          alignItems: "center",
+        }}
+      >
         <Loading />
       </div>
     );
-  }
 
-  const toggleFavorite = (product) => {
+  const handleFavorite = (product) => {
     const user = JSON.parse(localStorage.getItem("user"));
     if (!user) {
       setShowModal(true);
@@ -53,7 +59,7 @@ function Airpots() {
     else addToFavorite(product);
   };
 
-  const toggleCart = (product) => {
+  const handleCart = (product) => {
     const user = JSON.parse(localStorage.getItem("user"));
     if (!user) {
       setShowModal(true);
@@ -65,52 +71,81 @@ function Airpots() {
   };
 
   const handleRegisterRedirect = () => {
+    setShowModal(false);
     navigate("/register");
   };
 
   return (
-    <div className='airpods-logo'>
-      <h3 style={{ cursor: "pointer", color: "#838383", marginTop:"40px", margin: "0 auto",paddingLeft:"30px" }}>
-        {t('wirelessHeadphones')}
+    <div className='headphones-logo'>
+      <h3
+        style={{
+          cursor: "pointer",
+          paddingLeft: "30px",
+          color: "#838383",
+          margin: "0 auto"
+        }}
+      >
+        {t('headphones')}
       </h3>
 
-      <div className="airpods-page">
-        <div className="airpods-all">
+      <div className='headphones'>
+        <div className="headphones-all">
           {productsData.map(product => {
             const isInFavorite = favoriteItems.some(item => item.id === product.id);
             const isInCart = cartItems.some(item => item.id === product.id);
 
             return (
-              <div className="airpods-blok1" key={product.id} style={{ display: product.activated ? "block" : "none" }}>
-                <div className='air-blok'>
-                  <div className='air-icons'>
+              <div
+                className="headphones-blok1"
+                key={product.id}
+                style={{ display: product.activated ? "block" : "none" }}
+              >
+                <Link to={`/listphone/${product.id}`} className='blok1'>
+                  <div className='blok1-icons'>
                     {isInFavorite ? (
-                      <FaHeart className="heart-icon active" onClick={() => toggleFavorite(product)} />
+                      <FaHeart
+                        className="heart-icon active"
+                        onClick={(e) => { e.preventDefault(); handleFavorite(product); }}
+                      />
                     ) : (
-                      <CiHeart className="heart-icon" onClick={() => toggleFavorite(product)} />
+                      <CiHeart
+                        className="heart-icon"
+                        onClick={(e) => { e.preventDefault(); handleFavorite(product); }}
+                      />
                     )}
 
                     {isInCart ? (
-                      <IoCart className="cart-icon active" onClick={() => toggleCart(product)} />
+                      <IoCart
+                        className="cart-icon active"
+                        onClick={(e) => { e.preventDefault(); handleCart(product); }}
+                      />
                     ) : (
-                      <IoCartOutline className="cart-icon" onClick={() => toggleCart(product)} />
+                      <IoCartOutline
+                        className="cart-icon"
+                        onClick={(e) => { e.preventDefault(); handleCart(product); }}
+                      />
                     )}
                   </div>
 
-                  <img src={product.img} alt={product.name} />
-                  <div className="air-info">
+                  <div>
+                    <img src={product.img} alt={product.name} />
+                  </div>
+
+                  <div className="product-info">
                     <h2>{product.name}</h2>
-                    <div className="air-price">
+                    <div className="price-container">
                       <h3>{product.price} $</h3>
                       {product.oldPrice && <h4>{product.oldPrice}</h4>}
                     </div>
                   </div>
 
-                  <div className='air-reiting' style={{ display: 'flex', alignItems: 'center', gap: '10px', marginTop: '10px' }}>
+                  <div className='air-reiting' style={{ display: 'flex', alignItems: 'center', gap: '10px', marginTop: '10px', color: '#000' }}>
                     <p>⭐ {product.rating}</p>
-                    <QRCodeCanvas className='qrr' value={`https://buy.example.com/product/${product.id}?price=${product.price}`} size={50} />
-                  </div>
-                </div>
+                    <QRCode
+                      value={`PAYMENT?product=${encodeURIComponent(product.name)}&amount=${product.price}`}
+                      size={50}
+                    />                  </div>
+                </Link>
               </div>
             );
           })}
@@ -118,13 +153,17 @@ function Airpots() {
       </div>
 
       {showModal && (
-        <div className="airpods-modal-backdrop">
-          <div className="airpods-modal">
-            <h2>{t('attention')}</h2>
-            <p>{t('notRegistered')}</p>
-            <div className="airpods-modal-buttons">
-              <button className="airpods-register-btn" onClick={handleRegisterRedirect}>{t('register')}</button>
-              <button className="airpods-close-btn" onClick={() => setShowModal(false)}>{t('close')}</button>
+        <div className="headphones-modal-backdrop">
+          <div className="headphones-modal">
+            <h2 className="headphones-modal-title">{t('attention')}</h2>
+            <p className="headphones-modal-text">{t('notRegistered')}</p>
+            <div className="headphones-modal-buttons">
+              <button className="headphones-register-btn" onClick={handleRegisterRedirect}>
+                {t('register')}
+              </button>
+              <button className="headphones-close-btn" onClick={() => setShowModal(false)}>
+                {t('close')}
+              </button>
             </div>
           </div>
         </div>
@@ -133,4 +172,4 @@ function Airpots() {
   );
 }
 
-export default Airpots;
+export default Airpods;

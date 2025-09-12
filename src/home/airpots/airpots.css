@@ -1,9 +1,13 @@
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap');
-.airpods-logo{
+
+.airpods-logo {
   width: 100%;
   max-width: 1140px;
   margin: 0 auto;
+  padding: 20px;
+  box-sizing: border-box;
 }
+
 .airpods-page {
   display: flex;
   flex-direction: column;
@@ -16,22 +20,29 @@
 }
 
 .section-title {
-  width: 1140px;
+  width: 100%;
+  max-width: 1140px;
   color: #838383;
+  font-size: 20px;
+  font-weight: 600;
   margin: 0 auto 30px;
+  padding: 0 20px;
+  box-sizing: border-box;
 }
 
 .airpods-all {
- display: flex;
- justify-content: center;
- flex-wrap:wrap ;
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
   gap: 40px 70px;
-  width: 1140px;
-  padding: 0px 20px;
+  width: 100%;
+  max-width: 1140px;
+  padding: 0 20px;
   background: #E2E2E2;
   border-radius: 12px;
   box-sizing: border-box;
 }
+
 .air-blok {
   width: 320px;
   height: 380px;
@@ -41,11 +52,17 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: 0px;
+  padding: 0;
   box-sizing: border-box;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
-/* Heart жана Cart иконкалары */
+.air-blok:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+}
+
+/* Иконкалар */
 .air-icons {
   position: absolute;
   top: 15px;
@@ -54,18 +71,22 @@
   justify-content: space-between;
   padding: 0 15px;
   box-sizing: border-box;
+  z-index: 2;
 }
 
-/* Иконкалар ар дайым кара */
 .heart-icon,
 .cart-icon {
   font-size: 26px;
   cursor: pointer;
   color: black;
-  transition: none;
+  transition: color 0.2s ease;
 }
 
-/* active болсо дагы кара бойдон калат */
+.heart-icon:hover,
+.cart-icon:hover {
+  color: #FFA542;
+}
+
 .heart-icon.active,
 .cart-icon.active {
   color: black;
@@ -75,86 +96,105 @@
   width: 200px;
   height: 220px;
   object-fit: contain;
-  margin-top: 25px;
+  margin-top: 50px;
+  transition: transform 0.3s ease;
 }
 
+.air-blok img:hover {
+  transform: scale(1.05);
+}
+
+/* Name + Price flex 1 катарда */
 .air-info {
   display: flex;
-  width: 100%;
-  margin-top: 20px;
-  padding: 0 15px;
   justify-content: space-between;
+  width: 100%;
+  padding: 0 15px;
+  margin-top: 15px;
+  align-items: center;
 }
 
 .air-info h2 {
-  margin-left: 20px;
   font-size: 17px;
   font-weight: 600;
   color: #1C1C27;
-  margin-bottom: 15px;
+  margin: 0;
 }
 
 .air-price {
-  position: relative;
   display: flex;
   flex-direction: column;
   align-items: flex-end;
 }
 
 .air-price h3 {
-  margin-right: 20px;
   font-size: 17px;
   font-weight: 600;
   color: #FFA542;
+  margin: 0;
 }
 
+/* Эгер эски баа болсо */
 .air-price h4 {
-  position: absolute;
-  top: 40px;
-  margin-right: 25px;
   font-size: 14px;
   font-weight: 600;
   color: #FFCE7F;
   text-decoration: line-through;
-  margin-top: -5px;
+  margin: 5px 0 0 0;
 }
 
-.air-reiting {
-  position: absolute;
-  bottom: 20px;
-  left: 15px;
-  color: black;
-  padding: 5px 10px;
-  border-radius: 8px;
+/* Rating + QR flex 1 катарда */
+.air-price-rating-qr {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  padding: 0 15px;
+  margin-top: 15px;
+}
+
+.rating {
   font-size: 15px;
+  color: black;
+  display: flex;
+  align-items: center;
+  gap: 10px;
 }
 
-.air-reiting p {
-  margin: 0;
+.qrr {
+  width: 50px;
+  height: 50px;
+  border-radius: 8px;
+  padding: 5px;
+  background: white;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
 }
 
-/* Адаптив */
-@media (max-width: 1100px) {
-  .airpods-all {
-    grid-template-columns: repeat(2, 1fr);
-    width: 100%;
-  }
+/* Ссылка блоку */
+.air-link {
+  text-decoration: none;
+  color: black;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
 }
 
-@media (max-width: 768px) {
-  .airpods-all {
-    grid-template-columns: 1fr;
-  }
+.air-link h2 {
+  font-size: 17px;
+  margin: 15px 0 0 0;
+  text-align: center;
+  padding: 0 15px;
 }
+
 /* Модалка фон жана блок */
-/* Airpods модалка фон жана блок */
 .airpods-modal-backdrop {
   position: fixed;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
-  background: rgba(220, 220, 220, 0.5); /* жеңил серый фон */
+  background: rgba(220, 220, 220, 0.5);
   display: flex;
   justify-content: center;
   align-items: center;
@@ -168,16 +208,20 @@
   max-width: 400px;
   width: 90%;
   text-align: center;
+  animation: airpodsModalFadeIn 0.3s ease;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
 }
 
 .airpods-modal-title {
   margin-bottom: 10px;
   font-size: 22px;
+  color: #1C1C27;
 }
 
 .airpods-modal-text {
   font-size: 16px;
   margin-bottom: 20px;
+  color: #838383;
 }
 
 .airpods-modal-buttons {
@@ -193,6 +237,7 @@
   border: none;
   cursor: pointer;
   transition: all 0.2s ease;
+  font-weight: 600;
 }
 
 .airpods-register-btn:hover {
@@ -207,51 +252,59 @@
   border: none;
   cursor: pointer;
   transition: all 0.2s ease;
+  font-weight: 600;
 }
 
 .airpods-close-btn:hover {
   background-color: #aaa;
 }
 
-.airpods-register-btn {
-  background-color: #FFA542;
-  color: white;
+/* Адаптив */
+@media (max-width: 1100px) {
+  .airpods-all {
+    gap: 30px;
+  }
 }
 
-.airpods-register-btn:hover {
-  background-color: #ff9a1a;
+@media (max-width: 768px) {
+  .airpods-all {
+    gap: 20px;
+  }
+  
+  .air-blok {
+    width: 280px;
+    height: 360px;
+  }
+  
+  .air-blok img {
+    width: 180px;
+    height: 200px;
+  }
 }
 
-.airpods-close-btn {
-  background-color: #ccc;
-  color: #333;
-}
-
-.airpods-close-btn:hover {
-  background-color: #aaa;
+@media (max-width: 480px) {
+  .airpods-all {
+    justify-content: center;
+  }
+  
+  .air-blok {
+    width: 100%;
+    max-width: 300px;
+  }
+  
+  .air-icons {
+    padding: 0 10px;
+  }
+  
+  .air-price-rating-qr {
+    flex-direction: column;
+    gap: 10px;
+    align-items: flex-start;
+  }
 }
 
 /* Анимация модалка пайда болуу */
 @keyframes airpodsModalFadeIn {
   from { opacity: 0; transform: translateY(-20px); }
   to { opacity: 1; transform: translateY(0); }
-}
-
-.air-price-rating-qr {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  margin-top: 8px;
-}
-
-.air-price-rating-qr .price {
-  font-weight: 700;
-  color: #FFA542;
-}
-
-.air-price-rating-qr .rating {
-  color: #FFD700;
-}
-.qrr{
-  margin-left: 160px;
 }
