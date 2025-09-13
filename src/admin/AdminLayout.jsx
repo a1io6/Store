@@ -6,19 +6,19 @@ function AdminLayout() {
   const admin = JSON.parse(localStorage.getItem("user")) || ["user"]
   const navigate = useNavigate()
   const location = useLocation();
-  const body = document.querySelector("body")
+  // const body = document.querySelector("body")
   useEffect(()=>{
   
-    if(admin.role !== "admin"){
-      toast.warn("you do not have access to this data")
-      navigate("/")
-    }else{
-    }
-    if (location.pathname === "/admin"){
-      body.style.padding = "0"
-    }else{
-      body.style.padding = "80px"
-    }
+    // if(admin.role !== "admin"){
+    //   toast.warn("you do not have access to this data")
+    //   navigate("/")
+    // }else{
+    // }
+    // if (location.pathname === "/admin"){
+    //   body.style.padding = "0"
+    // }else{
+    //   body.style.padding = "80px"
+    // }
   },[admin])
   console.log(admin);
   
