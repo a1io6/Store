@@ -1,9 +1,7 @@
 import React, { useState, useEffect, useContext } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import axios from "axios";
-// import { CartContext } from "../../context/CartContext";
 import { toast } from "react-toastify";
-// import ReviewForm from "../../review/RevievForm";
 import { QRCodeCanvas } from "qrcode.react";
 import { useTranslation } from "react-i18next";
 import "./ListPhone.css"; // CSS файлын даярдап коюңуз
@@ -42,10 +40,13 @@ function ListPhone() {
 
   const handleAddToCart = () => {
     const user = JSON.parse(localStorage.getItem("user"));
-    if (!user) {
-      setShowModal(true); // модалка чыгат
+    const cartAccess = localStorage.getItem("cartAccess");
+
+    if (!user && !cartAccess) {
+      setShowModal(true); // биринчи жолу гана модалка чыгат
       return;
     }
+
     addToCart(phone);
     setAdded(true);
     toast.success(t("addedToCart"));
@@ -53,10 +54,13 @@ function ListPhone() {
 
   const handleBuyNow = () => {
     const user = JSON.parse(localStorage.getItem("user"));
-    if (!user) {
-      setShowModal(true); // модалка чыгат
+    const cartAccess = localStorage.getItem("cartAccess");
+
+    if (!user && !cartAccess) {
+      setShowModal(true);
       return;
     }
+
     addToCart(phone);
     navigate("/auther");
   };
@@ -77,11 +81,12 @@ function ListPhone() {
   };
 
   const handleRegisterRedirect = () => {
+    // регистрацияга багыттайбыз
     setShowModal(false);
     navigate("/register");
   };
 
-if (loading)
+  if (loading)
     return (
       <div
         style={{
@@ -93,7 +98,9 @@ if (loading)
       >
         <Loading />
       </div>
-    );  if (!phone) return <p>{t("phoneNotFound")}</p>;
+    );
+
+  if (!phone) return <p>{t("phoneNotFound")}</p>;
 
   return (
     <div className="phone-page">
@@ -158,24 +165,22 @@ if (loading)
       </div>
 
       {/* Модалка катталуу үчүн */}
-     {/* Модалка катталуу үчүн */}
-{showModal && (
-  <div className="phone-modal-backdrop">
-    <div className="phone-modal">
-      <h2>{t("attention")}</h2>
-      <p>{t("notRegistered")}</p>
-      <div className="phone-modal-buttons">
-        <button onClick={handleRegisterRedirect}>
-          {t("register")}
-        </button>
-        <button onClick={() => setShowModal(false)}>
-          {t("close")}
-        </button>
-      </div>
-    </div>
-  </div>
-)}
-
+      {showModal && (
+        <div className="phone-modal-backdrop">
+          <div className="phone-modal">
+            <h2>{t("attention")}</h2>
+            <p>{t("notRegistered")}</p>
+            <div className="phone-modal-buttons">
+              <button onClick={handleRegisterRedirect}>
+                {t("register")}
+              </button>
+              <button onClick={() => setShowModal(false)}>
+                {t("close")}
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   );
 }

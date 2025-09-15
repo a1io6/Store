@@ -89,9 +89,16 @@ const resources = {
       titlee: "User Questions",
       sumbit: "Send",
       cartEmpty: "Cart empty",
-
-
-      // Условия сервиса
+      noOrderData: "No order data",
+orderNumber: "Your order number",
+managerWillCall: "Our manager will contact you at the phone number:",
+orderComposition: "Order composition",
+subtotal: "Subtotal",
+delivery: "Delivery",
+totalToPay: "Total to Pay",
+forManager: "For manager",
+promoUsed: "Client used promo code:",
+fillAllFields: "Please fill in all fields",
       conditionTitle: "Service Terms",
       conditionText1: "The task of the organization, especially the focus on the socially-oriented national project, requires us to perform a systematic analysis of the development model! Thus, the constant information and technical support of our activities requires us to analyze the system of large-scale changes of several parameters! On the other hand, socio-economic development directly depends on comprehensively balanced innovations.",
       conditionTitle2: "Terms",
@@ -188,11 +195,16 @@ const resources = {
       titlee: "Вопросы пользователей",
       sumbit: "Отправить",
       cartEmpty: "Корзина пустая",
-
-
-
-
-      // Условия сервиса
+      noOrderData: "Нет данных о заказе",
+orderNumber: "Номер вашего заказа",
+managerWillCall: "С Вами свяжется наш менеджер по номеру:",
+orderComposition: "Состав заказа",
+subtotal: "Сумма товаров",
+delivery: "Доставка",
+totalToPay: "Итого к оплате",
+forManager: "Менеджеру",
+promoUsed: "Клиент использовал промокод:",
+fillAllFields: "Заполните все поля",
       conditionTitle: "Условия сервиса",
       conditionText1: "Задача организации, в особенности же курс на социально-ориентированный национальный проект требует от нас системного анализа модели развития! Таким образом, постоянное информационно-техническое обеспечение нашей деятельности требует от нас анализа системы масштабного изменения ряда параметров! С другой стороны социально-экономическое развитие напрямую зависит от всесторонне сбалансированных нововведений.",
       conditionTitle2: "Условия",
@@ -270,7 +282,16 @@ const resources = {
     titlee: "Колдонуучулардын суроолору",
     sumbit: "Жөнөтүү",
     cartEmpty: "Себет бош",
-    
+    noOrderData: "Заказ боюнча маалымат жок",
+orderNumber: "Сиздин заказ номери",
+managerWillCall: "Биздин менеджер сиз менен байланышат номер аркылуу:",
+orderComposition: "Заказ курамы",
+subtotal: "Товарлар суммасы",
+delivery: "Жеткирүү",
+totalToPay: "Жалпы төлөм",
+forManager: "Менеджерге",
+promoUsed: "Клиент промокод колдонду:",
+fillAllFields: "Бардык талааларды толтуруңуз",
     conditionTitle: "Кызмат көрсөтүү шарттары",
     conditionText1: "Уюмдун милдети, өзгөчө социалдык багытталган улуттук долбоорго көңүл буруу, бизден өнүгүү моделин системалуу талдоону талап кылат! Ошентип, биздин кызматты туруктуу маалымат-техникалык камсыздоо бир нече параметрлердин кеңири өзгөрүүлөрүн талдоону талап кылат! Башка жагынан, социалдык-экономикалык өнүгүү комплексдүү тең салмактуу жаңылыктарга түз байланыштуу.",
     conditionTitle2: "Шарттар",
